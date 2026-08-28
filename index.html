@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediCare AI - Health Care Made Smarter With AI</title>
+    <meta name="description"
+        content="MediCare AI is a smart healthcare platform designed to make healthcare simple and accessible. Combining AI technology with trusted medical care.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Main Container -->
+    <div class="landing-page">
+
+        <!-- Top Floating Navbar -->
+        <header class="navbar-wrapper">
+            <nav class="navbar" id="main-nav">
+                <!-- Logo -->
+                <div class="logo">
+                    <div class="logo-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="2" y="2" width="20" height="20" rx="6" fill="#2563EB" />
+                            <path d="M12 7V17M7 12H17" stroke="white" stroke-width="3" stroke-linecap="round" />
+                            <circle cx="12" cy="12" r="2" fill="#60A5FA" />
+                        </svg>
+                    </div>
+                    <span class="logo-text">MediCare <span class="logo-accent">AI</span></span>
+                </div>
+
+                <!-- Navigation Links -->
+                <ul class="nav-links">
+                    <li class="nav-item active">
+                        <a href="#home" class="nav-link">Home</a>
+                        <span class="active-dot"></span>
+                    </li>
+                    <li class="nav-item"><a href="#services" class="nav-link">Services</a></li>
+                    <li class="nav-item"><a href="#about" class="nav-link">About Us</a></li>
+                    <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+
+                <!-- Right Actions -->
+                <div class="nav-actions">
+                    <button class="icon-btn search-btn" id="search-trigger" title="Search">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </button>
+                    <div class="nav-divider"></div>
+                    <button class="btn btn-primary nav-cta" id="nav-cta-btn">
+                        Get Started
+                        <svg class="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </button>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero-section" id="home">
+            <!-- Diagonal Split Background Layer -->
+            <div class="hero-bg">
+                <div class="bg-dark"></div>
+                <div class="bg-blue"></div>
+            </div>
+
+            <div class="hero-container">
+
+                <!-- Left Content Column -->
+                <div class="hero-content">
+                    <!-- AI Badge -->
+                    <div class="ai-badge">
+                        <svg class="sparkle-icon" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                            stroke="#60A5FA" stroke-width="2">
+                            <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" fill="#60A5FA"
+                                fill-opacity="0.3" />
+                        </svg>
+                        <span>AI Powered Health Care</span>
+                    </div>
+
+                    <!-- Main Headline -->
+                    <h1 class="hero-title">
+                        Health Care Made<br>
+                        <span class="highlight-blue">Smarter</span> With <span class="highlight-cyan">AI</span>
+                    </h1>
+
+                    <!-- Description -->
+                    <p class="hero-description">
+                        MediCare AI is a smart healthcare platform designed to make healthcare simple and
+                        accessible.<br>
+                        Its clean, modern interface combines AI technology with trusted medical care.
+                    </p>
+
+                    <!-- Horizontal Separator Line -->
+                    <div class="hero-divider"></div>
+
+                    <!-- CTA Buttons -->
+                    <div class="hero-actions">
+                        <button class="btn btn-hero-primary" id="hero-get-started">
+                            Get Started
+                            <svg class="btn-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                        <button class="btn btn-hero-secondary" id="hero-learn-more">
+                            Learn More
+                            <div class="play-icon-circle">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M5 3L19 12L5 21V3Z" />
+                                </svg>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Center Doctor Image Cutout -->
+                <div class="hero-doctor-wrapper">
+                    <img src="doctor.png" alt="MediCare AI Lead Medical Consultant" class="doctor-image"
+                        id="doctor-img">
+                    <div class="doctor-glow"></div>
+                </div>
+
+                <!-- Right Cards Column -->
+                <div class="hero-cards">
+                    <!-- Reliability Card -->
+                    <div class="glass-card card-reliability">
+                        <div class="card-icon-box">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                            </svg>
+                        </div>
+                        <div class="card-info">
+                            <h3 class="card-title">Reliability</h3>
+                            <p class="card-subtitle">secured & accurate AI-Powered insights</p>
+                        </div>
+                    </div>
+
+                    <!-- Experienced Card -->
+                    <div class="glass-card card-experienced">
+                        <div class="card-icon-box">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                        </div>
+                        <div class="card-info">
+                            <h3 class="card-title">Experienced</h3>
+                            <p class="card-subtitle">Advance Technology Backed by Experts</p>
+                        </div>
+                    </div>
+
+                    <!-- Professional Card -->
+                    <div class="glass-card card-professional">
+                        <div class="card-icon-box">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="8" r="7" />
+                                <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
+                            </svg>
+                        </div>
+                        <div class="card-info">
+                            <h3 class="card-title">Professional</h3>
+                            <p class="card-subtitle">Trusted Care every step of the way</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Bottom Floating Feature Bar / Dock -->
+            <div class="dock-wrapper">
+                <div class="feature-dock">
+
+                    <!-- Item 1: Smart Symptom Check -->
+                    <div class="dock-item" id="dock-symptom-check">
+                        <div class="dock-icon">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                                <circle cx="8" cy="10" r="1" fill="currentColor"></circle>
+                                <circle cx="12" cy="10" r="1" fill="currentColor"></circle>
+                                <circle cx="16" cy="10" r="1" fill="currentColor"></circle>
+                            </svg>
+                        </div>
+                        <div class="dock-text">
+                            <h4>Smart Symptom Check</h4>
+                            <p>Describe you symptom and get AI insights.</p>
+                        </div>
+                    </div>
+
+                    <div class="dock-divider"></div>
+
+                    <!-- Item 2: Health Assessment -->
+                    <div class="dock-item" id="dock-assessment">
+                        <div class="dock-icon">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                                <rect x="7" y="13" width="2" height="2" fill="currentColor"></rect>
+                                <rect x="11" y="13" width="2" height="2" fill="currentColor"></rect>
+                                <rect x="15" y="13" width="2" height="2" fill="currentColor"></rect>
+                                <rect x="7" y="17" width="2" height="2" fill="currentColor"></rect>
+                                <rect x="11" y="17" width="2" height="2" fill="currentColor"></rect>
+                                <rect x="15" y="17" width="2" height="2" fill="currentColor"></rect>
+                            </svg>
+                        </div>
+                        <div class="dock-text">
+                            <h4>Health Assessment</h4>
+                            <p>Complete intelligent assessment.</p>
+                        </div>
+                    </div>
+
+                    <div class="dock-divider"></div>
+
+                    <!-- Item 3: Connect & Consult -->
+                    <div class="dock-item" id="dock-consult">
+                        <div class="dock-icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                        </div>
+                        <div class="dock-text">
+                            <h4>Connect & Consult</h4>
+                            <p>Get connected with the right healthcare specialists</p>
+                        </div>
+                    </div>
+
+                    <div class="dock-divider"></div>
+
+                    <!-- Item 4: Get specialized care -->
+                    <div class="dock-item" id="dock-specialized">
+                        <div class="dock-icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                                </path>
+                                <path d="M8 12h2.5l1.5-3 2 6 1.5-3H17" stroke="white" stroke-width="1.8" />
+                            </svg>
+                        </div>
+                        <div class="dock-text">
+                            <h4>Get specialized care</h4>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- Modals -->
+    <!-- Patient ABHA Verification Modal -->
+    <div class="modal-overlay" id="abha-modal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <div class="modal-title-box">
+                    <span class="modal-icon">🪪</span>
+                    <div>
+                        <h2>Patient ABHA Verification</h2>
+                        <p>Ayushman Bharat Digital Health Account</p>
+                    </div>
+                </div>
+                <button class="modal-close" id="close-abha-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
+                    <label for="abha-input">Enter Patient ABHA ID or ABHA Address:</label>
+                    <div class="input-with-chip">
+                        <input type="text" id="abha-input" placeholder="e.g. 91-4820-1928-3746 or patient@abdm"
+                            autocomplete="off">
+                        <span class="abdm-badge">ABDM</span>
+                    </div>
+                </div>
+                <div class="quick-tags">
+                    <span class="tag-label">Quick select:</span>
+                    <span class="tag" onclick="fillAbha('91-4820-1928-3746')">91-4820-1928-3746</span>
+                    <span class="tag" onclick="fillAbha('rahul.verma@abdm')">rahul.verma@abdm</span>
+                    <span class="tag" onclick="fillAbha('priya.sharma@abdm')">priya.sharma@abdm</span>
+                </div>
+
+                <div class="abha-notice">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="16" x2="12" y2="12"></line>
+                        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                    </svg>
+                    <span>Links electronic health records (EHR) & enables instant healthcare access.</span>
+                </div>
+
+                <div class="ai-response-box" id="abha-response-box" style="display: none;">
+                    <div class="ai-analyzing" id="abha-verifying">
+                        <div class="spinner"></div>
+                        <span>Authenticating patient ABHA ID with ABDM network...</span>
+                    </div>
+                    <div class="ai-result" id="abha-result" style="display: none;">
+                        <div class="triage-badge triage-success">✓ ABHA VERIFIED & ACTIVE</div>
+                        <h4 id="patient-name">Rahul Verma</h4>
+                        <div class="patient-details-grid">
+                            <div class="detail-item">
+                                <span class="detail-label">ABHA Number</span>
+                                <span class="detail-val" id="patient-abha-num">91-4820-1928-3746</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Gender & Age</span>
+                                <span class="detail-val" id="patient-demo">Male, 32 Yrs</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Linked Records</span>
+                                <span class="detail-val" id="patient-records">4 Hospital Encounters</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Health Locker</span>
+                                <span class="detail-val text-green">Synced & Active</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancel-abha">Cancel</button>
+                <button class="btn btn-primary" id="verify-abha-btn">
+                    <span id="verify-btn-text">Verify ABHA ID</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Symptom Checker Modal -->
+    <div class="modal-overlay" id="symptom-modal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <div class="modal-title-box">
+                    <span class="modal-icon">✨</span>
+                    <div>
+                        <h2>AI Smart Symptom Checker</h2>
+                        <p>Powered by MediCare Clinical AI Engine</p>
+                    </div>
+                </div>
+                <button class="modal-close" id="close-symptom-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
+                    <label for="symptom-input">Describe your current symptoms or health concerns:</label>
+                    <textarea id="symptom-input"
+                        placeholder="e.g. I have a slight headache, sore throat, and mild fever since morning..."></textarea>
+                </div>
+                <div class="quick-tags">
+                    <span class="tag" onclick="fillSymptom('Headache & Fatigue')">Headache & Fatigue</span>
+                    <span class="tag" onclick="fillSymptom('Fever & Sore Throat')">Fever & Sore Throat</span>
+                    <span class="tag" onclick="fillSymptom('Chest Tightness & Cough')">Chest Tightness</span>
+                    <span class="tag" onclick="fillSymptom('Back Pain & Stiffness')">Back Pain</span>
+                </div>
+                <div class="ai-response-box" id="ai-response-box" style="display: none;">
+                    <div class="ai-analyzing" id="ai-analyzing">
+                        <div class="spinner"></div>
+                        <span>Analyzing clinical markers with AI models...</span>
+                    </div>
+                    <div class="ai-result" id="ai-result" style="display: none;">
+                        <div class="triage-badge triage-moderate" id="triage-badge">MODERATE PRIORITY</div>
+                        <h4 id="result-title">Possible Upper Respiratory Infection</h4>
+                        <p id="result-desc">Based on your reported symptoms, your condition is consistent with early
+                            seasonal viral response. Rest and staying hydrated is advised.</p>
+                        <div class="next-steps">
+                            <strong>Recommended Action:</strong>
+                            <ul id="result-steps">
+                                <li>Monitor temperature over the next 24 hours</li>
+                                <li>Schedule a virtual consultation with an AI-backed Practitioner</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancel-symptom">Cancel</button>
+                <button class="btn btn-primary" id="analyze-symptom-btn">
+                    Analyze Symptoms
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="modal-overlay" id="search-modal">
+        <div class="modal-card search-card">
+            <div class="search-input-wrapper">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input type="text" id="search-input"
+                    placeholder="Search services, doctors, AI symptom checker, or topics...">
+                <button class="modal-close" id="close-search-modal">&times;</button>
+            </div>
+            <div class="search-results" id="search-results">
+                <div class="search-category">Popular Quick Actions</div>
+                <div class="search-item" onclick="openAbhaModal()">
+                    <span class="item-icon">🪪</span>
+                    <div>
+                        <div class="item-title">Patient ABHA Verification</div>
+                        <div class="item-sub">Link & verify ABDM health records</div>
+                    </div>
+                </div>
+                <div class="search-item" onclick="openSymptomChecker()">
+                    <span class="item-icon">💬</span>
+                    <div>
+                        <div class="item-title">Smart Symptom Checker</div>
+                        <div class="item-sub">Instant AI health assessment</div>
+                    </div>
+                </div>
+                <div class="search-item" onclick="openConsultModal()">
+                    <span class="item-icon">👨‍⚕️</span>
+                    <div>
+                        <div class="item-title">Book Doctor Consultation</div>
+                        <div class="item-sub">Connect with top certified specialists</div>
+                    </div>
+                </div>
+                <div class="search-item">
+                    <span class="item-icon">📋</span>
+                    <div>
+                        <div class="item-title">Comprehensive Health Assessment</div>
+                        <div class="item-sub">AI personalized wellness breakdown</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Patient Status Page View -->
+    <div class="status-page-view" id="status-page">
+        <div class="status-container">
+
+            <!-- Left Side: Status Selection Options -->
+            <div class="status-left">
+                <button class="btn-go-back" id="status-go-back">
+                    &larr; Go back
+                </button>
+
+                <div class="status-header">
+                    <h1 class="status-title">
+                        What’s your<br>
+                        <span class="highlight-status-cyan">Status?</span>
+                    </h1>
+                    <div class="status-title-line"></div>
+                </div>
+
+                <!-- Status Pill Action Buttons -->
+                <div class="status-buttons-group">
+                    <button class="status-option-btn btn-new-condition" id="btn-status-new">
+                        New condition
+                    </button>
+                    <button class="status-option-btn btn-ongoing" id="btn-status-ongoing">
+                        On-going
+                    </button>
+                    <button class="status-option-btn btn-sos" id="btn-status-sos">
+                        SOS-Emergency
+                    </button>
+                </div>
+
+                <div class="status-footer-line"></div>
+                <a href="#contact" class="status-need-help" id="status-need-help">Need help...</a>
+            </div>
+
+
+
+            <!-- Right Side: Doctors Full Image & Support Headline -->
+            <div class="status-right-photo">
+                <div class="status-image-wrapper">
+                    <h1 class="status-floating-heading">
+                        WE ARE HERE TO <br>
+                        <span class="highlight-blue-text">HELP YOU</span>
+                    </h1>
+                    <img src="status_doctors.png" alt="MediCare AI Doctors" class="status-duo-img">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast-notif">Action performed successfully</div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
