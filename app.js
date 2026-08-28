@@ -149,7 +149,27 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ABHA Verification Trigger
+    // ABHA Auth Tabs Handling
+    const authTabs = document.querySelectorAll('.auth-tab');
+    authTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            authTabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            const mode = tab.getAttribute('data-tab');
+            if (abhaInput) {
+                if (mode === 'number') {
+                    abhaInput.placeholder = 'e.g. 91-4820-1928-3746 (14-Digit ABHA)';
+                } else if (mode === 'address') {
+                    abhaInput.placeholder = 'e.g. rahul.verma@abdm or priya@abdm';
+                } else if (mode === 'aadhaar') {
+                    abhaInput.placeholder = 'e.g. 7482-9182-4019 (Aadhaar Linked)';
+                }
+                abhaInput.focus();
+            }
+        });
+    });
+
+    // ABHA Verification Trigger with 10X Telemetry Pipeline
     if (verifyAbhaBtn) {
         verifyAbhaBtn.addEventListener('click', () => {
             if (isAbhaVerified) {
@@ -165,35 +185,71 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
+            const stageTitle = document.getElementById('extraction-stage-title');
+            const stageSub = document.getElementById('extraction-stage-sub');
+            const progressFill = document.getElementById('extraction-progress-fill');
+            const tel1 = document.getElementById('tel-step-1');
+            const tel2 = document.getElementById('tel-step-2');
+            const tel3 = document.getElementById('tel-step-3');
+
             abhaResponseBox.style.display = 'block';
             abhaVerifying.style.display = 'flex';
             abhaResult.style.display = 'none';
 
+            if (progressFill) progressFill.style.width = '15%';
+            if (tel1) { tel1.className = 'telemetry-item active'; }
+            if (tel2) { tel2.className = 'telemetry-item'; }
+            if (tel3) { tel3.className = 'telemetry-item'; }
+
+            if (stageTitle) stageTitle.textContent = 'Connecting to Ayushman Bharat Gateway...';
+            if (stageSub) stageSub.textContent = 'Validating NDHM digital certificate & token...';
+
             setTimeout(() => {
-                abhaVerifying.style.display = 'none';
-                abhaResult.style.display = 'block';
-                isAbhaVerified = true;
+                if (progressFill) progressFill.style.width = '55%';
+                if (tel1) { tel1.className = 'telemetry-item done'; }
+                if (tel2) { tel2.className = 'telemetry-item active'; }
+                if (stageTitle) stageTitle.textContent = 'Decrypting FHIR Electronic Health Records...';
+                if (stageSub) stageSub.textContent = 'Retrieving encrypted HL7 diagnostic encounters & lab panels...';
+            }, 500);
 
-                if (idVal.toLowerCase().includes('priya')) {
-                    if (patientName) patientName.textContent = 'Priya Sharma';
-                    if (patientAbhaNum) patientAbhaNum.textContent = '72-9104-8372-1092';
-                    if (patientDemo) patientDemo.textContent = 'Female, 28 Yrs';
-                    if (patientRecords) patientRecords.textContent = '2 Hospital Encounters';
-                } else if (idVal.toLowerCase().includes('rahul') || idVal.includes('4820')) {
-                    if (patientName) patientName.textContent = 'Rahul Verma';
-                    if (patientAbhaNum) patientAbhaNum.textContent = '91-4820-1928-3746';
-                    if (patientDemo) patientDemo.textContent = 'Male, 32 Yrs';
-                    if (patientRecords) patientRecords.textContent = '4 Hospital Encounters';
-                } else {
-                    if (patientName) patientName.textContent = 'Verified Patient';
-                    if (patientAbhaNum) patientAbhaNum.textContent = idVal;
-                    if (patientDemo) patientDemo.textContent = 'Adult Patient';
-                    if (patientRecords) patientRecords.textContent = '1 Linked Record';
-                }
+            setTimeout(() => {
+                if (progressFill) progressFill.style.width = '85%';
+                if (tel2) { tel2.className = 'telemetry-item done'; }
+                if (tel3) { tel3.className = 'telemetry-item active'; }
+                if (stageTitle) stageTitle.textContent = 'Synchronizing Health Locker & Consent Layer...';
+                if (stageSub) stageSub.textContent = 'Tier-1 Patient Consent validated. Compiling clinical summary.';
+            }, 1000);
 
-                if (verifyBtnText) verifyBtnText.textContent = 'Proceed to Care';
-                showToast('ABHA ID Verified & Health Records Linked!');
-            }, 1300);
+            setTimeout(() => {
+                if (progressFill) progressFill.style.width = '100%';
+                if (tel3) { tel3.className = 'telemetry-item done'; }
+
+                setTimeout(() => {
+                    abhaVerifying.style.display = 'none';
+                    abhaResult.style.display = 'block';
+                    isAbhaVerified = true;
+
+                    if (idVal.toLowerCase().includes('priya')) {
+                        if (patientName) patientName.textContent = 'Priya Sharma';
+                        if (patientAbhaNum) patientAbhaNum.textContent = '72-9104-8372-1092';
+                        if (patientDemo) patientDemo.textContent = 'Female, 28 Yrs (B+ Rh+)';
+                        if (patientRecords) patientRecords.textContent = '2 Hospital Encounters';
+                    } else if (idVal.toLowerCase().includes('rahul') || idVal.includes('4820')) {
+                        if (patientName) patientName.textContent = 'Rahul Verma';
+                        if (patientAbhaNum) patientAbhaNum.textContent = '91-4820-1928-3746';
+                        if (patientDemo) patientDemo.textContent = 'Male, 32 Yrs (O+ Rh+)';
+                        if (patientRecords) patientRecords.textContent = '4 Hospital Encounters';
+                    } else {
+                        if (patientName) patientName.textContent = 'Verified Patient';
+                        if (patientAbhaNum) patientAbhaNum.textContent = idVal;
+                        if (patientDemo) patientDemo.textContent = 'Adult Patient (Verified)';
+                        if (patientRecords) patientRecords.textContent = '1 Linked Record';
+                    }
+
+                    if (verifyBtnText) verifyBtnText.textContent = 'Proceed to Consultation';
+                    showToast('✓ ABHA Identity Verified & 4 Encounters Synced!');
+                }, 300);
+            }, 1500);
         });
     }
 

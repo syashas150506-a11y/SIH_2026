@@ -857,105 +857,767 @@ body {
     background: #475569;
 }
 
-/* ABHA Verification Modal Styling */
-.input-with-chip {
+/* ==========================================================================
+   10X Professional Enterprise ABDM Health Record Extraction Suite Styling
+   ========================================================================== */
+.abha-modal-card {
+    max-width: 660px;
+    width: 95%;
+    background: #090d16;
+    border: 1px solid rgba(59, 130, 246, 0.35);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.75), 0 0 50px rgba(37, 99, 235, 0.18);
+    border-radius: 26px;
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.abha-header-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 26px;
+    background: linear-gradient(135deg, rgba(30, 58, 138, 0.5) 0%, rgba(11, 17, 32, 0.98) 100%);
+    border-bottom: 1px solid rgba(59, 130, 246, 0.25);
+}
+
+.abha-branding {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.abdm-emblem-badge {
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.4), rgba(15, 23, 42, 0.9));
+    border: 1px solid rgba(96, 165, 250, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #60a5fa;
+    box-shadow: 0 6px 18px rgba(37, 99, 235, 0.3);
+}
+
+.abdm-gov-sub {
+    font-size: 11px;
+    font-weight: 700;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.badge-gov {
+    color: #fbbf24;
+    font-weight: 800;
+}
+
+.abha-modal-title {
+    font-size: 19px;
+    font-weight: 800;
+    color: #ffffff;
+    margin-top: 2px;
+    letter-spacing: -0.3px;
+}
+
+.abha-header-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.abha-sec-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(16, 185, 129, 0.12);
+    color: #34d399;
+    border: 1px solid rgba(16, 185, 129, 0.35);
+    font-size: 11.5px;
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: 20px;
+    letter-spacing: 0.3px;
+}
+
+.abha-modal-body {
+    padding: 24px 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-height: 75vh;
+    overflow-y: auto;
+}
+
+/* Auth Switcher Tabs */
+.abha-auth-tabs {
+    display: flex;
+    gap: 8px;
+    background: rgba(15, 23, 42, 0.7);
+    padding: 5px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.auth-tab {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    font-size: 12.5px;
+    font-weight: 700;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.auth-tab:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.auth-tab.active {
+    background: #2563eb;
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+}
+
+/* Input Area */
+.abha-input-box {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.abha-field-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: #cbd5e1;
+}
+
+.label-hint {
+    font-size: 11.5px;
+    color: #60a5fa;
+    font-weight: 600;
+}
+
+.abha-input-container {
     position: relative;
     display: flex;
     align-items: center;
 }
 
-.input-with-chip input {
+.abha-input-icon {
+    position: absolute;
+    left: 16px;
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+}
+
+.abha-input-container input {
     width: 100%;
     background: #0f172a;
     border: 1px solid #334155;
-    border-radius: 14px;
-    padding: 12px 75px 12px 16px;
-    color: var(--text-white);
+    border-radius: 16px;
+    padding: 15px 140px 15px 48px;
+    color: #ffffff;
     font-family: var(--font-primary);
-    font-size: 14.5px;
+    font-size: 15.5px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
     outline: none;
     transition: var(--transition-fast);
 }
 
-.input-with-chip input:focus {
-    border-color: var(--accent-blue);
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+.abha-input-container input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+    background: #020617;
 }
 
-.abdm-badge {
+.input-badge-group {
     position: absolute;
     right: 12px;
-    background: rgba(37, 99, 235, 0.25);
-    border: 1px solid rgba(59, 130, 246, 0.4);
-    color: #60a5fa;
-    font-size: 11px;
-    font-weight: 700;
-    padding: 3px 8px;
+    display: flex;
+    align-items: center;
+}
+
+.abdm-verified-chip {
+    background: linear-gradient(135deg, #1d4ed8, #2563eb);
+    color: #ffffff;
+    font-size: 10.5px;
+    font-weight: 800;
+    padding: 5px 12px;
     border-radius: 8px;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.6px;
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.4);
     pointer-events: none;
 }
 
-.tag-label {
-    font-size: 12.5px;
-    color: #64748b;
-    align-self: center;
-    font-weight: 500;
+/* Quick Demo Profiles */
+.abha-quick-profiles {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
-.abha-notice {
+.profiles-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profiles-title {
+    font-size: 11.5px;
+    font-weight: 800;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+}
+
+.profiles-subtitle {
+    font-size: 11px;
+    color: #38bdf8;
+    font-weight: 600;
+}
+
+.profile-cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.profile-chip {
     display: flex;
     align-items: center;
-    gap: 8px;
-    background: rgba(15, 23, 42, 0.6);
-    border: 1px solid rgba(51, 65, 85, 0.6);
-    border-radius: 12px;
-    padding: 10px 14px;
-    margin-top: 10px;
+    gap: 12px;
+    background: rgba(30, 41, 59, 0.65);
+    border: 1px solid rgba(59, 130, 246, 0.22);
+    border-radius: 14px;
+    padding: 12px 14px;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.profile-chip:hover {
+    background: rgba(37, 99, 235, 0.18);
+    border-color: #3b82f6;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.profile-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: white;
+    font-weight: 800;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.profile-avatar.avatar-purple {
+    background: linear-gradient(135deg, #7c3aed, #6d28d9);
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+}
+
+.avatar-verified-dot {
+    position: absolute;
+    bottom: -2px;
+    right: -2px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #34d399;
+    border: 2px solid #090d16;
+}
+
+.profile-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    min-width: 0;
+}
+
+.profile-name-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.profile-name-row strong {
+    font-size: 13.5px;
+    color: #ffffff;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.badge-tag {
+    font-size: 9.5px;
+    font-weight: 800;
+    background: rgba(59, 130, 246, 0.2);
+    color: #60a5fa;
+    padding: 2px 6px;
+    border-radius: 6px;
+    letter-spacing: 0.3px;
+}
+
+.badge-tag.tag-purple {
+    background: rgba(124, 58, 237, 0.2);
+    color: #c084fc;
+}
+
+.profile-id-txt {
+    font-size: 11.5px;
+    font-family: monospace;
+    color: #94a3b8;
+    font-weight: 600;
+}
+
+.profile-records-count {
+    font-size: 10.5px;
+    color: #38bdf8;
+    font-weight: 600;
+}
+
+/* Multi-Phase Live Extraction Telemetry */
+.abha-extracting-pipeline {
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.85));
+    border: 1px solid rgba(59, 130, 246, 0.35);
+    border-radius: 18px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.extraction-header-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.pulse-loader-wrap {
+    position: relative;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.sonar-wave {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: rgba(59, 130, 246, 0.3);
+    animation: sonarWave 1.8s infinite cubic-bezier(0.1, 0.8, 0.3, 1);
+}
+
+@keyframes sonarWave {
+    0% { transform: scale(0.6); opacity: 1; }
+    100% { transform: scale(1.6); opacity: 0; }
+}
+
+.core-hub {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #0f172a;
+    border: 1px solid rgba(59, 130, 246, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    animation: rotateHub 4s linear infinite;
+}
+
+@keyframes rotateHub {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.pipeline-main-txt {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.extraction-msg {
+    font-size: 15px;
+    font-weight: 800;
+    color: #ffffff;
+}
+
+.extraction-sub {
     font-size: 12.5px;
     color: #94a3b8;
 }
 
-.triage-success {
+.pipeline-progress-bar {
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #2563eb, #60a5fa, #34d399);
+    border-radius: 6px;
+    transition: width 0.4s ease;
+    box-shadow: 0 0 12px rgba(59, 130, 246, 0.8);
+}
+
+.pipeline-telemetry-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.telemetry-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    color: #64748b;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.telemetry-item.active {
+    color: #38bdf8;
+}
+
+.telemetry-item.done {
+    color: #34d399;
+}
+
+.tel-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #64748b;
+    transition: all 0.3s ease;
+}
+
+.telemetry-item.active .tel-dot {
+    background: #38bdf8;
+    box-shadow: 0 0 8px #38bdf8;
+}
+
+.telemetry-item.done .tel-dot {
+    background: #34d399;
+    box-shadow: 0 0 8px #34d399;
+}
+
+/* Authentic Digital Health Smart Card v2 */
+.abha-smart-card-v2 {
+    background: radial-gradient(circle at 85% 15%, rgba(37, 99, 235, 0.22) 0%, transparent 60%),
+                linear-gradient(135deg, #0b1329 0%, #0f172a 100%);
+    border: 1.5px solid rgba(59, 130, 246, 0.45);
+    border-radius: 22px;
+    padding: 18px 20px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(37, 99, 235, 0.15);
+    position: relative;
+    overflow: hidden;
+}
+
+.smart-card-top-v2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 14px;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.14);
+}
+
+.card-issuer-v2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.emblem-shield {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: rgba(37, 99, 235, 0.25);
+    border: 1px solid rgba(59, 130, 246, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.issuer-title-v2 {
+    font-size: 11px;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: 0.6px;
+}
+
+.issuer-sub-v2 {
+    font-size: 10px;
+    color: #60a5fa;
+    font-weight: 700;
+}
+
+.card-status-badge-v2 {
+    display: flex;
+    align-items: center;
+    gap: 6px;
     background: rgba(16, 185, 129, 0.18);
     color: #34d399;
     border: 1px solid rgba(16, 185, 129, 0.4);
+    font-size: 11px;
+    font-weight: 800;
+    padding: 4px 10px;
+    border-radius: 12px;
+    letter-spacing: 0.5px;
 }
 
-.patient-details-grid {
+.live-dot-v2 {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #34d399;
+    box-shadow: 0 0 10px #34d399;
+    animation: pulseDot 1.4s infinite;
+}
+
+/* Microchip & NFC */
+.chip-and-nfc-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 14px 0 10px 0;
+}
+
+.gold-emv-chip {
+    width: 44px;
+    height: 34px;
+    border-radius: 7px;
+    background: linear-gradient(135deg, #eab308 0%, #ca8a04 50%, #fef08a 100%);
+    border: 1px solid #a16207;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(202, 138, 4, 0.4);
+}
+
+.chip-line.horizontal {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: rgba(113, 63, 18, 0.6);
+}
+
+.chip-line.vertical {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 1px;
+    height: 100%;
+    background: rgba(113, 63, 18, 0.6);
+}
+
+.chip-center {
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    width: 50%;
+    height: 50%;
+    border-radius: 4px;
+    border: 1px solid rgba(113, 63, 18, 0.6);
+}
+
+.patient-card-primary {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 14px;
+}
+
+.patient-avatar-v2 {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    background: rgba(59, 130, 246, 0.18);
+    border: 1.5px solid rgba(59, 130, 246, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
+}
+
+.card-patient-name {
+    font-size: 18px;
+    font-weight: 800;
+    color: #ffffff;
+}
+
+.card-abha-number {
+    font-size: 14px;
+    font-family: 'Outfit', monospace;
+    color: #38bdf8;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+}
+
+.card-meta-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-top: 12px;
-    background: rgba(255, 255, 255, 0.03);
-    padding: 12px;
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    gap: 10px;
+    background: rgba(0, 0, 0, 0.35);
+    padding: 12px 14px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.detail-item {
+.meta-cell {
     display: flex;
     flex-direction: column;
     gap: 2px;
 }
 
-.detail-label {
-    font-size: 11.5px;
+.meta-k {
+    font-size: 10.5px;
     color: #64748b;
-    font-weight: 600;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.5px;
 }
 
-.detail-val {
-    font-size: 13.5px;
-    color: var(--text-white);
-    font-weight: 600;
+.meta-v {
+    font-size: 13px;
+    color: #ffffff;
+    font-weight: 700;
 }
 
-.text-green {
+.highlight-cyan-txt {
+    color: #38bdf8;
+}
+
+.text-emerald {
     color: #34d399;
 }
+
+/* Decrypted Snapshot */
+.extracted-snapshot {
+    margin-top: 12px;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    border-radius: 12px;
+    padding: 10px 12px;
+}
+
+.snapshot-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #94a3b8;
+    margin-bottom: 8px;
+}
+
+.snapshot-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.snap-pill {
+    background: rgba(30, 41, 59, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 11px;
+    font-weight: 600;
+    color: #e2e8f0;
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+
+/* Compliance Footer */
+.abha-compliance-footer {
+    background: rgba(15, 23, 42, 0.7);
+    border: 1px solid rgba(51, 65, 85, 0.6);
+    border-radius: 14px;
+    padding: 10px 14px;
+}
+
+.compliance-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    color: #94a3b8;
+    line-height: 1.4;
+}
+
+.compliance-row svg {
+    flex-shrink: 0;
+}
+
+.abha-modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding: 18px 26px;
+    background: rgba(11, 17, 32, 0.95);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.btn-extract-master {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    box-shadow: 0 6px 22px rgba(37, 99, 235, 0.45);
+    font-size: 15px;
+    font-weight: 800;
+    padding: 12px 24px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.25s ease;
+}
+
+.btn-extract-master:hover {
+    box-shadow: 0 8px 30px rgba(37, 99, 235, 0.65);
+    transform: translateY(-2px);
+}
+
+/* Search Modal */
 
 /* Search Modal */
 .search-card {
