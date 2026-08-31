@@ -1,4 +1,4 @@
-# 🏥 Patient Kiosk Voice-to-Text Clinical Pipeline (SIH 2026)
+#  Patient Kiosk Voice-to-Text Clinical Pipeline (SIH 2026)
 
 An open-source, AI-powered Voice-to-Text pipeline that converts patient speech recorded at hospital/clinic kiosks into **Physician-Ready SOAP Notes**.
 
@@ -6,7 +6,7 @@ Powered by **OpenAI Whisper** (Speech-to-Text) and a **Clinical Structuring Engi
 
 ---
 
-## 🚀 Key Features
+##  Key Features
 
 1. **Multilingual Speech-to-Text**: Uses OpenAI Whisper to transcribe audio files (`.wav`, `.mp3`, `.m4a`, `.flac`) with automatic language detection (English, Hindi, Tamil, Telugu, Kannada, Bengali, Marathi, etc.).
 2. **Physician-Ready Format (SOAP Notes)**: Transforms raw, informal patient transcriptions into structured clinical sections:
@@ -26,20 +26,20 @@ Powered by **OpenAI Whisper** (Speech-to-Text) and a **Clinical Structuring Engi
 
 ```mermaid
 graph TD
-    A[🎤 Patient Audio at Kiosk] --> B[🎙️ OpenAI Whisper STT]
-    B --> C[📝 Raw Transcript + Detected Language]
-    C --> D[🩺 Clinical Formatter Engine]
-    D -->|Option A: API Key Present| E[🧠 Gemini Medical NLP]
-    D -->|Option B: Offline Mode| F[⚙️ Rule-Based Extraction]
-    E --> G[📄 Physician SOAP Note .md]
+    A[🎤 Patient Audio at Kiosk] --> B[ OpenAI Whisper STT]
+    B --> C[ Raw Transcript + Detected Language]
+    C --> D[ Clinical Formatter Engine]
+    D -->|Option A: API Key Present| E[ Gemini Medical NLP]
+    D -->|Option B: Offline Mode| F[ Rule-Based Extraction]
+    E --> G[ Physician SOAP Note .md]
     F --> G
-    E --> H[📊 EHR Compatible JSON .json]
+    E --> H[ EHR Compatible JSON .json]
     F --> H
 ```
 
 ---
 
-## 📁 Repository Structure
+##  Repository Structure
 
 ```
 SIH_2026/
@@ -52,7 +52,7 @@ SIH_2026/
 
 ---
 
-## 🛠️ Quick Start Guide
+##  Quick Start Guide
 
 ### 1. Prerequisites
 Ensure Python 3.10+ is installed on your system.
@@ -72,7 +72,7 @@ pip install -r requirements.txt
 
 ---
 
-## 🧪 Usage Examples
+##  Usage Examples
 
 ### Option 1: Record Your Live Voice (Unlimited Recording)
 
@@ -117,38 +117,38 @@ python transcribe.py --audio patient_hindi.wav --model small --language hi
 
 ---
 
-## 📄 Sample Output (Physician-Ready Format)
+##  Sample Output (Physician-Ready Format)
 
 ### Markdown Report (`outputs/sample_clinical_summary.md`):
 
 ```markdown
-# 🏥 Patient Clinical Summary (Physician Ready)
+#  Patient Clinical Summary (Physician Ready)
 **Triage Urgency Level**: `High`
 
-## 📌 Chief Complaint (CC)
+##  Chief Complaint (CC)
 - Severe right-sided headache, nausea
 
-## 📜 History of Present Illness (HPI)
+##  History of Present Illness (HPI)
 Patient reports severe throbbing headache on the right side starting yesterday morning, accompanied by mild nausea. Self-administered paracetamol with minimal relief.
 
-## 🩺 Reported Symptoms
+##  Reported Symptoms
 - Right-sided throbbing headache
 - Nausea
 
-## 💊 Current Medications & Interventions
+##  Current Medications & Interventions
 - Paracetamol (self-administered)
 
-## 👨‍⚕️ Executive Summary for Physician
+##  Executive Summary for Physician
 Patient presenting with acute onset right-sided throbbing headache and nausea for >24 hours. Minimal relief with OTC paracetamol. Needs physical examination and neurological check.
 
 ---
-### 🎙️ Raw Patient Audio Transcript
+###  Raw Patient Audio Transcript
 > "I have had a severe headache since yesterday morning. It's on the right side of my head and throbbing. I feel a bit nauseous too. I took paracetamol but it didn't help much."
 ```
 
 ---
 
-## 🔑 Optional: Enable AI Extraction with Gemini
+##  Optional: Enable AI Extraction with Gemini
 
 To enable advanced generative AI clinical note generation, set your API key in your terminal:
 
@@ -164,7 +164,7 @@ export GEMINI_API_KEY="YOUR_GEMINI_API_KEY"
 
 ---
 
-## 🏆 Hackathon Details
+##  Hackathon Details
 - **Project**: Patient Kiosk Voice-to-Text & Physician Formatter
 - **Target Event**: SIH 2026 (Smart India Hackathon)
 - **License**: MIT
