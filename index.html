@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediCare AI - Health Care Made Smarter With AI</title>
+    <meta name="description"
+        content="MediCare AI is a smart healthcare platform designed to make healthcare simple and accessible. Combining AI technology with trusted medical care.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Initial Language Selection Gateway (Shows before entering landing page) -->
+    <div class="lang-gateway-overlay" id="lang-gateway-overlay">
+        <!-- Ambient Glowing Orbs -->
+        <div class="lang-ambient-glow-1"></div>
+        <div class="lang-ambient-glow-2"></div>
+        
+        <div class="lang-gateway-card">
+            <!-- Brand Badge -->
+            <div class="lang-brand-badge">
+                <div class="lang-heart-icon">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <path d="M16 28.5L14.1 26.8C6.9 20.3 2.5 16.3 2.5 11.2C2.5 7.1 5.7 3.8 9.8 3.8C12.1 3.8 14.3 4.9 16 6.5C17.7 4.9 19.9 3.8 22.2 3.8C26.3 3.8 29.5 7.1 29.5 11.2C29.5 16.3 25.1 20.3 17.9 26.8L16 28.5Z" fill="#2563eb"/>
+                        <path d="M8.5 16H12L14.2 11.5L17.8 20.5L20 16H23.5" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <span class="lang-brand-name">MediCare <span class="text-blue">AI</span></span>
+            </div>
+
+            <!-- Greeting Headings -->
+            <div class="lang-header-text">
+                <h1 class="lang-gateway-title" id="gateway-main-title">Select Your Language</h1>
+                <div class="lang-multilingual-sub" id="gateway-sub-titles">
+                    <span>ದಯವಿಟ್ಟು ನಿಮ್ಮ ಭಾಷೆಯನ್ನು ಆಯ್ಕೆಮಾಡಿ</span> • <span>कृपया अपनी भाषा चुनें</span>
+                </div>
+                <p class="lang-gateway-desc" id="gateway-desc-txt">Choose how you'd like to interact with our healthcare services and AI diagnostic assistant.</p>
+            </div>
+
+            <!-- Language Choice Grid: Kannada, Hindi, and English -->
+            <div class="lang-cards-grid">
+                <!-- Option 1: Kannada -->
+                <div class="lang-select-card active" data-lang="kn" id="lang-card-kn">
+                    <div class="lang-card-left">
+                        <div class="lang-glyph-circle glyph-kannada">
+                            <span>ಕ</span>
+                        </div>
+                        <div class="lang-card-meta">
+                            <h3 class="lang-native-name">ಕನ್ನಡ</h3>
+                            <span class="lang-eng-name">Kannada • ಕರ್ನಾಟಕ</span>
+                        </div>
+                    </div>
+                    <div class="lang-check-radio">
+                        <div class="radio-inner-dot"></div>
+                    </div>
+                </div>
+
+                <!-- Option 2: Hindi -->
+                <div class="lang-select-card" data-lang="hi" id="lang-card-hi">
+                    <div class="lang-card-left">
+                        <div class="lang-glyph-circle glyph-hindi">
+                            <span>अ</span>
+                        </div>
+                        <div class="lang-card-meta">
+                            <h3 class="lang-native-name">हिन्दी</h3>
+                            <span class="lang-eng-name">Hindi • भारत</span>
+                        </div>
+                    </div>
+                    <div class="lang-check-radio">
+                        <div class="radio-inner-dot"></div>
+                    </div>
+                </div>
+
+                <!-- Option 3: English -->
+                <div class="lang-select-card" data-lang="en" id="lang-card-en">
+                    <div class="lang-card-left">
+                        <div class="lang-glyph-circle glyph-english">
+                            <span>En</span>
+                        </div>
+                        <div class="lang-card-meta">
+                            <h3 class="lang-native-name">English</h3>
+                            <span class="lang-eng-name">English • Global</span>
+                        </div>
+                    </div>
+                    <div class="lang-check-radio">
+                        <div class="radio-inner-dot"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Button -->
+            <div class="lang-gateway-actions">
+                <button type="button" class="btn-lang-proceed" id="btn-lang-proceed">
+                    <span id="lang-proceed-text">Continue to MediCare AI</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="lang-gateway-footer-note">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+                <span id="gateway-footer-txt">You can switch language anytime from the top navigation bar.</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="landing-page">
+
+        <!-- Top Floating Navbar -->
+        <header class="navbar-wrapper">
+            <nav class="navbar" id="main-nav">
+                <!-- Logo -->
+                <div class="logo">
+                    <div class="logo-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="2" y="2" width="20" height="20" rx="6" fill="#2563EB" />
+                            <path d="M12 7V17M7 12H17" stroke="white" stroke-width="3" stroke-linecap="round" />
+                            <circle cx="12" cy="12" r="2" fill="#60A5FA" />
+                        </svg>
+                    </div>
+                    <span class="logo-text">MediCare <span class="logo-accent">AI</span></span>
+                </div>
+
+                <!-- Navigation Links -->
+                <ul class="nav-links">
+                    <li class="nav-item active">
+                        <a href="#home" class="nav-link" id="nav-link-home">Home</a>
+                    </li>
+                    <li class="nav-item"><a href="#services" class="nav-link" id="nav-services-btn">Services</a></li>
+                    <li class="nav-item"><a href="#about" class="nav-link" id="nav-about-btn">About Us</a></li>
+                    <li class="nav-item"><a href="#contact" class="nav-link" id="nav-contact-btn">Contact</a></li>
+                </ul>
+
+                <!-- Right Actions -->
+                <div class="nav-actions">
+                    <!-- Navbar Language Switcher Pill -->
+                    <button class="nav-lang-switcher" id="nav-lang-switcher" title="Change Language / ಭಾಷೆ ಬದಲಾಯಿಸಿ / भाषा बदलें">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="2" y1="12" x2="22" y2="12"></line>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                        </svg>
+                        <span id="nav-current-lang-txt">ಕನ್ನಡ</span>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+
+                    <button class="icon-btn search-btn" id="search-trigger" title="Search">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </button>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero-section" id="home">
+            <!-- Diagonal Split Background Layer -->
+            <div class="hero-bg">
+                <div class="bg-dark"></div>
+                <div class="bg-blue"></div>
+            </div>
+
+            <div class="hero-container">
+
+                <!-- Left Content Column -->
+                <div class="hero-content">
+                    <!-- AI Badge -->
+                    <div class="ai-badge">
+                        <svg class="sparkle-icon" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                            stroke="#60A5FA" stroke-width="2">
+                            <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z" fill="#60A5FA"
+                                fill-opacity="0.3" />
+                        </svg>
+                        <span>AI Powered Health Care</span>
+                    </div>
+
+                    <!-- Main Headline -->
+                    <h1 class="hero-title">
+                        Health Care Made<br>
+                        <span class="highlight-blue">Smarter</span> With <span class="highlight-cyan">AI</span>
+                    </h1>
+
+                    <!-- Description -->
+                    <p class="hero-description">
+                        MediCare AI is a smart healthcare platform designed to make healthcare simple and
+                        accessible.<br>
+                        Its clean, modern interface combines AI technology with trusted medical care.
+                    </p>
+
+                    <!-- Horizontal Separator Line -->
+                    <div class="hero-divider"></div>
+
+                    <!-- CTA Buttons -->
+                    <div class="hero-actions">
+                        <button class="btn btn-hero-primary" id="hero-get-started">
+                            Get Started
+                            <svg class="btn-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                        <button class="btn btn-hero-secondary" id="hero-learn-more">
+                            Learn More
+                            <div class="play-icon-circle">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M5 3L19 12L5 21V3Z" />
+                                </svg>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Center Doctor Image Cutout -->
+                <div class="hero-doctor-wrapper">
+                    <img src="doctor.png" alt="MediCare AI Lead Medical Consultant" class="doctor-image"
+                        id="doctor-img">
+                    <div class="doctor-glow"></div>
+                </div>
+
+                <!-- Right Cards Column -->
+                <div class="hero-cards">
+                    <!-- Reliability Card -->
+                    <div class="glass-card card-reliability">
+                        <div class="card-icon-box">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                            </svg>
+                        </div>
+                        <div class="card-info">
+                            <h3 class="card-title">Reliability</h3>
+                            <p class="card-subtitle">secured & accurate AI-Powered insights</p>
+                        </div>
+                    </div>
+
+                    <!-- Experienced Card -->
+                    <div class="glass-card card-experienced">
+                        <div class="card-icon-box">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                        </div>
+                        <div class="card-info">
+                            <h3 class="card-title">Experienced</h3>
+                            <p class="card-subtitle">Advance Technology Backed by Experts</p>
+                        </div>
+                    </div>
+
+                    <!-- Professional Card -->
+                    <div class="glass-card card-professional">
+                        <div class="card-icon-box">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="8" r="7" />
+                                <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
+                            </svg>
+                        </div>
+                        <div class="card-info">
+                            <h3 class="card-title">Professional</h3>
+                            <p class="card-subtitle">Trusted Care every step of the way</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Bottom Floating Feature Bar / Dock -->
+            <div class="dock-wrapper">
+                <div class="feature-dock">
+
+                    <!-- Item 1: Smart Symptom Check -->
+                    <div class="dock-item" id="dock-symptom-check">
+                        <div class="dock-icon">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                                <circle cx="8" cy="10" r="1" fill="currentColor"></circle>
+                                <circle cx="12" cy="10" r="1" fill="currentColor"></circle>
+                                <circle cx="16" cy="10" r="1" fill="currentColor"></circle>
+                            </svg>
+                        </div>
+                        <div class="dock-text">
+                            <h4>Smart Symptom Check</h4>
+                            <p>Describe you symptom and get AI insights.</p>
+                        </div>
+                    </div>
+
+                    <div class="dock-divider"></div>
+
+                    <!-- Item 2: Health Assessment -->
+                    <div class="dock-item" id="dock-assessment">
+                        <div class="dock-icon">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                                <rect x="7" y="13" width="2" height="2" fill="currentColor"></rect>
+                                <rect x="11" y="13" width="2" height="2" fill="currentColor"></rect>
+                                <rect x="15" y="13" width="2" height="2" fill="currentColor"></rect>
+                                <rect x="7" y="17" width="2" height="2" fill="currentColor"></rect>
+                                <rect x="11" y="17" width="2" height="2" fill="currentColor"></rect>
+                                <rect x="15" y="17" width="2" height="2" fill="currentColor"></rect>
+                            </svg>
+                        </div>
+                        <div class="dock-text">
+                            <h4>Health Assessment</h4>
+                            <p>Complete intelligent assessment.</p>
+                        </div>
+                    </div>
+
+                    <div class="dock-divider"></div>
+
+                    <!-- Item 3: Connect & Consult -->
+                    <div class="dock-item" id="dock-consult">
+                        <div class="dock-icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                        </div>
+                        <div class="dock-text">
+                            <h4>Connect & Consult</h4>
+                            <p>Get connected with the right healthcare specialists</p>
+                        </div>
+                    </div>
+
+                    <div class="dock-divider"></div>
+
+                    <!-- Item 4: Get specialized care -->
+                    <div class="dock-item" id="dock-specialized">
+                        <div class="dock-icon">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                                </path>
+                                <path d="M8 12h2.5l1.5-3 2 6 1.5-3H17" stroke="white" stroke-width="1.8" />
+                            </svg>
+                        </div>
+                        <div class="dock-text">
+                            <h4>Get specialized care</h4>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+
+    <!-- Modals -->
+    <!-- Patient ABHA Intake Console Modal - Pixel-Perfect High-Fidelity Design -->
+    <div class="modal-overlay" id="abha-modal">
+        <div class="modal-card console-modal-card">
+            
+            <!-- Left Sidebar: Progress Stepper & Console Brand -->
+            <div class="console-sidebar">
+                <div class="console-sidebar-top">
+                    <div class="console-brand-header">
+                        <div class="console-heart-icon">
+                            <svg width="34" height="34" viewBox="0 0 32 32" fill="none">
+                                <path d="M16 28.5L14.1 26.8C6.9 20.3 2.5 16.3 2.5 11.2C2.5 7.1 5.7 3.8 9.8 3.8C12.1 3.8 14.3 4.9 16 6.5C17.7 4.9 19.9 3.8 22.2 3.8C26.3 3.8 29.5 7.1 29.5 11.2C29.5 16.3 25.1 20.3 17.9 26.8L16 28.5Z" fill="#2563eb"/>
+                                <path d="M8.5 16H12L14.2 11.5L17.8 20.5L20 16H23.5" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h2 class="console-brand-title">Patient Intake</h2>
+                        <div class="console-brand-sub">CONSOLE</div>
+                    </div>
+
+                    <!-- Vertical Stepper Steps -->
+                    <div class="console-stepper-list">
+                        <!-- Step 1: ABHA Code (Active by default) -->
+                        <div class="console-step-item active" id="step-item-1">
+                            <div class="step-active-indicator"></div>
+                            <div class="step-icon-wrap step-icon-active">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                                    <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+                                    <path d="M9 12h6"></path>
+                                    <path d="M9 16h6"></path>
+                                </svg>
+                            </div>
+                            <div class="step-text-meta">
+                                <span class="step-title">ABHA Code</span>
+                                <span class="step-sub">Enter Code</span>
+                            </div>
+                        </div>
+
+                        <div class="step-track-line" id="track-line-1"></div>
+
+                        <!-- Step 2: Patient Details -->
+                        <div class="console-step-item" id="step-item-2">
+                            <div class="step-active-indicator"></div>
+                            <div class="step-icon-wrap">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                            </div>
+                            <div class="step-text-meta">
+                                <span class="step-title">Patient Details</span>
+                                <span class="step-sub">Verify Information</span>
+                            </div>
+                        </div>
+
+                        <div class="step-track-line" id="track-line-2"></div>
+
+                        <!-- Step 3: Intake Complete -->
+                        <div class="console-step-item" id="step-item-3">
+                            <div class="step-active-indicator"></div>
+                            <div class="step-icon-wrap">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                            </div>
+                            <div class="step-text-meta">
+                                <span class="step-title">Intake Complete</span>
+                                <span class="step-sub">Ready for Consultation</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar Bottom Trust Badge -->
+                <div class="console-sidebar-bottom">
+                    <div class="console-trust-card">
+                        <div class="trust-shield-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                <path d="M9 12l2 2 4-4"/>
+                            </svg>
+                        </div>
+                        <span class="trust-text">Your data is safe and secure with us.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Work Area (Right Side) -->
+            <div class="console-main">
+                <!-- Background Subtle Watermark Shield -->
+                <div class="console-watermark-shield">
+                    <svg width="280" height="320" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        <path d="M12 8v8M8 12h8" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div class="console-watermark-mesh"></div>
+
+                <!-- Top Bar in Main Content Area -->
+                <div class="console-top-bar">
+                    <div class="console-security-tag">
+                        <div class="tag-shield-icon">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                <path d="M9 12l2 2 4-4"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="sec-tag-title">Secure & HIPAA Compliant</div>
+                            <div class="sec-tag-sub">We prioritize your privacy</div>
+                        </div>
+                    </div>
+
+                    <!-- Live Date / Time Widget Card + Close Button -->
+                    <div class="console-top-right">
+                        <div class="console-datetime-card">
+                            <div class="datetime-col-date">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                                    <line x1="16" y1="2" x2="16" y2="6"/>
+                                    <line x1="8" y1="2" x2="8" y2="6"/>
+                                    <line x1="3" y1="10" x2="21" y2="10"/>
+                                </svg>
+                                <div>
+                                    <span class="date-main-txt" id="live-date-val">28 May 2025</span>
+                                    <span class="day-sub-txt" id="live-day-val">Wednesday</span>
+                                </div>
+                            </div>
+                            <div class="datetime-divider"></div>
+                            <div class="datetime-col-time">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <polyline points="12 6 12 12 16 14"/>
+                                </svg>
+                                <span class="time-main-txt" id="live-time-val">10:30 AM</span>
+                            </div>
+                        </div>
+
+                        <button class="console-close-btn" id="close-abha-modal" aria-label="Close Intake Console">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Center Floating Card Workspace -->
+                <div class="console-center-workspace">
+                    
+                    <!-- STEP 1: Enter Patient ABHA Code View (Exact Reference Image Design) -->
+                    <div class="console-step-view active" id="abha-step1-view">
+                        <div class="console-elevated-card">
+                            
+                            <!-- Top Glow ID Card Illustration -->
+                            <div class="console-hero-graphic-ring">
+                                <div class="hero-id-card-icon">
+                                    <svg width="46" height="36" viewBox="0 0 48 36" fill="none">
+                                        <rect x="2" y="2" width="44" height="32" rx="6" stroke="#2563eb" stroke-width="2.5" fill="#ffffff"/>
+                                        <circle cx="13" cy="13" r="4.5" fill="#2563eb"/>
+                                        <path d="M7 25c0-3.3 2.7-6 6-6s6 2.7 6 6" fill="#2563eb"/>
+                                        <line x1="22" y1="11" x2="34" y2="11" stroke="#2563eb" stroke-width="2.5" stroke-linecap="round"/>
+                                        <line x1="22" y1="17" x2="30" y2="17" stroke="#2563eb" stroke-width="2.5" stroke-linecap="round"/>
+                                        <!-- QR Glyphs -->
+                                        <rect x="37" y="20" width="3.5" height="3.5" fill="#2563eb"/>
+                                        <rect x="42" y="20" width="3.5" height="3.5" fill="#2563eb"/>
+                                        <rect x="37" y="25" width="3.5" height="3.5" fill="#2563eb"/>
+                                        <rect x="42" y="25" width="3.5" height="3.5" fill="#2563eb"/>
+                                    </svg>
+                                </div>
+                            </div>
+
+                            <!-- Title & Subtitle -->
+                            <h1 class="console-main-headline">Enter Patient ABHA Code</h1>
+                            <div class="console-title-underline"></div>
+                            <p class="console-main-subtext">
+                                The ABHA (Ayushman Bharat Health Account) code uniquely identifies your health record.
+                            </p>
+
+                            <!-- ABHA Input Field Group -->
+                            <div class="console-input-group">
+                                <div class="input-user-icon">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                        <circle cx="12" cy="7" r="4"></circle>
+                                    </svg>
+                                </div>
+                                <input type="text" id="abha-input" placeholder="Enter 14-digit ABHA Code" autocomplete="off" spellcheck="false">
+                                <button type="button" class="btn-console-scan" id="btn-scan-qr" title="Scan ABHA QR Code">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M3 7V5a2 2 0 0 1 2-2h2"/>
+                                        <path d="M17 3h2a2 2 0 0 1 2 2v2"/>
+                                        <path d="M21 17v2a2 2 0 0 1-2 2h-2"/>
+                                        <path d="M7 21H5a2 2 0 0 1-2-2v-2"/>
+                                        <rect x="7" y="7" width="10" height="10" rx="1"/>
+                                    </svg>
+                                    <span>Scan</span>
+                                </button>
+                            </div>
+
+                            <!-- Quick Sandbox Profiles for Testing -->
+                            <div class="console-quick-demo-pills">
+                                <span class="demo-pills-label">Quick Demo Profiles:</span>
+                                <button type="button" class="demo-chip-btn" onclick="fillAbha('91-4820-1928-3746')">
+                                    Rahul Verma (91-4820-1928-3746)
+                                </button>
+                                <button type="button" class="demo-chip-btn" onclick="fillAbha('priya.sharma@abdm')">
+                                    Priya Sharma (priya.sharma@abdm)
+                                </button>
+                            </div>
+
+                            <!-- Primary Continue CTA -->
+                            <button type="button" class="btn-console-primary" id="verify-abha-btn">
+                                <span id="verify-btn-text">Continue</span>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <polyline points="12 5 19 12 12 19"></polyline>
+                                </svg>
+                            </button>
+
+                            <!-- OR Divider -->
+                            <div class="console-or-divider">
+                                <span>OR</span>
+                            </div>
+
+                            <!-- Secondary Button: No ABHA Code -->
+                            <button type="button" class="btn-console-secondary-card" id="btn-no-abha">
+                                <span class="sec-help-icon">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                                    </svg>
+                                </span>
+                                <span>I don’t have an ABHA Code</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- STEP 2: Patient Details Verification View -->
+                    <div class="console-step-view" id="abha-step2-view" style="display: none;">
+                        <div class="console-elevated-card step2-verified-card">
+                            
+                            <!-- Verified ABDM Card Header -->
+                            <div class="verified-card-top">
+                                <div class="verified-emblem-row">
+                                    <div class="card-gov-shield">
+                                        <svg width="22" height="22" viewBox="0 0 24 24" fill="#2563eb">
+                                            <path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3z"/>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <div class="gov-inst-title">NATIONAL HEALTH AUTHORITY • GOVT. OF INDIA</div>
+                                        <div class="gov-inst-sub">Ayushman Bharat Digital Health Account (ABHA)</div>
+                                    </div>
+                                </div>
+                                <div class="verified-status-pill">
+                                    <span class="active-pulse-dot"></span>
+                                    <span>VERIFIED ACTIVE</span>
+                                </div>
+                            </div>
+
+                            <!-- Patient Identity Core Info -->
+                            <div class="patient-id-banner">
+                                <div class="patient-avatar-box">
+                                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.8">
+                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                        <circle cx="12" cy="7" r="4"/>
+                                    </svg>
+                                </div>
+                                <div class="patient-meta-text">
+                                    <h3 class="patient-display-name" id="patient-name">Rahul Verma</h3>
+                                    <div class="patient-display-id" id="patient-abha-num">91-4820-1928-3746</div>
+                                </div>
+                            </div>
+
+                            <!-- Demographic & Clinical EHR Matrix -->
+                            <div class="patient-details-grid">
+                                <div class="detail-cell">
+                                    <span class="cell-label">Demographics</span>
+                                    <span class="cell-value" id="patient-demo">Male, 32 Yrs (O+ Rh+)</span>
+                                </div>
+                                <div class="detail-cell">
+                                    <span class="cell-label">Health Locker</span>
+                                    <span class="cell-value text-emerald" id="patient-records">4 Synced Records</span>
+                                </div>
+                                <div class="detail-cell">
+                                    <span class="cell-label">Protocol</span>
+                                    <span class="cell-value">FHIR R4 HL7</span>
+                                </div>
+                                <div class="detail-cell">
+                                    <span class="cell-label">Consent Layer</span>
+                                    <span class="cell-value text-blue">Granted (Tier-1)</span>
+                                </div>
+                            </div>
+
+                            <!-- Synced Encounters Preview -->
+                            <div class="patient-encounters-pill-row">
+                                <span class="enc-tag">🏥 Apollo Spectra (Consultation)</span>
+                                <span class="enc-tag">🧪 Fortis Lab (Lipid Panel)</span>
+                                <span class="enc-tag">💊 2 Active Prescriptions</span>
+                            </div>
+
+                            <!-- Action Buttons for Step 2 -->
+                            <div class="step2-actions-row">
+                                <button type="button" class="btn-console-back" id="btn-back-step1">
+                                    &larr; Change ABHA Code
+                                </button>
+                                <button type="button" class="btn-console-confirm" id="btn-confirm-intake">
+                                    <span>Confirm & Proceed to Intake</span>
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                        <polyline points="12 5 19 12 12 19"></polyline>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- STEP 3: Intake Complete View -->
+                    <div class="console-step-view" id="abha-step3-view" style="display: none;">
+                        <div class="console-elevated-card step3-complete-card">
+                            <div class="success-ring-icon">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                </svg>
+                            </div>
+                            <h2 class="complete-headline">Patient Intake Verified!</h2>
+                            <p class="complete-subtext">ABHA Identity successfully linked to patient chart. Ready for consultation.</p>
+
+                            <div class="intake-ticket-pill">
+                                <span class="ticket-label">Intake Token:</span>
+                                <strong class="ticket-token">#MC-8492</strong>
+                                <span class="ticket-queue">Estimated Wait: ~3 mins</span>
+                            </div>
+
+                            <!-- Main Primary Action for the Patient: Select Visit Status -->
+                            <div class="single-main-action-wrap">
+                                <button type="button" class="btn-primary-visit-status" id="btn-intake-status">
+                                    <div class="status-btn-icon-wrap">
+                                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                                        </svg>
+                                    </div>
+                                    <div class="status-btn-text">
+                                        <strong class="main-status-title">Select Visit Status</strong>
+                                        <span class="main-status-sub">New condition, On-going treatment, or SOS Emergency</span>
+                                    </div>
+                                    <div class="status-btn-arrow">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                                            <polyline points="12 5 19 12 12 19"></polyline>
+                                        </svg>
+                                    </div>
+                                </button>
+                            </div>
+
+                            <button type="button" class="btn-console-finish" id="btn-intake-finish">
+                                Done & Return to Home
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- QR Scanner Simulated Overlay -->
+                    <div class="console-qr-overlay" id="console-qr-overlay" style="display: none;">
+                        <div class="qr-scanner-box">
+                            <div class="qr-scanner-header">
+                                <h3>Scan Ayushman Bharat QR Code</h3>
+                                <button type="button" class="btn-close-scanner" id="btn-close-scanner">&times;</button>
+                            </div>
+                            <div class="qr-viewfinder">
+                                <div class="viewfinder-laser"></div>
+                                <div class="viewfinder-corners"></div>
+                                <div class="mock-qr-sample">
+                                    <svg width="90" height="90" viewBox="0 0 24 24" fill="#1e293b">
+                                        <rect x="2" y="2" width="8" height="8" rx="1.5" fill="none" stroke="#2563eb" stroke-width="2"/>
+                                        <rect x="4" y="4" width="4" height="4" fill="#2563eb"/>
+                                        <rect x="14" y="2" width="8" height="8" rx="1.5" fill="none" stroke="#2563eb" stroke-width="2"/>
+                                        <rect x="16" y="4" width="4" height="4" fill="#2563eb"/>
+                                        <rect x="2" y="14" width="8" height="8" rx="1.5" fill="none" stroke="#2563eb" stroke-width="2"/>
+                                        <rect x="4" y="16" width="4" height="4" fill="#2563eb"/>
+                                        <rect x="14" y="14" width="3" height="3" fill="#2563eb"/>
+                                        <rect x="19" y="14" width="3" height="3" fill="#2563eb"/>
+                                        <rect x="14" y="19" width="3" height="3" fill="#2563eb"/>
+                                        <rect x="19" y="19" width="3" height="3" fill="#2563eb"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <button type="button" class="btn-scan-simulate" id="btn-scan-simulate">
+                                ⚡ Simulate Instant QR Card Detection
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- No ABHA Instant Generator Modal -->
+                    <div class="console-no-abha-overlay" id="console-no-abha-overlay" style="display: none;">
+                        <div class="no-abha-modal-box">
+                            <div class="no-abha-header">
+                                <h3>Instant Rapid Health Intake</h3>
+                                <button type="button" class="btn-close-no-abha" id="btn-close-no-abha">&times;</button>
+                            </div>
+                            <p class="no-abha-desc">Don't have an ABHA ID yet? Generate a temporary health token or continue as guest.</p>
+                            <div class="no-abha-actions">
+                                <button type="button" class="btn-gen-temp-abha" id="btn-gen-temp-abha">
+                                    ✨ Generate Instant ABDM Health Pass
+                                </button>
+                                <button type="button" class="btn-guest-intake" id="btn-guest-intake">
+                                    Proceed with Direct Guest Intake
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Bottom Bar of Main Area (Need Help + Language Dropdown) -->
+                <div class="console-bottom-bar">
+                    <div class="console-bottom-left">
+                        <a href="#contact" class="console-need-help-link" id="console-need-help">Need help?</a>
+                        <div class="console-staff-help">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+                                <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
+                            </svg>
+                            <span>Ask our staff for assistance.</span>
+                        </div>
+                    </div>
+
+                    <div class="console-bottom-right">
+                        <div class="console-lang-picker">
+                            <button type="button" class="btn-console-lang" id="btn-lang-toggle">
+                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                                </svg>
+                                <span id="current-lang-name">English</span>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                            <div class="console-lang-dropdown" id="console-lang-dropdown" style="display: none;">
+                                <button type="button" class="lang-opt-item active" data-lang="en">English</button>
+                                <button type="button" class="lang-opt-item" data-lang="hi">हिन्दी (Hindi)</button>
+                                <button type="button" class="lang-opt-item" data-lang="kn">ಕನ್ನಡ (Kannada)</button>
+                                <button type="button" class="lang-opt-item" data-lang="ta">தமிழ் (Tamil)</button>
+                                <button type="button" class="lang-opt-item" data-lang="te">తెలుగు (Telugu)</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Symptom Checker Modal -->
+    <div class="modal-overlay" id="symptom-modal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <div class="modal-title-box">
+                    <span class="modal-icon">✨</span>
+                    <div>
+                        <h2>AI Smart Symptom Checker</h2>
+                        <p>Powered by MediCare Clinical AI Engine</p>
+                    </div>
+                </div>
+                <button class="modal-close" id="close-symptom-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
+                    <label for="symptom-input">Describe your current symptoms or health concerns:</label>
+                    <textarea id="symptom-input"
+                        placeholder="e.g. I have a slight headache, sore throat, and mild fever since morning..."></textarea>
+                </div>
+                <div class="quick-tags">
+                    <span class="tag" onclick="fillSymptom('Headache & Fatigue')">Headache & Fatigue</span>
+                    <span class="tag" onclick="fillSymptom('Fever & Sore Throat')">Fever & Sore Throat</span>
+                    <span class="tag" onclick="fillSymptom('Chest Tightness & Cough')">Chest Tightness</span>
+                    <span class="tag" onclick="fillSymptom('Back Pain & Stiffness')">Back Pain</span>
+                </div>
+                <div class="ai-response-box" id="ai-response-box" style="display: none;">
+                    <div class="ai-analyzing" id="ai-analyzing">
+                        <div class="spinner"></div>
+                        <span>Analyzing clinical markers with AI models...</span>
+                    </div>
+                    <div class="ai-result" id="ai-result" style="display: none;">
+                        <div class="triage-badge triage-moderate" id="triage-badge">MODERATE PRIORITY</div>
+                        <h4 id="result-title">Possible Upper Respiratory Infection</h4>
+                        <p id="result-desc">Based on your reported symptoms, your condition is consistent with early
+                            seasonal viral response. Rest and staying hydrated is advised.</p>
+                        <div class="next-steps">
+                            <strong>Recommended Action:</strong>
+                            <ul id="result-steps">
+                                <li>Monitor temperature over the next 24 hours</li>
+                                <li>Schedule a virtual consultation with an AI-backed Practitioner</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancel-symptom">Cancel</button>
+                <button class="btn btn-primary" id="analyze-symptom-btn">
+                    Analyze Symptoms
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="modal-overlay" id="search-modal">
+        <div class="modal-card search-card">
+            <div class="search-input-wrapper">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input type="text" id="search-input"
+                    placeholder="Search services, doctors, AI symptom checker, or topics...">
+                <button class="modal-close" id="close-search-modal">&times;</button>
+            </div>
+            <div class="search-results" id="search-results">
+                <div class="search-category">Popular Quick Actions</div>
+                <div class="search-item" onclick="openAbhaModal()">
+                    <span class="item-icon">🪪</span>
+                    <div>
+                        <div class="item-title">Patient ABHA Verification</div>
+                        <div class="item-sub">Link & verify ABDM health records</div>
+                    </div>
+                </div>
+                <div class="search-item" onclick="openSymptomChecker()">
+                    <span class="item-icon">💬</span>
+                    <div>
+                        <div class="item-title">Smart Symptom Checker</div>
+                        <div class="item-sub">Instant AI health assessment</div>
+                    </div>
+                </div>
+                <div class="search-item" onclick="openConsultModal()">
+                    <span class="item-icon">👨‍⚕️</span>
+                    <div>
+                        <div class="item-title">Book Doctor Consultation</div>
+                        <div class="item-sub">Connect with top certified specialists</div>
+                    </div>
+                </div>
+                <div class="search-item">
+                    <span class="item-icon">📋</span>
+                    <div>
+                        <div class="item-title">Comprehensive Health Assessment</div>
+                        <div class="item-sub">AI personalized wellness breakdown</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Patient Status Page View -->
+    <div class="status-page-view" id="status-page">
+        <div class="status-container">
+
+            <!-- Left Side: Status Selection Options -->
+            <div class="status-left">
+                <button class="btn-go-back" id="status-go-back">
+                    &larr; Go back
+                </button>
+
+                <div class="status-header">
+                    <h1 class="status-title">
+                        What’s your<br>
+                        <span class="highlight-status-cyan">Status?</span>
+                    </h1>
+                    <div class="status-title-line"></div>
+                </div>
+
+                <!-- Status Pill Action Buttons -->
+                <div class="status-buttons-group">
+                    <button class="status-option-btn btn-new-condition" id="btn-status-new">
+                        New condition
+                    </button>
+                    <button class="status-option-btn btn-ongoing" id="btn-status-ongoing">
+                        On-going
+                    </button>
+                    <button class="status-option-btn btn-sos" id="btn-status-sos">
+                        SOS-Emergency
+                    </button>
+                </div>
+
+                <div class="status-footer-line"></div>
+                <a href="#contact" class="status-need-help" id="status-need-help">Need help...</a>
+            </div>
+
+
+
+            <!-- Right Side: Doctors Full Image & Support Headline -->
+            <div class="status-right-photo">
+                <div class="status-image-wrapper">
+                    <h1 class="status-floating-heading">
+                        WE ARE HERE TO <br>
+                        <span class="highlight-blue-text">HELP YOU</span>
+                    </h1>
+                    <img src="status_doctors.png" alt="MediCare AI Doctors" class="status-duo-img">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Our Services Page View -->
+    <div class="services-page-view" id="services-page">
+        <!-- Background Layer -->
+        <div class="services-bg-overlay"></div>
+        <div class="services-bg-image"></div>
+
+        <div class="services-container">
+            <!-- Top Go Back Action -->
+            <div class="services-top-bar">
+                <button class="btn-services-back" id="services-go-back" aria-label="Go back">
+                    <span class="back-arrow">&larr;</span>
+                    <span>Go back</span>
+                </button>
+            </div>
+
+            <!-- Services Heading Title & Underline -->
+            <div class="services-header">
+                <h1 class="services-title">
+                    Our <span class="highlight-services-cyan">services.</span>
+                </h1>
+                <div class="services-title-line"></div>
+            </div>
+
+            <!-- Elegant Glassmorphism Information Card -->
+            <div class="services-card-glass">
+                <p class="services-p">
+                    Our website provides an AI-powered patient intake and symptom assessment service that helps patients share their health concerns before meeting a doctor. Patients can quickly enter their symptoms, medical history, and visit type through a simple, guided interface.
+                </p>
+                <p class="services-p">
+                    The system intelligently organizes the patient's information and generates a structured preliminary summary for healthcare staff, helping doctors understand the patient's condition faster and making the overall consultation process more efficient.
+                </p>
+                <p class="services-p">
+                    It also supports returning and new health concerns, allowing patients to indicate whether they are continuing an existing condition or seeking help for a new issue.
+                </p>
+            </div>
+
+            <!-- Bottom Channels / Social Pill -->
+            <div class="services-footer-row">
+                <div class="services-social-pill">
+                    <span class="social-label">We are also in</span>
+                    <span class="social-divider">|</span>
+                    <div class="social-icons">
+                        <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="social-link" title="X (Twitter)">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-link" title="Instagram">
+                            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                        <a href="mailto:rajivgowdayc541@gmail.com" class="social-link" title="Email Us">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Us Page View -->
+    <div class="about-page-view" id="about-page">
+        <!-- Background Layer -->
+        <div class="about-bg-overlay"></div>
+        <div class="about-bg-image"></div>
+
+        <div class="about-container">
+            <!-- Top Go Back Action -->
+            <div class="about-top-bar">
+                <button class="btn-about-back" id="about-go-back" aria-label="Go back">
+                    <span class="back-arrow">&larr;</span>
+                    <span>Go back</span>
+                </button>
+            </div>
+
+            <!-- About Heading Title -->
+            <div class="about-header">
+                <h1 class="about-title">
+                    <span class="highlight-about-cyan">About</span> <span class="highlight-about-dark">Us....</span>
+                </h1>
+            </div>
+
+            <!-- Frosted Light Glassmorphism Card -->
+            <div class="about-card-glass">
+                <h3 class="about-card-headline">About Us Redefining the First Step in Healthcare</h3>
+                <p class="about-card-subheadline">We believe healthcare should begin with clarity, not complexity.</p>
+                
+                <p class="about-p">
+                    Our AI-powered patient intake platform transforms the way patients communicate their health concerns. Through an intuitive and guided experience, patients can share their symptoms, medical history, and reason for visiting—while our system intelligently organizes the information into a clear, structured overview for healthcare professionals.
+                </p>
+                <p class="about-p">
+                    By reducing repetitive intake work and improving the quality of information available before consultation, we help create a faster, smoother, and more informed healthcare experience.
+                </p>
+                <p class="about-p about-p-highlight">
+                    Technology that listens. Intelligence that organizes. Care that comes first.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Us Page View -->
+    <div class="contact-page-view" id="contact-page">
+        <!-- Ambient AI Glowing Orbs & Mesh -->
+        <div class="contact-ambient-glow-1"></div>
+        <div class="contact-ambient-glow-2"></div>
+        <div class="contact-ambient-glow-3"></div>
+        <div class="contact-neural-grid"></div>
+
+        <div class="contact-container">
+            <!-- Top Go Back Action -->
+            <div class="contact-top-bar">
+                <button class="btn-contact-back" id="contact-go-back" aria-label="Go back">
+                    <span class="back-arrow">&larr;</span>
+                    <span>Go back</span>
+                </button>
+            </div>
+
+            <!-- Two-Column Contact Main Layout -->
+            <div class="contact-main-grid">
+                <!-- LEFT — Contact Introduction -->
+                <div class="contact-intro-col">
+                    <div class="contact-tag-badge">
+                        <span class="pulse-sparkle">✦</span>
+                        <span>GET IN TOUCH</span>
+                    </div>
+
+                    <h1 class="contact-headline">
+                        Let’s Make <span class="highlight-contact-cyan">Healthcare Smarter.</span>
+                    </h1>
+
+                    <p class="contact-intro-p">
+                        Have a question, want to explore our platform, or interested in bringing smarter patient intake to your healthcare organization? Our team is here to help.
+                    </p>
+
+                    <!-- Elegant Contact Details -->
+                    <div class="contact-details-list">
+                        <div class="contact-detail-item contact-emails-card">
+                            <div class="contact-icon-box">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                </svg>
+                            </div>
+                            <div class="contact-detail-content">
+                                <span class="detail-label">Support Team Emails</span>
+                                <div class="contact-email-links">
+                                    <a href="mailto:rajivgowdayc541@gmail.com" class="email-sublink">rajivgowdayc541@gmail.com</a>
+                                    <a href="mailto:syashas150506@gmail.com" class="email-sublink">syashas150506@gmail.com</a>
+                                    <a href="mailto:sankethmanomay@gmail.com" class="email-sublink">sankethmanomay@gmail.com</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="tel:+919876543210" class="contact-detail-item">
+                            <div class="contact-icon-box">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                </svg>
+                            </div>
+                            <div class="contact-detail-content">
+                                <span class="detail-label">Phone</span>
+                                <span class="detail-value">+91 XXXXX XXXXX</span>
+                            </div>
+                        </a>
+
+                        <div class="contact-detail-item">
+                            <div class="contact-icon-box">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                            </div>
+                            <div class="contact-detail-content">
+                                <span class="detail-label">Location</span>
+                                <span class="detail-value">India</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Trust / Encryption Signal -->
+                    <div class="contact-trust-pill">
+                        <span class="trust-shield-icon">🛡️</span>
+                        <span>Enterprise Grade Security &bull; 256-Bit Encrypted Data &bull; HIPAA & ABDM Compliant</span>
+                    </div>
+                </div>
+
+                <!-- RIGHT — Premium Glass Contact Form -->
+                <div class="contact-form-col">
+                    <div class="contact-glass-card">
+                        <!-- Form Block (Hidden on submission) -->
+                        <div id="contact-form-block">
+                            <div class="form-header">
+                                <h3 class="form-title">Send a Direct Inquiry</h3>
+                                <p class="form-subtitle">Connect with our clinical workflow & AI engineering specialists.</p>
+                            </div>
+
+                            <form id="contact-form" class="contact-form-inner">
+                                <div class="contact-form-row">
+                                    <div class="form-group-contact">
+                                        <label for="contact-name">Full Name <span class="required-star">*</span></label>
+                                        <div class="contact-input-wrap">
+                                            <input type="text" id="contact-name" name="name" placeholder="Dr. Aarav Sharma" required />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group-contact">
+                                        <label for="contact-email">Email Address <span class="required-star">*</span></label>
+                                        <div class="contact-input-wrap">
+                                            <input type="email" id="contact-email" name="email" placeholder="aarav@hospital.org" required />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="contact-form-row">
+                                    <div class="form-group-contact">
+                                        <label for="contact-org">Organization / Hospital</label>
+                                        <div class="contact-input-wrap">
+                                            <input type="text" id="contact-org" name="organization" placeholder="Apollo / Fortis / Clinic Name" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group-contact">
+                                        <label for="contact-inquiry">Inquiry Type <span class="required-star">*</span></label>
+                                        <div class="contact-input-wrap">
+                                            <select id="contact-inquiry" name="inquiry_type" required>
+                                                <option value="" disabled selected>Select an option</option>
+                                                <option value="General Inquiry">General Inquiry</option>
+                                                <option value="Product Information">Product Information</option>
+                                                <option value="Partnership">Partnership</option>
+                                                <option value="Technical Support">Technical Support</option>
+                                                <option value="Other">Other</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group-contact">
+                                    <label for="contact-message">Message <span class="required-star">*</span></label>
+                                    <div class="contact-input-wrap">
+                                        <textarea id="contact-message" name="message" rows="4" placeholder="Tell us how we can assist your patient intake or clinic deployment..." required></textarea>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn-contact-submit" id="btn-submit-contact">
+                                    <span>Send Message</span>
+                                    <span class="submit-arrow">&rarr;</span>
+                                </button>
+                            </form>
+                        </div>
+
+                        <!-- Form Success & Ticket Confirmation View (Hidden by default) -->
+                        <div id="contact-success-view" class="contact-success-state" style="display: none;">
+                            <div class="success-icon-wrap">
+                                <div class="success-glow-ring"></div>
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                            </div>
+
+                            <h3 class="success-title">Inquiry Successfully Dispatched!</h3>
+                            <p class="success-desc">Your message has been securely logged into our clinical queue and assigned to an intake specialist.</p>
+
+                            <div class="ticket-receipt-card">
+                                <div class="ticket-row">
+                                    <span class="ticket-label">Ticket ID:</span>
+                                    <span class="ticket-val" id="receipt-ticket-id">#MCA-84920</span>
+                                </div>
+                                <div class="ticket-row">
+                                    <span class="ticket-label">Contact:</span>
+                                    <span class="ticket-val" id="receipt-name-email">Dr. Aarav (aarav@hospital.org)</span>
+                                </div>
+                                <div class="ticket-row">
+                                    <span class="ticket-label">Inquiry Type:</span>
+                                    <span class="ticket-val" id="receipt-inquiry-type">Product Information</span>
+                                </div>
+                                <div class="ticket-row">
+                                    <span class="ticket-label">Status:</span>
+                                    <span class="ticket-status-tag">⚡ Active in Clinical Queue</span>
+                                </div>
+                            </div>
+
+                            <div class="success-actions-row">
+                                <button type="button" class="btn-success-reset" id="btn-contact-new-msg">
+                                    <span>Send Another Message</span>
+                                </button>
+                                <a href="#" id="btn-contact-gmail-direct" class="btn-success-gmail" target="_blank" rel="noopener noreferrer">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                                    <span>Open in Gmail</span>
+                                </a>
+                                <a href="#" id="btn-contact-mailto-fallback" class="btn-success-mailto">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.2 8.4c.5.38.8.97.8 1.6v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V10a2 2 0 0 1 .8-1.6l8-6a2 2 0 0 1 2.4 0l8 6Z"></path><path d="m22 10-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 10"></path></svg>
+                                    <span>Default Mail App</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Minimal Footer Line & Links -->
+            <div class="contact-bottom-footer">
+                <p class="contact-footer-motto">“Technology that listens. Intelligence that organizes. Care that comes first.”</p>
+                <div class="contact-footer-links">
+                    <a href="#privacy" class="footer-link">Privacy</a>
+                    <span class="footer-dot">&middot;</span>
+                    <a href="#terms" class="footer-link">Terms</a>
+                    <span class="footer-dot">&middot;</span>
+                    <a href="#support" class="footer-link">Support</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast-notif">Action performed successfully</div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
