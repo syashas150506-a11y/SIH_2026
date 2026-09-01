@@ -1,0 +1,7 @@
+openai-whisper
+torch
+torchaudio
+google-genai
+python-dotenv
+soundfile
+sounddevice
