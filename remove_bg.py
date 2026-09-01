@@ -42,4 +42,4 @@ def process_user_doctor_image(input_path, output_path):
     print(f"Successfully processed user uploaded doctor image: {output_path}")
 
 if __name__ == "__main__":
-    process_user_doctor_image("doctor_user.png", "doctor.png")
+    process_user_doctor_image("images/doctor_user.png", "images/doctor.png")
