@@ -640,22 +640,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    if (btnIntakeSymptom) {
-        btnIntakeSymptom.addEventListener('click', () => {
-            closeModal(abhaModal);
-            openSymptomChecker();
-            showToast('Launching AI Symptom Assessment...');
-        });
-    }
-
-    if (btnIntakeDoctor) {
-        btnIntakeDoctor.addEventListener('click', () => {
-            closeModal(abhaModal);
-            openConsultModal();
-            showToast('Connecting with Specialist Doctor...');
-        });
-    }
-
     if (btnIntakeFinish) {
         btnIntakeFinish.addEventListener('click', () => {
             closeModal(abhaModal);
@@ -1169,20 +1153,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (ticketLabel) ticketLabel.textContent = dict.tokenLabel;
         if (ticketQueue) ticketQueue.textContent = dict.tokenQueue;
 
-        const optStatusStrong = document.querySelector('#btn-intake-status strong');
-        const optStatusSpan = document.querySelector('#btn-intake-status span');
+        const optStatusStrong = document.querySelector('.main-status-title');
+        const optStatusSpan = document.querySelector('.main-status-sub');
         if (optStatusStrong) optStatusStrong.textContent = dict.optStatusTitle;
         if (optStatusSpan) optStatusSpan.textContent = dict.optStatusSub;
-
-        const optSymptomStrong = document.querySelector('#btn-intake-symptom strong');
-        const optSymptomSpan = document.querySelector('#btn-intake-symptom span');
-        if (optSymptomStrong) optSymptomStrong.textContent = dict.optSymptomTitle;
-        if (optSymptomSpan) optSymptomSpan.textContent = dict.optSymptomSub;
-
-        const optDoctorStrong = document.querySelector('#btn-intake-doctor strong');
-        const optDoctorSpan = document.querySelector('#btn-intake-doctor span');
-        if (optDoctorStrong) optDoctorStrong.textContent = dict.optDoctorTitle;
-        if (optDoctorSpan) optDoctorSpan.textContent = dict.optDoctorSub;
 
         if (btnIntakeFinish) btnIntakeFinish.textContent = dict.btnDone;
 

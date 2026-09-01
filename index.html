@@ -714,26 +714,23 @@
                                 <span class="ticket-queue">Estimated Wait: ~3 mins</span>
                             </div>
 
-                            <div class="complete-options-grid">
-                                <button type="button" class="option-card-btn" id="btn-intake-status">
-                                    <div class="option-icon">🩺</div>
-                                    <div class="option-info">
-                                        <strong>Select Visit Status</strong>
-                                        <span>New condition, On-going, or SOS</span>
+                            <!-- Main Primary Action for the Patient: Select Visit Status -->
+                            <div class="single-main-action-wrap">
+                                <button type="button" class="btn-primary-visit-status" id="btn-intake-status">
+                                    <div class="status-btn-icon-wrap">
+                                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                                        </svg>
                                     </div>
-                                </button>
-                                <button type="button" class="option-card-btn" id="btn-intake-symptom">
-                                    <div class="option-icon">🤖</div>
-                                    <div class="option-info">
-                                        <strong>AI Symptom Checker</strong>
-                                        <span>Assess symptoms with clinical AI</span>
+                                    <div class="status-btn-text">
+                                        <strong class="main-status-title">Select Visit Status</strong>
+                                        <span class="main-status-sub">New condition, On-going treatment, or SOS Emergency</span>
                                     </div>
-                                </button>
-                                <button type="button" class="option-card-btn" id="btn-intake-doctor">
-                                    <div class="option-icon">👨‍⚕️</div>
-                                    <div class="option-info">
-                                        <strong>Book Specialist Doctor</strong>
-                                        <span>Direct consult with verified MDs</span>
+                                    <div class="status-btn-arrow">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                                            <polyline points="12 5 19 12 12 19"></polyline>
+                                        </svg>
                                     </div>
                                 </button>
                             </div>
