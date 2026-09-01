@@ -2532,7 +2532,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('services_medical.jpg');
+    background-image: url('images/services_medical.jpg');
     background-size: cover;
     background-position: center right;
     filter: brightness(0.88) contrast(1.12) saturate(1.15);
@@ -2778,7 +2778,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('about_nurse_doc.jpg');
+    background-image: url('images/about_nurse_doc.jpg');
     background-size: cover;
     background-position: center 15%;
     filter: brightness(1.02) contrast(1.06) saturate(1.08);
