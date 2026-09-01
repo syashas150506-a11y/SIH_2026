@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediCare AI - Doctor Triage Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0b132b;
+            --bg-card: #1c2541;
+            --bg-card-hover: #232e52;
+            --accent-blue: #2563eb;
+            --accent-cyan: #06b6d4;
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --success: #10b981;
+            --border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Top Header */
+        header {
+            background: rgba(11, 19, 43, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .brand-logo {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .brand-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .brand-accent {
+            color: var(--accent-cyan);
+        }
+
+        .header-meta {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .live-clock {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--accent-cyan);
+        }
+
+        .doctor-profile {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: var(--bg-card);
+            padding: 0.4rem 1rem 0.4rem 0.5rem;
+            border-radius: 30px;
+            border: 1px solid var(--border-color);
+        }
+
+        .doc-avatar {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: #3b82f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        /* Container & Grid Layout */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 2rem;
+            flex: 1;
+        }
+
+        /* Emergency Alert Header Banner */
+        .emergency-banner {
+            display: none;
+            background: linear-gradient(90deg, #7f1d1d, #b91c1c);
+            border: 1px solid #ef4444;
+            color: #ffffff;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 0 25px rgba(239, 68, 68, 0.4);
+            animation: pulse-border 2s infinite;
+        }
+
+        .emergency-banner.active {
+            display: flex;
+        }
+
+        @keyframes pulse-border {
+            0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.5); }
+            70% { box-shadow: 0 0 0 12px rgba(239, 68, 68, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+        }
+
+        .emergency-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .emergency-icon {
+            font-size: 1.8rem;
+            animation: blink 1s infinite alternate;
+        }
+
+        @keyframes blink {
+            from { opacity: 1; }
+            to { opacity: 0.4; }
+        }
+
+        /* Metrics Bar */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        .metric-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 1.25rem;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .metric-info h4 {
+            color: var(--text-sub);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.4rem;
+        }
+
+        .metric-info .val {
+            font-size: 1.8rem;
+            font-weight: 800;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .metric-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Section Title & Toolbar */
+        .toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.25rem;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-refresh {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s;
+        }
+
+        .btn-refresh:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Patient Ticket Cards */
+        .queue-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .ticket-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .ticket-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .ticket-card.sos-emergency {
+            border: 2px solid var(--danger);
+            background: linear-gradient(180deg, rgba(239, 68, 68, 0.1), var(--bg-card));
+        }
+
+        .ticket-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .ticket-id {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--accent-cyan);
+        }
+
+        .badge-severity {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-severity.sos {
+            background: rgba(239, 68, 68, 0.2);
+            color: #fca5a5;
+            border: 1px solid var(--danger);
+        }
+
+        .badge-severity.high {
+            background: rgba(245, 158, 11, 0.2);
+            color: #fde047;
+            border: 1px solid var(--warning);
+        }
+
+        .badge-severity.normal {
+            background: rgba(16, 185, 129, 0.2);
+            color: #6ee7b7;
+            border: 1px solid var(--success);
+        }
+
+        .patient-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .patient-sub {
+            color: var(--text-sub);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+
+        .complaint-box {
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 10px;
+            padding: 0.85rem;
+            margin-bottom: 1.25rem;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            color: #e2e8f0;
+            border-left: 3px solid var(--accent-blue);
+        }
+
+        .ticket-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .ticket-time {
+            font-size: 0.8rem;
+            color: var(--text-sub);
+        }
+
+        .btn-view-brief {
+            background: var(--accent-blue);
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-view-brief:hover {
+            background: #1d4ed8;
+        }
+
+        /* Detail Modal / Drawer */
+        .drawer-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            z-index: 200;
+            justify-content: flex-end;
+        }
+
+        .drawer-overlay.active {
+            display: flex;
+        }
+
+        .drawer-content {
+            width: 100%;
+            max-width: 600px;
+            background: var(--bg-card);
+            height: 100%;
+            overflow-y: auto;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+            border-left: 1px solid var(--border-color);
+        }
+
+        .drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .btn-close-drawer {
+            background: none;
+            border: none;
+            color: var(--text-sub);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .summary-block {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1.25rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            white-space: pre-line;
+            line-height: 1.6;
+            font-size: 0.95rem;
+            border-left: 4px solid var(--accent-cyan);
+        }
+
+        .doctor-note-input {
+            width: 100%;
+            height: 100px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 0.85rem;
+            color: var(--text-main);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            resize: none;
+        }
+
+        .action-bar {
+            display: flex;
+            gap: 1rem;
+            margin-top: auto;
+        }
+
+        .btn-status-action {
+            flex: 1;
+            padding: 0.75rem;
+            border-radius: 10px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-complete {
+            background: var(--success);
+            color: #fff;
+        }
+
+        .btn-consulting {
+            background: var(--warning);
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="brand">
+            <div class="brand-logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
+                    <path d="M12 2v20M2 12h20"/>
+                </svg>
+            </div>
+            <div class="brand-title">MediCare <span class="brand-accent">Doctor Dashboard</span></div>
+        </div>
+
+        <div class="header-meta">
+            <div class="live-clock" id="live-clock">--:-- --</div>
+            <div class="doctor-profile">
+                <div class="doc-avatar">DR</div>
+                <div>
+                    <div style="font-size: 0.85rem; font-weight: 700;">Dr. Rajiv Gowda, MD</div>
+                    <div style="font-size: 0.75rem; color: var(--text-sub);">Chief Triage Officer</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Emergency SOS Alert Banner (Shows when urgent ticket arrives) -->
+        <div class="emergency-banner" id="emergency-banner">
+            <div class="emergency-left">
+                <div class="emergency-icon">🚨</div>
+                <div>
+                    <h3 style="font-size: 1.1rem; font-weight: 800;">CRITICAL EMERGENCY ALERT</h3>
+                    <p style="font-size: 0.85rem; opacity: 0.9;" id="emergency-banner-text">Patient #MCA-90214 flagged with acute chest pain!</p>
+                </div>
+            </div>
+            <button class="btn-view-brief" style="background: white; color: #7f1d1d;" id="btn-view-emergency">Review Immediate Triage</button>
+        </div>
+
+        <!-- Metric Cards -->
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-info">
+                    <h4>Active Patients</h4>
+                    <div class="val" id="metric-total">2</div>
+                </div>
+                <div class="metric-icon" style="color: var(--accent-cyan);">📋</div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-info">
+                    <h4>SOS Emergencies</h4>
+                    <div class="val" id="metric-sos" style="color: var(--danger);">1</div>
+                </div>
+                <div class="metric-icon" style="color: var(--danger);">🚨</div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-info">
+                    <h4>High Priority</h4>
+                    <div class="val" id="metric-high" style="color: var(--warning);">1</div>
+                </div>
+                <div class="metric-icon" style="color: var(--warning);">⚡</div>
+            </div>
+
+            <div class="metric-card">
+                <div class="metric-info">
+                    <h4>Completed Today</h4>
+                    <div class="val" id="metric-completed" style="color: var(--success);">0</div>
+                </div>
+                <div class="metric-icon" style="color: var(--success);">✓</div>
+            </div>
+        </div>
+
+        <!-- Toolbar -->
+        <div class="toolbar">
+            <div class="section-title">
+                <span>Incoming Clinical Intake Tickets</span>
+                <span style="font-size: 0.8rem; color: var(--accent-cyan); font-weight: 500;">(Real-time Live Feed)</span>
+            </div>
+            <button class="btn-refresh" id="btn-refresh">
+                <span>🔄 Refresh Queue</span>
+            </button>
+        </div>
+
+        <!-- Ticket Cards Grid -->
+        <div class="queue-container" id="queue-container">
+            <!-- Cards will be populated dynamically -->
+        </div>
+    </div>
+
+    <!-- Ticket Brief Detail Drawer -->
+    <div class="drawer-overlay" id="drawer-overlay">
+        <div class="drawer-content">
+            <div class="drawer-header">
+                <div>
+                    <div class="ticket-id" id="drawer-ticket-id">#MCA-00000</div>
+                    <h2 class="patient-name" id="drawer-patient-name">Patient Name</h2>
+                    <div class="patient-sub" id="drawer-patient-meta">ABHA: -- | Age: --</div>
+                </div>
+                <button class="btn-close-drawer" id="btn-close-drawer">&times;</button>
+            </div>
+
+            <h4 style="margin-bottom: 0.5rem; color: var(--text-sub);">AI Clinical Summary</h4>
+            <div class="summary-block" id="drawer-summary-text">
+                Loading clinical brief...
+            </div>
+
+            <h4 style="margin-bottom: 0.5rem; color: var(--text-sub);">Uploaded Scanned Reports / Documents</h4>
+            <div id="drawer-docs-container" style="margin-bottom: 1.5rem; font-size: 0.9rem; color: var(--text-sub);">
+                No attached document scans.
+            </div>
+
+            <h4 style="margin-bottom: 0.5rem; color: var(--text-sub);">Doctor Consultation Notes</h4>
+            <textarea class="doctor-note-input" id="drawer-doctor-notes" placeholder="Enter clinical diagnosis, observations, or prescription details..."></textarea>
+
+            <div class="action-bar">
+                <button class="btn-status-action btn-consulting" id="btn-mark-consulting">Mark In Consultation</button>
+                <button class="btn-status-action btn-complete" id="btn-mark-complete">Complete Encounter</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:8000/api/v1';
+        let currentTickets = [];
+        let activeTicketId = null;
+
+        // Clock Update
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('live-clock').textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Fetch Live Tickets from FastAPI
+        async function fetchTickets() {
+            try {
+                const res = await fetch(`${API_BASE}/doctor/tickets`);
+                if (!res.ok) throw new Error('API server unavailable');
+                const data = await res.json();
+                currentTickets = data;
+                renderQueue(data);
+            } catch (err) {
+                console.log('Fetching fallback offline tickets...');
+            }
+        }
+
+        // Render Cards
+        function renderQueue(tickets) {
+            const container = document.getElementById('queue-container');
+            container.innerHTML = '';
+
+            let sosCount = 0;
+            let highCount = 0;
+            let activeCount = 0;
+            let sosTicket = null;
+
+            tickets.forEach(t => {
+                if (t.status !== 'COMPLETED') activeCount++;
+                if (t.is_emergency && t.status !== 'COMPLETED') {
+                    sosCount++;
+                    sosTicket = t;
+                }
+                if (t.triage_severity === 'HIGH' && t.status !== 'COMPLETED') highCount++;
+
+                const isSos = t.triage_severity === 'CRITICAL_SOS';
+                const isHigh = t.triage_severity === 'HIGH';
+
+                const card = document.createElement('div');
+                card.className = `ticket-card ${isSos ? 'sos-emergency' : ''}`;
+                card.innerHTML = `
+                    <div class="ticket-header">
+                        <span class="ticket-id">${t.ticket_id}</span>
+                        <span class="badge-severity ${isSos ? 'sos' : (isHigh ? 'high' : 'normal')}">
+                            ${isSos ? '🚨 CRITICAL SOS' : (isHigh ? '⚡ HIGH PRIORITY' : '✓ NORMAL INTAKE')}
+                        </span>
+                    </div>
+                    <div class="patient-name">${t.patient_name}</div>
+                    <div class="patient-sub">ABHA: ${t.abha_number} • ${t.patient_demographics}</div>
+                    <div class="complaint-box">
+                        <strong>Reason:</strong> ${t.visit_reason}<br>
+                        ${t.chief_complaints ? `<em>"${t.chief_complaints}"</em>` : ''}
+                    </div>
+                    <div class="ticket-footer">
+                        <span class="ticket-time">Received: ${t.created_at}</span>
+                        <button class="btn-view-brief" onclick="openBrief('${t.ticket_id}')">Review Brief →</button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+
+            // Update Metrics
+            document.getElementById('metric-total').textContent = activeCount;
+            document.getElementById('metric-sos').textContent = sosCount;
+            document.getElementById('metric-high').textContent = highCount;
+
+            // Toggle Emergency Banner
+            const banner = document.getElementById('emergency-banner');
+            if (sosTicket) {
+                banner.classList.add('active');
+                document.getElementById('emergency-banner-text').textContent = `Patient ${sosTicket.patient_name} (${sosTicket.ticket_id}) requires immediate triage for ${sosTicket.visit_reason}!`;
+                document.getElementById('btn-view-emergency').onclick = () => openBrief(sosTicket.ticket_id);
+            } else {
+                banner.classList.remove('active');
+            }
+        }
+
+        // Open Detail Brief Drawer
+        async function openBrief(ticketId) {
+            activeTicketId = ticketId;
+            const overlay = document.getElementById('drawer-overlay');
+            overlay.classList.add('active');
+
+            try {
+                const res = await fetch(`${API_BASE}/doctor/ticket/${ticketId}`);
+                const data = await res.json();
+                const t = data.ticket;
+                const docs = data.documents;
+
+                document.getElementById('drawer-ticket-id').textContent = t.ticket_id;
+                document.getElementById('drawer-patient-name').textContent = t.patient_name;
+                document.getElementById('drawer-patient-meta').textContent = `ABHA: ${t.abha_number} | ${t.patient_demographics}`;
+                document.getElementById('drawer-summary-text').textContent = t.ai_summary || t.visit_reason;
+                document.getElementById('drawer-doctor-notes').value = t.doctor_notes || '';
+
+                const docBox = document.getElementById('drawer-docs-container');
+                if (docs && docs.length > 0) {
+                    docBox.innerHTML = docs.map(d => `
+                        <div style="background: rgba(255,255,255,0.05); padding: 0.5rem; border-radius: 6px; margin-top: 0.4rem;">
+                            📄 <strong>${d.file_name}</strong> (${d.uploaded_at})<br>
+                            <span style="font-size: 0.8rem; opacity: 0.8;">${d.ocr_extracted_text}</span>
+                        </div>
+                    `).join('');
+                } else {
+                    docBox.textContent = 'No attached document scans.';
+                }
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        // Close Drawer
+        document.getElementById('btn-close-drawer').onclick = () => {
+            document.getElementById('drawer-overlay').classList.remove('active');
+        };
+
+        // Status updates
+        async function updateStatus(newStatus) {
+            if (!activeTicketId) return;
+            const notes = document.getElementById('drawer-doctor-notes').value;
+
+            try {
+                await fetch(`${API_BASE}/doctor/ticket/${activeTicketId}/status`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ status: newStatus, doctor_notes: notes })
+                });
+                document.getElementById('drawer-overlay').classList.remove('active');
+                fetchTickets();
+            } catch (err) {
+                console.error(err);
+            }
+        }
+
+        document.getElementById('btn-mark-consulting').onclick = () => updateStatus('IN_CONSULTATION');
+        document.getElementById('btn-mark-complete').onclick = () => updateStatus('COMPLETED');
+        document.getElementById('btn-refresh').onclick = fetchTickets;
+
+        // Auto Poll every 3 seconds for live tickets
+        setInterval(fetchTickets, 3000);
+        fetchTickets();
+    </script>
+</body>
+</html>
