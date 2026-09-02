@@ -127,7 +127,20 @@ Return ONLY valid JSON matching this schema.
         """Renders the clinical data dict into a clean Markdown report for physicians."""
         md = []
         md.append("# 🏥 Patient Clinical Summary (Physician Ready)")
-        md.append(f"**Triage Urgency Level**: `{clinical_data.get('triage_priority', 'Routine')}`\n")
+        
+        token_info = clinical_data.get("token_info", {})
+        if token_info:
+            md.append("```")
+            md.append("============================================================")
+            md.append(f"🎫 APPOINTMENT TOKEN:  [{token_info.get('token_id', 'N/A')}]")
+            md.append(f"🚨 TRIAGE PRIORITY:   {token_info.get('triage_priority', 'Routine').upper()}")
+            md.append(f"🏢 DEPARTMENT:        {token_info.get('assigned_department', 'N/A')}")
+            md.append(f"🚪 ASSIGNED ROOM:     {token_info.get('assigned_room', 'N/A')}")
+            md.append(f"⏱️ ESTIMATED WAIT:    {token_info.get('estimated_wait_time', 'N/A')}")
+            md.append("============================================================")
+            md.append("```\n")
+        else:
+            md.append(f"**Triage Urgency Level**: `{clinical_data.get('triage_priority', 'Routine')}`\n")
         
         md.append("## 📌 Chief Complaint (CC)")
         md.append(f"- {clinical_data.get('chief_complaint', 'N/A')}\n")

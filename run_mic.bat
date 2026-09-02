@@ -1,7 +1,7 @@
 @echo off
 echo ============================================================
-echo 🏥 SIH 2026 - Patient Kiosk Voice-to-Text System
+echo 🏥 SIH 2026 - Interactive Patient Kiosk (Voice & Token System)
 echo ============================================================
 echo.
-.venv\Scripts\python record_and_transcribe.py --device 1
+.venv\Scripts\python interactive_kiosk.py --device 1
 pause
