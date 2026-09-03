@@ -2582,6 +2582,17 @@ document.addEventListener('DOMContentLoaded', () => {
         currentAppLanguage = lang;
         const dict = translations[lang];
 
+        // Set document language attributes for typography alignment
+        document.documentElement.setAttribute('lang', lang);
+        document.documentElement.setAttribute('data-lang', lang);
+        if (document.body) {
+            document.body.setAttribute('data-lang', lang);
+        }
+
+        try {
+            localStorage.setItem('medicare_lang', lang);
+        } catch (e) {}
+
         // 1. Navigation
         const navHome = document.getElementById('nav-link-home');
         if (navHome) navHome.textContent = dict.navHome;
