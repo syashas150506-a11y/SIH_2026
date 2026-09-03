@@ -3405,6 +3405,19 @@ document.addEventListener('DOMContentLoaded', () => {
         saveAppState('doctor');
         renderDoctorQueue('all');
         loadPatientIntoConsultation(activeDoctorPatientId);
+
+        // Voice announcement: speak how many patients are waiting in queue
+        const waitingPatients = doctorQueueData.filter(p => p.status === 'Waiting');
+        const activePat = doctorQueueData.find(p => p.id === activeDoctorPatientId) || doctorQueueData[0];
+        const waitCount = waitingPatients.length;
+
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.cancel();
+            const voiceText = `Welcome Dr. Rajesh Iyer. You have ${waitCount} patient${waitCount === 1 ? '' : 's'} waiting in your OPD queue. Active patient is ${activePat ? activePat.name : 'Rahul Verma'}.`;
+            const ut = new SpeechSynthesisUtterance(voiceText);
+            ut.rate = 0.95;
+            window.speechSynthesis.speak(ut);
+        }
     }
 
     function closeDoctorDashboard() {
@@ -3425,14 +3438,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (doctorLoginModal) doctorLoginModal.classList.remove('active');
                 if (docLoginErr) docLoginErr.style.display = 'none';
                 showToast('✓ Doctor credentials verified. Live OPD Station Unlocked.');
-
-                if ('speechSynthesis' in window) {
-                    window.speechSynthesis.cancel();
-                    const ut = new SpeechSynthesisUtterance('Welcome Dr. Rajesh Iyer. OPD Clinical Station unlocked.');
-                    ut.rate = 0.95;
-                    window.speechSynthesis.speak(ut);
-                }
-
                 openDoctorDashboard(true);
             } else {
                 if (docLoginErr) docLoginErr.style.display = 'block';
@@ -3698,7 +3703,28 @@ document.addEventListener('DOMContentLoaded', () => {
     if (btnDocSaveDraft) {
         btnDocSaveDraft.addEventListener('click', () => {
             const p = doctorQueueData.find(item => item.id === activeDoctorPatientId);
+            const assess = document.getElementById('doc-clinical-assessment')?.value;
+            const diag = document.getElementById('doc-diagnosis-select')?.value;
+            const notes = document.getElementById('doc-consult-notes')?.value;
+            const tests = document.getElementById('doc-tests-input')?.value;
+            const followup = document.getElementById('doc-followup-select')?.value;
+
+            if (p) {
+                p.defaultAssessment = assess;
+                p.defaultDiagnosis = diag;
+                p.defaultNotes = notes;
+                p.defaultTests = tests;
+                p.defaultFollowup = followup;
+            }
+
             showToast(`✓ Consultation notes draft saved for ${p ? p.name : 'Patient'}.`);
+
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const ut = new SpeechSynthesisUtterance(`Consultation draft saved for ${p ? p.name : 'patient'}.`);
+                ut.rate = 0.95;
+                window.speechSynthesis.speak(ut);
+            }
         });
     }
 
