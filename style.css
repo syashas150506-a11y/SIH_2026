@@ -255,6 +255,44 @@ body {
     gap: 12px;
 }
 
+.nav-token-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 14px;
+    background: #eff6ff;
+    border: 1.5px solid #bfdbfe;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #1e40af;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    position: relative;
+}
+
+.nav-token-btn:hover {
+    background: #dbeafe;
+    border-color: #3b82f6;
+    color: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+.nav-token-btn.has-token {
+    background: #ecfdf5;
+    border-color: #a7f3d0;
+    color: #065f46;
+}
+
+.nav-token-status-dot {
+    width: 8px;
+    height: 8px;
+    background: #10b981;
+    border-radius: 50%;
+    box-shadow: 0 0 6px rgba(16, 185, 129, 0.8);
+    animation: pulseSync 2s infinite;
+}
+
 .icon-btn {
     background: #f1f5f9;
     border: none;

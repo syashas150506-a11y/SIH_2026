@@ -1011,6 +1011,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 tokenDocVerifiedText.textContent = hasScannedDocs ? 'Verified (1 Document)' : 'Self Reported';
                 tokenDocVerifiedText.className = hasScannedDocs ? 'meta-txt text-emerald' : 'meta-txt text-blue';
             }
+            setActiveToken({
+                number: '#MC-8492',
+                patientName: 'Rahul Verma',
+                doctorName: 'Dr. Priya Sharma',
+                room: 'Room #4 • General Medicine',
+                queue: '#02 (Est. ~3 mins)'
+            });
             showToast('Step 6: Intake Complete! Official Token #MC-8492 issued');
         }
     }
@@ -1486,6 +1493,13 @@ document.addEventListener('DOMContentLoaded', () => {
             if (elFollowupQueue) elFollowupQueue.textContent = '#01 (Priority)';
 
             if (followupTokenModal) followupTokenModal.style.display = 'flex';
+            setActiveToken({
+                number: newTok,
+                patientName: p.name,
+                doctorName: p.doctorName,
+                room: p.doctorRoom + ' • Priority OPD',
+                queue: '#01 (Priority Check-in)'
+            });
             showToast(`⚡ Priority Token ${newTok} Generated for ${p.doctorName}!`);
 
             // Voice audio reading
@@ -1652,9 +1666,19 @@ document.addEventListener('DOMContentLoaded', () => {
     // Follow-up Token Modal Handlers
     if (btnGenFollowupToken) {
         btnGenFollowupToken.addEventListener('click', () => {
-            const p = ongoingDemoProfiles[activeDemoKey];
-            if (followupTokenModal) followupTokenModal.style.display = 'flex';
-            showToast(`⚡ Priority Follow-up Token ${p.tokenId} generated for ${p.doctorName}!`);
+            if (followupTokenModal) {
+                followupTokenModal.style.display = 'flex';
+                const p = ongoingDemoProfiles[activeDemoKey];
+                const tokNum = document.getElementById('followup-token-number') ? document.getElementById('followup-token-number').textContent : '#FLW-9204';
+                setActiveToken({
+                    number: tokNum,
+                    patientName: p.name,
+                    doctorName: p.doctorName,
+                    room: p.doctorRoom + ' • Follow-up Kiosk',
+                    queue: '#02 (Est. ~6 mins)'
+                });
+                showToast(`🎟️ Follow-up Token ${tokNum} Ready!`);
+            }
         });
     }
 
@@ -2980,4 +3004,136 @@ document.addEventListener('DOMContentLoaded', () => {
             openContactPage();
         }
     });
+
+    // ==========================================================================
+    // Global Active OPD Token Manager (Home Page Check / View / Cancel)
+    // ==========================================================================
+    const navTokenBtn = document.getElementById('nav-token-btn');
+    const navTokenBadgeTxt = document.getElementById('nav-token-badge-txt');
+    const navTokenStatusDot = document.getElementById('nav-token-status-dot');
+    const myTokenModal = document.getElementById('my-token-modal');
+    const closeMyTokenModal = document.getElementById('close-my-token-modal');
+    const myTokenActiveView = document.getElementById('my-token-active-view');
+    const myTokenEmptyView = document.getElementById('my-token-empty-view');
+    const myTokenNumberDisplay = document.getElementById('my-token-number-display');
+    const myTokenPatientName = document.getElementById('my-token-patient-name');
+    const myTokenDoctorName = document.getElementById('my-token-doctor-name');
+    const myTokenRoomNumber = document.getElementById('my-token-room-number');
+    const myTokenQueuePos = document.getElementById('my-token-queue-pos');
+    const btnMyTokenCancel = document.getElementById('btn-my-token-cancel');
+    const btnMyTokenPrint = document.getElementById('btn-my-token-print');
+    const btnBookNewToken = document.getElementById('btn-book-new-token');
+
+    function getActiveToken() {
+        try {
+            const raw = sessionStorage.getItem('medicare_active_token');
+            return raw ? JSON.parse(raw) : null;
+        } catch(e) {
+            return null;
+        }
+    }
+
+    function setActiveToken(tokenData) {
+        try {
+            sessionStorage.setItem('medicare_active_token', JSON.stringify(tokenData));
+        } catch(e) {}
+        updateNavTokenBadge();
+    }
+
+    function clearActiveToken() {
+        try {
+            sessionStorage.removeItem('medicare_active_token');
+        } catch(e) {}
+        updateNavTokenBadge();
+    }
+
+    function updateNavTokenBadge() {
+        const tok = getActiveToken();
+        if (tok && tok.number) {
+            if (navTokenBadgeTxt) navTokenBadgeTxt.textContent = tok.number;
+            if (navTokenBtn) navTokenBtn.classList.add('has-token');
+            if (navTokenStatusDot) navTokenStatusDot.style.display = 'inline-block';
+        } else {
+            if (navTokenBadgeTxt) navTokenBadgeTxt.textContent = 'My Token';
+            if (navTokenBtn) navTokenBtn.classList.remove('has-token');
+            if (navTokenStatusDot) navTokenStatusDot.style.display = 'none';
+        }
+    }
+
+    function renderMyTokenModal() {
+        const tok = getActiveToken();
+        if (tok && tok.number) {
+            if (myTokenActiveView) myTokenActiveView.style.display = 'block';
+            if (myTokenEmptyView) myTokenEmptyView.style.display = 'none';
+
+            if (myTokenNumberDisplay) myTokenNumberDisplay.textContent = tok.number;
+            if (myTokenPatientName) myTokenPatientName.textContent = tok.patientName || 'Rahul Verma';
+            if (myTokenDoctorName) myTokenDoctorName.textContent = tok.doctorName || 'Dr. Priya Sharma';
+            if (myTokenRoomNumber) myTokenRoomNumber.textContent = tok.room || 'Room #4 • General OPD';
+            if (myTokenQueuePos) myTokenQueuePos.textContent = tok.queue || '#02 (Est. ~5 mins)';
+        } else {
+            if (myTokenActiveView) myTokenActiveView.style.display = 'none';
+            if (myTokenEmptyView) myTokenEmptyView.style.display = 'block';
+        }
+    }
+
+    if (navTokenBtn) {
+        navTokenBtn.addEventListener('click', () => {
+            renderMyTokenModal();
+            if (myTokenModal) myTokenModal.classList.add('active');
+        });
+    }
+
+    if (closeMyTokenModal) {
+        closeMyTokenModal.addEventListener('click', () => {
+            if (myTokenModal) myTokenModal.classList.remove('active');
+        });
+    }
+
+    if (myTokenModal) {
+        myTokenModal.addEventListener('click', (e) => {
+            if (e.target === myTokenModal) {
+                myTokenModal.classList.remove('active');
+            }
+        });
+    }
+
+    if (btnMyTokenCancel) {
+        btnMyTokenCancel.addEventListener('click', () => {
+            const tok = getActiveToken();
+            const tokNum = tok ? tok.number : 'OPD';
+            if (confirm(`Are you sure you want to cancel your active consultation token ${tokNum}?`)) {
+                clearActiveToken();
+                renderMyTokenModal();
+                showToast(`✓ Consultation Token ${tokNum} has been cancelled.`);
+                if ('speechSynthesis' in window) {
+                    window.speechSynthesis.cancel();
+                    const u = new SpeechSynthesisUtterance(`Consultation Token ${tokNum.replace('#', '')} has been cancelled.`);
+                    u.rate = 0.95;
+                    window.speechSynthesis.speak(u);
+                }
+            }
+        });
+    }
+
+    if (btnMyTokenPrint) {
+        btnMyTokenPrint.addEventListener('click', () => {
+            const tok = getActiveToken();
+            const tokNum = tok ? tok.number : 'OPD';
+            showToast(`🖨️ Printing official OPD Token Pass ${tokNum}...`);
+            setTimeout(() => {
+                window.print();
+            }, 400);
+        });
+    }
+
+    if (btnBookNewToken) {
+        btnBookNewToken.addEventListener('click', () => {
+            if (myTokenModal) myTokenModal.classList.remove('active');
+            openStatusPage();
+        });
+    }
+
+    // Call updateNavTokenBadge on startup
+    updateNavTokenBadge();
 });

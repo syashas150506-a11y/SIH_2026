@@ -148,6 +148,18 @@
 
                 <!-- Right Actions -->
                 <div class="nav-actions">
+                    <!-- My Active Token Quick Button -->
+                    <button class="nav-token-btn" id="nav-token-btn" title="View / Manage your OPD Token">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"></path>
+                            <path d="M13 5v2"></path>
+                            <path d="M13 17v2"></path>
+                            <path d="M13 11v2"></path>
+                        </svg>
+                        <span id="nav-token-badge-txt">My Token</span>
+                        <span class="nav-token-status-dot" id="nav-token-status-dot" style="display:none;"></span>
+                    </button>
+
                     <!-- Navbar Language Switcher Pill -->
                     <button class="nav-lang-switcher" id="nav-lang-switcher" title="Change Language / ಭಾಷೆ ಬದಲಾಯಿಸಿ / भाषा बदलें">
                         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -934,6 +946,94 @@
                         <div class="item-sub">AI personalized wellness breakdown</div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- My Active OPD Token Modal (Check / View / Cancel from Home) -->
+    <div class="modal-overlay" id="my-token-modal">
+        <div class="modal-card my-token-modal-card" style="max-width: 520px; background: #ffffff; color: #0f172a; border-radius: 20px; padding: 24px; box-shadow: 0 20px 50px rgba(0,0,0,0.3); border: 1.5px solid #e2e8f0;">
+            <div class="modal-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border-bottom: 1px solid #f1f5f9; padding-bottom: 12px;">
+                <div class="modal-title-box" style="display: flex; align-items: center; gap: 10px;">
+                    <div style="width: 38px; height: 38px; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #2563eb;">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"></path>
+                            <path d="M13 5v2"></path>
+                            <path d="M13 17v2"></path>
+                            <path d="M13 11v2"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 style="font-size: 17px; font-weight: 800; color: #0f172a; line-height: 1.2;">My Consultation Token</h2>
+                        <p style="font-size: 11.5px; color: #64748b; margin: 0;">Live hospital OPD triage queue pass</p>
+                    </div>
+                </div>
+                <button class="modal-close" id="close-my-token-modal" style="background:none; border:none; font-size:24px; color:#64748b; cursor:pointer;">&times;</button>
+            </div>
+
+            <!-- Active Token Container -->
+            <div id="my-token-active-view" style="display: none;">
+                <div class="my-token-ticket-card" style="background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%); color: #ffffff; border-radius: 16px; padding: 20px; box-shadow: 0 8px 24px rgba(37,99,235,0.25); position: relative; overflow: hidden; margin-bottom: 16px;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                        <div>
+                            <span style="font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #93c5fd; display: block;">OPD QUEUE PASS</span>
+                            <div id="my-token-number-display" style="font-size: 28px; font-weight: 900; letter-spacing: 1px; color: #ffffff; margin: 4px 0;">#OPD-7824</div>
+                        </div>
+                        <span id="my-token-status-tag" style="background: rgba(16, 185, 129, 0.25); border: 1px solid #34d399; color: #a7f3d0; font-size: 11px; font-weight: 800; padding: 3px 10px; border-radius: 20px; display: inline-flex; align-items: center; gap: 4px;">
+                            <span style="width: 6px; height: 6px; background: #34d399; border-radius: 50%; display: inline-block;"></span> Active
+                        </span>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 14px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.2);">
+                        <div>
+                            <span style="font-size: 10.5px; color: #bfdbfe; display: block;">Patient</span>
+                            <strong id="my-token-patient-name" style="font-size: 13px; color: #ffffff;">Rahul Verma</strong>
+                        </div>
+                        <div>
+                            <span style="font-size: 10.5px; color: #bfdbfe; display: block;">Queue Position</span>
+                            <strong id="my-token-queue-pos" style="font-size: 13px; color: #ffffff;">#03 (Est. ~12 mins)</strong>
+                        </div>
+                        <div>
+                            <span style="font-size: 10.5px; color: #bfdbfe; display: block;">Assigned Doctor</span>
+                            <strong id="my-token-doctor-name" style="font-size: 13px; color: #ffffff;">Dr. Rajesh Iyer</strong>
+                        </div>
+                        <div>
+                            <span style="font-size: 10.5px; color: #bfdbfe; display: block;">Room / Kiosk</span>
+                            <strong id="my-token-room-number" style="font-size: 13px; color: #ffffff;">Room #2 • OPD</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Token Actions Bar -->
+                <div style="display: flex; gap: 10px; justify-content: flex-end; align-items: center;">
+                    <button type="button" class="btn" id="btn-my-token-cancel" style="background: #fee2e2; border: 1.5px solid #fecaca; color: #b91c1c; font-size: 13px; font-weight: 700; padding: 10px 16px; border-radius: 10px; cursor: pointer; transition: all 0.2s ease;">
+                        Cancel Token
+                    </button>
+                    <button type="button" class="btn" id="btn-my-token-print" style="background: #2563eb; color: #ffffff; font-size: 13px; font-weight: 700; padding: 10px 18px; border-radius: 10px; cursor: pointer;">
+                        Print / Download
+                    </button>
+                </div>
+            </div>
+
+            <!-- Empty State: No Active Token -->
+            <div id="my-token-empty-view" style="text-align: center; padding: 24px 12px;">
+                <div style="width: 58px; height: 58px; background: #f1f5f9; border: 1.5px solid #e2e8f0; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px auto; color: #64748b;">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                        <line x1="9" y1="14" x2="15" y2="20"></line>
+                        <line x1="15" y1="14" x2="9" y2="20"></line>
+                    </svg>
+                </div>
+                <h3 style="font-size: 16px; font-weight: 800; color: #0f172a; margin-bottom: 6px;">No Active OPD Token</h3>
+                <p style="font-size: 13px; color: #64748b; max-width: 320px; margin: 0 auto 20px auto; line-height: 1.45;">
+                    You do not have any active consultation queue tokens or appointments at this time.
+                </p>
+                <button type="button" class="btn btn-primary" id="btn-book-new-token" style="padding: 10px 20px; font-size: 13.5px; border-radius: 10px;">
+                    Get New OPD Token
+                </button>
             </div>
         </div>
     </div>
