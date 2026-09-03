@@ -267,7 +267,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (btnArogyaBack) {
         btnArogyaBack.addEventListener('click', () => {
             closeArogyaIntake();
-            openStatusPage();
         });
     }
 
@@ -1693,7 +1692,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (btnOngoingBack) {
         btnOngoingBack.addEventListener('click', () => {
             closeOngoingCarePage();
-            openStatusPage();
         });
     }
 
