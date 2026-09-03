@@ -881,6 +881,23 @@ document.addEventListener('DOMContentLoaded', () => {
                     return;
                 }
             } else if (currentStep >= 6) {
+                // Register real-time patient condition explanation into Doctor's queue
+                if (typeof registerPatientConditionToDoctorQueue === 'function') {
+                    registerPatientConditionToDoctorQueue({
+                        name: 'Rahul Verma',
+                        token: '#MC-8492',
+                        abha: '91-4820-1928-3746',
+                        ageGender: '32 Yrs • Male • O+ Positive',
+                        visitType: 'AI Intake Consultation',
+                        risk: selectedSeverity === 'Severe' ? 'High' : (selectedSeverity === 'Moderate' ? 'Moderate' : 'Low'),
+                        reason: patientSymptoms || 'Reported symptoms during AI clinical intake',
+                        symptoms: `${patientSymptoms || 'Persistent Cough & Discomfort'} (${selectedSeverity || 'Moderate'} • ${selectedDuration || '1-2 days'})`,
+                        notes: patientNotes || '',
+                        vitals: 'BP 132/86 mmHg • HR 78 bpm • SpO2 98% • Temp 98.6°F',
+                        observations: `AI Intake Assessment: Patient reported "${patientSymptoms || 'Wheezing and cough'}". Duration: ${selectedDuration || '1-2 days'}. Severity: ${selectedSeverity || 'Moderate'}. ${patientNotes ? 'Additional note: ' + patientNotes : ''}`
+                    });
+                }
+
                 // Flow finished -> Return to home
                 closeArogyaIntake();
                 showToast('Intake Assessment Completed. Patient Token #MC-8492 active.');
@@ -1491,6 +1508,23 @@ document.addEventListener('DOMContentLoaded', () => {
             const elFollowupQueue = document.getElementById('followup-queue-pos');
             if (elFollowupToken) elFollowupToken.textContent = newTok;
             if (elFollowupQueue) elFollowupQueue.textContent = '#01 (Priority)';
+
+            // Register into Doctor's queue
+            if (typeof registerPatientConditionToDoctorQueue === 'function') {
+                registerPatientConditionToDoctorQueue({
+                    name: p.name,
+                    token: newTok,
+                    abha: p.abha,
+                    ageGender: '32 Yrs • Male • O+ Positive',
+                    visitType: 'Condition Flare-up / Reactivation',
+                    risk: 'Moderate',
+                    reason: reactSumComplaint ? reactSumComplaint.textContent : 'Reactivated condition explanation',
+                    symptoms: `${reactSumComplaint ? reactSumComplaint.textContent : 'Morning dizziness and chest heaviness'} (Moderate Priority)`,
+                    notes: 'Reactivation submitted from Ongoing Care health chart.',
+                    vitals: 'BP 134/88 mmHg • HR 80 bpm • SpO2 98% • Temp 98.6°F',
+                    observations: `EHR Reactivation: Patient reported "${reactSumComplaint ? reactSumComplaint.textContent : 'Symptom variation'}". Assigned priority OPD Token ${newTok}.`
+                });
+            }
 
             if (followupTokenModal) followupTokenModal.style.display = 'flex';
             setActiveToken({
@@ -3271,7 +3305,95 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     ];
 
-    function openDoctorDashboard() {
+    // ==========================================================================
+    // Dynamic Synchronization: Patient Condition Explanation -> Doctor's Queue
+    // ==========================================================================
+    function registerPatientConditionToDoctorQueue(data) {
+        const patId = 'pat-' + Date.now();
+        const newPat = {
+            id: patId,
+            name: data.name || 'Rahul Verma',
+            token: data.token || '#MC-8492',
+            abha: data.abha || '91-4820-1928-3746',
+            ageGender: data.ageGender || '32 Yrs • Male • O+ Positive',
+            visitType: data.visitType || 'AI Intake Consultation',
+            risk: data.risk || 'Moderate',
+            status: 'Waiting',
+            reason: data.reason || data.symptoms || 'Patient reported acute symptoms during AI intake',
+            symptoms: data.symptoms || 'Reported symptoms during AI intake',
+            vitals: data.vitals || 'BP 132/86 mmHg • HR 78 bpm • SpO2 98% • Temp 98.6°F',
+            history: data.history || 'EHR linked via ABHA (Essential Hypertension & Bronchitis History)',
+            observations: data.observations || `AI Patient Explanation: "${data.notes || data.symptoms}". Ready for physician assessment.`,
+            defaultAssessment: `Patient attended AI Intake desk. Reported complaint: ${data.reason || data.symptoms}.`,
+            defaultDiagnosis: data.diagnosis || 'Essential Hypertension with Seasonal Bronchitis Flare-up',
+            defaultNotes: data.notes ? `Patient notes: ${data.notes}` : 'Advised clinical examination.',
+            defaultTests: 'Peak Flow Spirometry, Serum Potassium',
+            defaultFollowup: '7 Days (1 Week)',
+            prescriptions: [
+                {
+                    name: 'Telmisartan Tablets',
+                    strength: '40 mg',
+                    dosage: '1 Tablet',
+                    frequency: 'Once Daily',
+                    duration: '30 Days',
+                    timings: ['morning'],
+                    instructions: 'Take after breakfast with water.'
+                },
+                {
+                    name: 'Budecort 200 Rotacaps / Inhaler',
+                    strength: '200 mcg',
+                    dosage: '2 Puffs',
+                    frequency: 'Twice Daily',
+                    duration: '14 Days',
+                    timings: ['morning', 'night'],
+                    instructions: 'Inhale 2 puffs morning & night.'
+                }
+            ]
+        };
+
+        // Check if patient with same ABHA exists; update or insert at top
+        const existingIdx = doctorQueueData.findIndex(p => p.abha === newPat.abha);
+        if (existingIdx !== -1) {
+            doctorQueueData[existingIdx] = {
+                ...doctorQueueData[existingIdx],
+                ...newPat,
+                id: doctorQueueData[existingIdx].id,
+                status: 'Waiting'
+            };
+            activeDoctorPatientId = doctorQueueData[existingIdx].id;
+        } else {
+            doctorQueueData.unshift(newPat);
+            activeDoctorPatientId = newPat.id;
+        }
+
+        renderDoctorQueue('all');
+    }
+
+    // ==========================================================================
+    // Doctor Portal Authentication & Station Access
+    // ==========================================================================
+    const doctorLoginModal = document.getElementById('doctor-login-modal');
+    const closeDocLoginModal = document.getElementById('close-doc-login-modal');
+    const btnCancelDocLogin = document.getElementById('btn-cancel-doc-login');
+    const docLoginForm = document.getElementById('doc-login-form');
+    const docLoginUsername = document.getElementById('doc-login-username');
+    const docLoginPassword = document.getElementById('doc-login-password');
+    const docLoginErr = document.getElementById('doc-login-err');
+    const btnDocLogout = document.getElementById('btn-doc-logout');
+
+    function isDoctorAuthenticated() {
+        return sessionStorage.getItem('medicare_doctor_auth') === 'true';
+    }
+
+    function openDoctorDashboard(force = false) {
+        if (!isDoctorAuthenticated() && !force) {
+            // Require login first
+            if (docLoginErr) docLoginErr.style.display = 'none';
+            if (doctorLoginModal) doctorLoginModal.classList.add('active');
+            if (docLoginUsername) docLoginUsername.focus();
+            return;
+        }
+
         closeArogyaIntake();
         closeOngoingCarePage();
         closeStatusPage();
@@ -3290,7 +3412,64 @@ document.addEventListener('DOMContentLoaded', () => {
         saveAppState('home');
     }
 
-    if (navDoctorBtn) navDoctorBtn.addEventListener('click', openDoctorDashboard);
+    // Login Form Handler
+    if (docLoginForm) {
+        docLoginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const u = docLoginUsername ? docLoginUsername.value.trim().toLowerCase() : '';
+            const p = docLoginPassword ? docLoginPassword.value.trim() : '';
+
+            // Allow "Dr. Rajesh Iyer" or "doctor" or valid demo credentials
+            if ((u.includes('rajesh') || u.includes('iyer') || u.includes('doctor') || u.length > 2) && (p === 'doc123' || p === 'admin123' || p === '123456' || p.length >= 4)) {
+                sessionStorage.setItem('medicare_doctor_auth', 'true');
+                if (doctorLoginModal) doctorLoginModal.classList.remove('active');
+                if (docLoginErr) docLoginErr.style.display = 'none';
+                showToast('✓ Doctor credentials verified. Live OPD Station Unlocked.');
+
+                if ('speechSynthesis' in window) {
+                    window.speechSynthesis.cancel();
+                    const ut = new SpeechSynthesisUtterance('Welcome Dr. Rajesh Iyer. OPD Clinical Station unlocked.');
+                    ut.rate = 0.95;
+                    window.speechSynthesis.speak(ut);
+                }
+
+                openDoctorDashboard(true);
+            } else {
+                if (docLoginErr) docLoginErr.style.display = 'block';
+                showToast('Authentication failed. Please check your Doctor ID and password.');
+            }
+        });
+    }
+
+    if (closeDocLoginModal) {
+        closeDocLoginModal.addEventListener('click', () => {
+            if (doctorLoginModal) doctorLoginModal.classList.remove('active');
+        });
+    }
+
+    if (btnCancelDocLogin) {
+        btnCancelDocLogin.addEventListener('click', () => {
+            if (doctorLoginModal) doctorLoginModal.classList.remove('active');
+        });
+    }
+
+    if (doctorLoginModal) {
+        doctorLoginModal.addEventListener('click', (e) => {
+            if (e.target === doctorLoginModal) {
+                doctorLoginModal.classList.remove('active');
+            }
+        });
+    }
+
+    if (btnDocLogout) {
+        btnDocLogout.addEventListener('click', () => {
+            sessionStorage.removeItem('medicare_doctor_auth');
+            closeDoctorDashboard();
+            showToast('🔒 Doctor Station locked and signed out.');
+        });
+    }
+
+    if (navDoctorBtn) navDoctorBtn.addEventListener('click', () => openDoctorDashboard());
     if (docDashGoBack) docDashGoBack.addEventListener('click', closeDoctorDashboard);
 
     // Queue Filter Tabs
