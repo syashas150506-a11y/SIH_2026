@@ -1017,14 +1017,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const ongoingDemoProfiles = {
         rahul: {
             name: "Rahul Verma",
-            avatar: "👨‍💼",
+            avatar: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>',
             demoMeta: "32 Yrs • Male • O+ Positive",
             abha: "ABHA: 91-4820-1928-3746",
             diagnosis: "Hypertension Stage-1 & Mild Asthma",
             bannerTitle: "Managing: Essential Hypertension & Mild Asthma",
             bannerDesc: "Your clinical records and vitals history are already synchronized. Skip general registration and generate an instant follow-up token for your doctor.",
             lastVisit: "14 Days Ago (Follow-up Due)",
-            streak: "🔥 14 Days Streak",
+            streak: "14 Days Streak",
             adherenceNum: "94%",
             doctorName: "Dr. Rajesh Iyer",
             doctorDept: "MD (Cardiology & Internal Medicine)",
@@ -1044,23 +1044,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 temp: "98.4 °F", tempTag: "Afebrile"
             },
             records: [
-                { icon: "📄", title: "Cardiology Follow-up Note", meta: "Dr. Rajesh Iyer • 14 days ago" },
-                { icon: "🧪", title: "Metropolis Lipid & 12-Lead ECG", meta: "Normal Sinus Rhythm • 14 days ago" },
-                { icon: "🫁", title: "Peak Flow Spirometry Test", meta: "480 L/min (Stable) • 1 month ago" }
+                { icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>', title: "Cardiology Follow-up Note", meta: "Dr. Rajesh Iyer • 14 days ago" },
+                { icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v7.31L4.89 20.3a2 2 0 0 0 1.78 2.7h14.66a2 2 0 0 0 1.78-2.7L18 9.31V2"/></svg>', title: "Metropolis Lipid & 12-Lead ECG", meta: "Normal Sinus Rhythm • 14 days ago" },
+                { icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 12a5 5 0 0 0-5-5H7a5 5 0 0 0 0 10h5a5 5 0 0 0 5-5z"/><path d="M12 7v10"/></svg>', title: "Peak Flow Spirometry Test", meta: "480 L/min (Stable) • 1 month ago" }
             ],
             docAdvice: '"Continue daily morning walk (30 mins). Limit dietary sodium to less than 2g/day. Monitor BP once weekly in the morning before breakfast."',
             checkinFeedback: "Patient reports positive progress on Telmisartan. Blood pressure stability confirmed. Added to Dr. Rajesh Iyer's review queue."
         },
         ananya: {
             name: "Ananya Sharma",
-            avatar: "👩‍💼",
+            avatar: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>',
             demoMeta: "28 Yrs • Female • B+ Positive",
             abha: "ABHA: 91-8392-4019-5821",
             diagnosis: "Type-2 Diabetes Mellitus & Hypothyroidism",
             bannerTitle: "Managing: Type-2 Diabetes Mellitus & Hypothyroidism",
             bannerDesc: "Quarterly glycemic evaluation and thyroid hormone levels linked. Ready for endocrinology follow-up consultation.",
             lastVisit: "28 Days Ago (Quarterly HbA1c Due)",
-            streak: "🔥 21 Days Streak",
+            streak: "21 Days Streak",
             adherenceNum: "98%",
             doctorName: "Dr. Anita Desai",
             doctorDept: "MD (Endocrinology & Diabetology)",
@@ -1080,23 +1080,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 temp: "98.2 °F", tempTag: "Fasting Sugar: 108 mg/dL"
             },
             records: [
-                { icon: "🧪", title: "HbA1c & Thyroid Panel (TSH: 2.8)", meta: "Thyrocare Labs • 28 days ago" },
-                { icon: "📄", title: "Endocrinology Care Summary", meta: "Dr. Anita Desai • 28 days ago" },
-                { icon: "👁️", title: "Diabetic Retinopathy Screening", meta: "Normal Eye Chart • 3 months ago" }
+                { icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v7.31L4.89 20.3a2 2 0 0 0 1.78 2.7h14.66a2 2 0 0 0 1.78-2.7L18 9.31V2"/></svg>', title: "HbA1c & Thyroid Panel (TSH: 2.8)", meta: "Thyrocare Labs • 28 days ago" },
+                { icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>', title: "Endocrinology Care Summary", meta: "Dr. Anita Desai • 28 days ago" },
+                { icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/></svg>', title: "Diabetic Retinopathy Screening", meta: "Normal Eye Chart • 3 months ago" }
             ],
             docAdvice: '"Maintain low glycemic index diet. Take Thyronorm at least 30 mins before tea/breakfast. Fasting blood glucose test scheduled for next week."',
             checkinFeedback: "Glycemic control stable. No hypoglycemic episodes reported. Thyroid compliance on track."
         },
         vikram: {
             name: "Vikram Patel",
-            avatar: "👴",
+            avatar: '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>',
             demoMeta: "54 Yrs • Male • A+ Positive",
             abha: "ABHA: 91-3910-5829-1029",
             diagnosis: "Post-Orthopedic ACL Reconstruction Rehab",
             bannerTitle: "Managing: Post-Orthopedic ACL Reconstruction Recovery",
             bannerDesc: "Week 6 post-operative knee recovery chart and physical therapy mobility milestones active.",
             lastVisit: "7 Days Ago (Physiotherapy Review)",
-            streak: "🔥 7 Days Streak",
+            streak: "7 Days Streak",
             adherenceNum: "91%",
             doctorName: "Dr. Sanjay Nair",
             doctorDept: "MS (Orthopedics & Sports Medicine)",
@@ -1116,9 +1116,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 temp: "98.6 °F", tempTag: "Knee Flexion: 115°"
             },
             records: [
-                { icon: "🦵", title: "Post-Op Knee X-Ray & MRI Review", meta: "Apollo Orthopedics • 7 days ago" },
-                { icon: "📄", title: "Physiotherapy Range of Motion Chart", meta: "Rehab Center • 7 days ago" },
-                { icon: "🏥", title: "Surgical Discharge Summary", meta: "Dr. Sanjay Nair • 4 weeks ago" }
+                { icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>', title: "Post-Op Knee X-Ray & MRI Review", meta: "Apollo Orthopedics • 7 days ago" },
+                { icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>', title: "Physiotherapy Range of Motion Chart", meta: "Rehab Center • 7 days ago" },
+                { icon: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l8-4v18M13 21V3l6 3v15"/></svg>', title: "Surgical Discharge Summary", meta: "Dr. Sanjay Nair • 4 weeks ago" }
             ],
             docAdvice: '"Continue isometric quadriceps strengthening and hamstring curls twice daily. Wear functional knee brace when walking outdoors."',
             checkinFeedback: "Knee joint mobility progressing well (115° active flexion). Pain score low (2/10). Cleared for light cycling."
@@ -1141,7 +1141,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const elHeaderName = document.getElementById('ongoing-header-name');
         const elHeaderAbha = document.getElementById('ongoing-header-abha');
 
-        if (elHeaderAvatar) elHeaderAvatar.textContent = p.avatar;
+        if (elHeaderAvatar) elHeaderAvatar.innerHTML = p.avatar;
         if (elHeaderName) elHeaderName.textContent = `${p.name} (${p.demoMeta ? p.demoMeta.split('•')[0].trim() : '32M'})`;
         if (elHeaderAbha) elHeaderAbha.textContent = `${p.abha} • ABDM Linked`;
 
@@ -1157,7 +1157,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const elDocDept = document.getElementById('ongoing-doc-dept');
         const elDocRoom = document.getElementById('ongoing-doc-room');
 
-        if (elAvatar) elAvatar.textContent = p.avatar;
+        if (elAvatar) elAvatar.innerHTML = p.avatar;
         if (elName) elName.textContent = p.name;
         if (elDemoMeta) elDemoMeta.textContent = p.demoMeta;
         if (elDiag) elDiag.textContent = p.diagnosis;
