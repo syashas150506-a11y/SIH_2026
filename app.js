@@ -3718,13 +3718,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             showToast(`✓ Consultation notes draft saved for ${p ? p.name : 'Patient'}.`);
-
-            if ('speechSynthesis' in window) {
-                window.speechSynthesis.cancel();
-                const ut = new SpeechSynthesisUtterance(`Consultation draft saved for ${p ? p.name : 'patient'}.`);
-                ut.rate = 0.95;
-                window.speechSynthesis.speak(ut);
-            }
         });
     }
 
@@ -3876,13 +3869,6 @@ document.addEventListener('DOMContentLoaded', () => {
             loadPatientIntoConsultation(activeDoctorPatientId);
 
             showToast(`🚀 Prescription ${currentReviewPrescription.rxId} dispatched to Hospital Pharmacy!`);
-
-            if ('speechSynthesis' in window) {
-                window.speechSynthesis.cancel();
-                const u = new SpeechSynthesisUtterance(`Prescription ${currentReviewPrescription.rxId.replace('-', ' ')} confirmed and sent to Hospital Pharmacy for dispensing.`);
-                u.rate = 0.95;
-                window.speechSynthesis.speak(u);
-            }
         });
     }
 
