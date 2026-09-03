@@ -988,6 +988,1311 @@
         </div>
     </div>
 
+    <!-- ArogyaAI AI Receptionist Intake View (New Condition Flow) -->
+    <div class="arogya-intake-view" id="arogya-intake-page">
+        <div class="arogya-intake-wrapper">
+            <!-- Header Bar -->
+            <header class="arogya-intake-header">
+                <div class="arogya-brand-box">
+                    <div class="arogya-logo-icon">
+                        <svg width="34" height="34" viewBox="0 0 32 32" fill="none">
+                            <rect width="32" height="32" rx="8" fill="#eff6ff"/>
+                            <path d="M16 7V25M7 16H25" stroke="#2563eb" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="24" cy="8" r="3" fill="#38bdf8"/>
+                            <path d="M24 6.5L24.5 8L26 8.5L24.5 9L24 10.5L23.5 9L22 8.5L23.5 8L24 6.5Z" fill="#ffffff"/>
+                        </svg>
+                    </div>
+                    <div class="arogya-brand-text">
+                        <span class="arogya-brand-name">Arogya<span class="arogya-brand-accent">AI</span></span>
+                        <span class="arogya-brand-sub">AI Receptionist</span>
+                    </div>
+                </div>
+
+                <div class="arogya-header-actions">
+                    <button type="button" class="btn-arogya-back" id="btn-arogya-back" title="Back to Status Selection">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="19" y1="12" x2="5" y2="12"></line>
+                            <polyline points="12 19 5 12 12 5"></polyline>
+                        </svg>
+                        <span>Back</span>
+                    </button>
+
+                    <!-- Language Selector Dropdown -->
+                    <div class="arogya-lang-dropdown">
+                        <button type="button" class="arogya-lang-btn" id="arogya-lang-btn">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="2" y1="12" x2="22" y2="12"></line>
+                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                            </svg>
+                            <span id="arogya-current-lang">English</span>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="arogya-lang-menu" id="arogya-lang-menu">
+                            <div class="lang-opt active" data-lang="en">English</div>
+                            <div class="lang-opt" data-lang="kn">ಕನ್ನಡ (Kannada)</div>
+                            <div class="lang-opt" data-lang="hi">हिन्दी (Hindi)</div>
+                        </div>
+                    </div>
+
+                    <!-- ABHA Verified Badge -->
+                    <div class="arogya-abha-badge">
+                        <div class="abha-shield-icon">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="#2563eb">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                                <path d="M9 12l2 2 4-4" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="abha-badge-details">
+                            <strong class="abha-badge-title">ABHA Verified</strong>
+                            <span class="abha-badge-id">ABHA: 91-xxxx-xxxx-1234</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Main Heading Banner -->
+            <div class="arogya-main-header">
+                <h1 class="arogya-hero-title">Let's understand how we can help you today</h1>
+                <div class="arogya-title-indicator"></div>
+            </div>
+
+            <!-- 3-Column Layout Grid -->
+            <div class="arogya-intake-grid">
+
+                <!-- Column 1: Left Intake Progress Sidebar -->
+                <aside class="arogya-progress-sidebar">
+                    <h3 class="sidebar-section-heading">Your Intake Progress</h3>
+
+                    <div class="intake-stepper-list">
+                        <!-- Step 1 (Active) -->
+                        <div class="intake-step-node active" id="step-node-1">
+                            <div class="step-indicator-wrapper">
+                                <div class="step-circle step-circle-active">1</div>
+                                <div class="step-connect-line"></div>
+                            </div>
+                            <div class="step-meta">
+                                <span class="step-name">Reason for Visit</span>
+                                <span class="step-status">In Progress</span>
+                            </div>
+                        </div>
+
+                        <!-- Step 2 -->
+                        <div class="intake-step-node" id="step-node-2">
+                            <div class="step-indicator-wrapper">
+                                <div class="step-circle">2</div>
+                                <div class="step-connect-line"></div>
+                            </div>
+                            <div class="step-meta">
+                                <span class="step-name">Ask Questions</span>
+                                <span class="step-status">Upcoming</span>
+                            </div>
+                        </div>
+
+                        <!-- Step 3 -->
+                        <div class="intake-step-node" id="step-node-3">
+                            <div class="step-indicator-wrapper">
+                                <div class="step-circle">3</div>
+                                <div class="step-connect-line"></div>
+                            </div>
+                            <div class="step-meta">
+                                <span class="step-name">Scan Documents</span>
+                                <span class="step-status">Upcoming</span>
+                            </div>
+                        </div>
+
+                        <!-- Step 4 -->
+                        <div class="intake-step-node" id="step-node-4">
+                            <div class="step-indicator-wrapper">
+                                <div class="step-circle">4</div>
+                                <div class="step-connect-line"></div>
+                            </div>
+                            <div class="step-meta">
+                                <span class="step-name">AI Summary</span>
+                                <span class="step-status">Upcoming</span>
+                            </div>
+                        </div>
+
+                        <!-- Step 5 -->
+                        <div class="intake-step-node" id="step-node-5">
+                            <div class="step-indicator-wrapper">
+                                <div class="step-circle">5</div>
+                                <div class="step-connect-line"></div>
+                            </div>
+                            <div class="step-meta">
+                                <span class="step-name">Review & Confirm</span>
+                                <span class="step-status">Upcoming</span>
+                            </div>
+                        </div>
+
+                        <!-- Step 6 -->
+                        <div class="intake-step-node" id="step-node-6">
+                            <div class="step-indicator-wrapper">
+                                <div class="step-circle">6</div>
+                            </div>
+                            <div class="step-meta">
+                                <span class="step-name">Complete</span>
+                                <span class="step-status">Upcoming</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Need Help Card -->
+                    <div class="arogya-help-card" id="arogya-sidebar-help">
+                        <div class="help-card-icon">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+                                <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
+                            </svg>
+                        </div>
+                        <div class="help-card-text">
+                            <strong class="help-title">Need Help?</strong>
+                            <p class="help-sub">Ask our staff for assistance.</p>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Column 2: Center Main Interactive Intake Panel -->
+                <main class="arogya-center-panel">
+
+                    <!-- AI Bot Speech Prompt -->
+                    <div class="arogya-bot-prompt-card">
+                        <div class="arogya-bot-avatar">
+                            <svg width="52" height="52" viewBox="0 0 48 48" fill="none">
+                                <circle cx="24" cy="24" r="23" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+                                <!-- Bot Body & Head -->
+                                <rect x="12" y="16" width="24" height="18" rx="8" fill="#1e293b"/>
+                                <!-- Glowing Visor / Eyes -->
+                                <ellipse cx="19" cy="24" rx="3.2" ry="4.2" fill="#38bdf8"/>
+                                <ellipse cx="29" cy="24" rx="3.2" ry="4.2" fill="#38bdf8"/>
+                                <circle cx="20" cy="23" r="1.2" fill="#ffffff"/>
+                                <circle cx="30" cy="23" r="1.2" fill="#ffffff"/>
+                                <!-- Cute Head details & Ears -->
+                                <path d="M24 11v5" stroke="#3b82f6" stroke-width="2.5" stroke-linecap="round"/>
+                                <circle cx="24" cy="10" r="2.5" fill="#3b82f6"/>
+                                <rect x="9" y="21" width="3.5" height="8" rx="1.75" fill="#3b82f6"/>
+                                <rect x="35.5" y="21" width="3.5" height="8" rx="1.75" fill="#3b82f6"/>
+                                <!-- Smile line -->
+                                <path d="M21 29c1 1.5 5 1.5 6 0" stroke="#94a3b8" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+
+                        <div class="arogya-bot-speech-bubble">
+                            <div class="bubble-header-row">
+                                <span class="bubble-speaker-label">ArogyaAI</span>
+                                <button type="button" class="btn-bot-tts" id="btn-bot-tts" title="Listen to question">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                                        <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                                        <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                            <h2 class="bubble-question" id="arogya-question-text">What brings you to the hospital today?</h2>
+                            <p class="bubble-hint" id="arogya-question-hint">You can speak or choose from suggestions</p>
+                        </div>
+                    </div>
+
+                    <!-- STEP VIEW 1: Initial Reason for Visit (Voice & Chips) -->
+                    <div class="arogya-step-view" id="step-view-1">
+                        <!-- Voice / Mic Audio Interaction Area -->
+                        <div class="arogya-voice-card">
+                            <span class="voice-instruction-label" id="voice-instruction-label">Tap the microphone and speak</span>
+
+                            <div class="arogya-mic-waveform-container">
+                                <!-- Left Waveform Bars -->
+                                <div class="waveform-bars wave-left" id="wave-left">
+                                    <span class="wave-dot"></span>
+                                    <span class="wave-dot"></span>
+                                    <span class="wave-dot"></span>
+                                    <span class="wave-bar bar-1"></span>
+                                    <span class="wave-bar bar-2"></span>
+                                    <span class="wave-dot"></span>
+                                    <span class="wave-dot"></span>
+                                    <span class="wave-bar bar-3"></span>
+                                    <span class="wave-bar bar-4"></span>
+                                    <span class="wave-dot"></span>
+                                    <span class="wave-dot"></span>
+                                    <span class="wave-dot"></span>
+                                    <span class="wave-bar bar-5"></span>
+                                    <span class="wave-bar bar-6"></span>
+                                    <span class="wave-bar bar-7"></span>
+                                    <span class="wave-dot"></span>
+                                    <span class="wave-dot"></span>
+                                </div>
+
+                                <!-- Central Mic Button -->
+                                <div class="mic-button-wrapper">
+                                    <div class="mic-pulse-ring" id="mic-pulse-ring"></div>
+                                    <button type="button" class="btn-arogya-mic" id="btn-arogya-mic" aria-label="Toggle Microphone Recording">
+                                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                                            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                                            <line x1="12" y1="19" x2="12" y2="23"></line>
+                                            <line x1="8" y1="23" x2="16" y2="23"></line>
+                                        </svg>
+                                    </button>
+                                </div>
+
+                                <!-- Right Waveform Bars -->
+                                <div class="waveform-bars wave-right" id="wave-right">
+                                    <span class="wave-dot"></span>
+                                    <span class="wave-dot"></span>
+                                    <span class="wave-bar bar-7"></span>
+                                    <span class="wave-bar bar-6"></span>
+                                    <span class="wave-bar bar-5"></span>
+                                    <span class="wave-dot"></span>
+                                    <span class="wave-dot"></span>
+                                    <span class="wave-dot"></span>
+                                    <span class="wave-bar bar-4"></span>
+                                    <span class="wave-bar bar-3"></span>
+                                    <span class="wave-dot"></span>
+                                    <span class="wave-dot"></span>
+                                    <span class="wave-bar bar-2"></span>
+                                    <span class="wave-bar bar-1"></span>
+                                    <span class="wave-dot"></span>
+                                    <span class="wave-dot"></span>
+                                    <span class="wave-dot"></span>
+                                </div>
+                            </div>
+
+                            <div class="mic-status-text" id="arogya-mic-status">Listening...</div>
+                        </div>
+
+                        <!-- Suggestions Chips -->
+                        <div class="arogya-suggestions-section">
+                            <div class="suggestions-label">Not sure what to say? Try these</div>
+                            <div class="suggestions-chips-row" id="suggestions-chips-row">
+                                <button type="button" class="sugg-chip chip-fever" data-symptom="Fever">
+                                    <span class="chip-icon">🌡️</span>
+                                    <span class="chip-text">Fever</span>
+                                </button>
+                                <button type="button" class="sugg-chip chip-headache" data-symptom="Headache">
+                                    <span class="chip-icon">🧠</span>
+                                    <span class="chip-text">Headache</span>
+                                </button>
+                                <button type="button" class="sugg-chip chip-stomach" data-symptom="Stomach pain">
+                                    <span class="chip-icon">🫄</span>
+                                    <span class="chip-text">Stomach pain</span>
+                                </button>
+                                <button type="button" class="sugg-chip chip-cough" data-symptom="Cough">
+                                    <span class="chip-icon">🫁</span>
+                                    <span class="chip-text">Cough</span>
+                                </button>
+                                <button type="button" class="sugg-chip chip-more" id="btn-more-chips">
+                                    <span class="chip-icon">⸬</span>
+                                    <span class="chip-text">More</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- User Response Preview Container -->
+                        <div class="arogya-response-box">
+                            <div class="response-box-header">
+                                <span class="response-label">Your response</span>
+                                <button type="button" class="btn-clear-response" id="btn-clear-response" style="display:none;" title="Clear">Clear</button>
+                            </div>
+                            <textarea class="response-input-field" id="arogya-response-text" rows="2" placeholder="Once we hear you, your response will appear here..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- STEP VIEW 2: Follow-up Questions (Duration & Severity) -->
+                    <div class="arogya-step-view" id="step-view-2" style="display:none;">
+                        <div class="intake-card-box">
+                            <h4 class="intake-field-label">How long have you been experiencing this?</h4>
+                            <div class="duration-chips-grid">
+                                <button type="button" class="choice-pill-btn active" data-duration="1-2 days">
+                                    <span class="pill-badge">⚡</span>
+                                    <span>1 - 2 Days</span>
+                                </button>
+                                <button type="button" class="choice-pill-btn" data-duration="3-5 days">
+                                    <span class="pill-badge">📅</span>
+                                    <span>3 - 5 Days</span>
+                                </button>
+                                <button type="button" class="choice-pill-btn" data-duration="1 week+">
+                                    <span class="pill-badge">⏳</span>
+                                    <span>1 Week or more</span>
+                                </button>
+                                <button type="button" class="choice-pill-btn" data-duration="Chronic (>1 month)">
+                                    <span class="pill-badge">🔄</span>
+                                    <span>Chronic (>1 month)</span>
+                                </button>
+                            </div>
+
+                            <h4 class="intake-field-label" style="margin-top: 18px;">Symptom Intensity / Severity</h4>
+                            <div class="severity-chips-grid">
+                                <button type="button" class="severity-pill-btn" data-severity="Mild">
+                                    <span class="sev-dot sev-mild"></span>
+                                    <span>Mild (Bearable)</span>
+                                </button>
+                                <button type="button" class="severity-pill-btn active" data-severity="Moderate">
+                                    <span class="sev-dot sev-mod"></span>
+                                    <span>Moderate (Discomfort)</span>
+                                </button>
+                                <button type="button" class="severity-pill-btn" data-severity="Severe">
+                                    <span class="sev-dot sev-severe"></span>
+                                    <span>Severe (Intense)</span>
+                                </button>
+                            </div>
+
+                            <div class="arogya-response-box" style="margin-top: 18px;">
+                                <div class="response-box-header">
+                                    <span class="response-label">Additional notes (optional)</span>
+                                </div>
+                                <textarea class="response-input-field" id="arogya-notes-text" rows="2" placeholder="Any associated chills, dizziness, or medication taken..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- STEP VIEW 3: Document Scan Decision (YES / NO) -->
+                    <div class="arogya-step-view" id="step-view-3" style="display:none;">
+                        <!-- Choice Screen: Ask Yes / No -->
+                        <div id="doc-decision-screen" class="doc-decision-container">
+                            <div class="doc-prompt-banner">
+                                <div class="doc-prompt-icon">📄</div>
+                                <div class="doc-prompt-content">
+                                    <h3 class="doc-prompt-heading">Do you have any medical documents to scan?</h3>
+                                    <p class="doc-prompt-sub">Physical prescriptions, lab reports, discharge summaries, or previous medical slips.</p>
+                                </div>
+                            </div>
+
+                            <div class="doc-choice-cards-grid">
+                                <!-- Option YES: Scan Documents -->
+                                <div class="doc-choice-card choice-yes" id="card-doc-yes">
+                                    <div class="choice-badge">Recommended</div>
+                                    <div class="choice-icon-wrap">
+                                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                            <polyline points="14 2 14 8 20 8"></polyline>
+                                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                                            <polyline points="10 9 9 9 8 9"></polyline>
+                                        </svg>
+                                    </div>
+                                    <h4 class="choice-title">Yes, Scan Documents</h4>
+                                    <p class="choice-desc">Use live camera scan or upload files. AI extracts medications, dosages & abnormal lab findings.</p>
+                                    <button type="button" class="btn-select-choice btn-select-yes" id="btn-choice-yes">
+                                        <span>Start Document Scan</span>
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                                    </button>
+                                </div>
+
+                                <!-- Option NO: Skip Documents -->
+                                <div class="doc-choice-card choice-no" id="card-doc-no">
+                                    <div class="choice-icon-wrap">
+                                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
+                                        </svg>
+                                    </div>
+                                    <h4 class="choice-title">No, Skip & Continue</h4>
+                                    <p class="choice-desc">I do not have documents with me. Generate the AI clinical summary directly from my symptoms.</p>
+                                    <button type="button" class="btn-select-choice btn-select-no" id="btn-choice-no">
+                                        <span>Generate Summary from Input</span>
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Interactive Document Scanner Screen (Active when YES is clicked) -->
+                        <div id="doc-scanner-screen" class="doc-scanner-container" style="display:none;">
+                            <div class="scanner-top-bar">
+                                <button type="button" class="btn-back-to-choice" id="btn-back-to-doc-choice">
+                                    &larr; Back to Options
+                                </button>
+                                <span class="scanner-status-pill">📷 High-Res OCR Ready</span>
+                            </div>
+
+                            <!-- Viewfinder / Upload Box -->
+                            <div class="scanner-viewfinder-card" id="scanner-viewfinder">
+                                <div class="scanner-laser" id="scanner-laser"></div>
+                                <div class="viewfinder-corner corner-tl"></div>
+                                <div class="viewfinder-corner corner-tr"></div>
+                                <div class="viewfinder-corner corner-bl"></div>
+                                <div class="viewfinder-corner corner-br"></div>
+
+                                <div class="scanner-placeholder-content" id="scanner-empty-view">
+                                    <div class="scanner-hero-icon">📸</div>
+                                    <h4>Position Document Inside Frame</h4>
+                                    <p>Ensure prescription or lab report is clear, well-lit, and flat.</p>
+                                    
+                                    <div class="scanner-quick-samples">
+                                        <span class="sample-label">Or test with demo sample:</span>
+                                        <div class="sample-btn-group">
+                                            <button type="button" class="sample-doc-pill" id="sample-rx-btn">💊 Sample Rx Prescription</button>
+                                            <button type="button" class="sample-doc-pill" id="sample-lab-btn">🧪 Sample Blood Lab Report</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Live Document Preview (When sample/file chosen) -->
+                                <div class="scanner-doc-preview" id="scanner-doc-preview" style="display:none;">
+                                    <div class="preview-doc-header">
+                                        <span class="preview-doc-type" id="preview-doc-type">Medical Prescription (Rx)</span>
+                                        <span class="preview-doc-tag">Detected</span>
+                                    </div>
+                                    <div class="preview-doc-body" id="preview-doc-body">
+                                        <!-- Dynamic content -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Progress Bar Container -->
+                            <div class="scanner-progress-wrapper" id="scanner-progress-wrapper" style="display:none;">
+                                <div class="progress-info-row">
+                                    <span class="progress-task" id="progress-task-label">Analyzing Document...</span>
+                                    <span class="progress-percent" id="progress-percent-label">0%</span>
+                                </div>
+                                <div class="progress-track">
+                                    <div class="progress-fill-bar" id="scanner-progress-bar"></div>
+                                </div>
+                            </div>
+
+                            <!-- Extracted Document Insights Card (Shows when scan completes) -->
+                            <div class="extracted-insights-card" id="extracted-insights-card" style="display:none;">
+                                <div class="insights-header">
+                                    <div class="insights-badge-icon">✓</div>
+                                    <div>
+                                        <strong class="insights-title">Document Analyzed Successfully</strong>
+                                        <span class="insights-sub">AI extracted key medications & diagnostic records</span>
+                                    </div>
+                                </div>
+                                <div class="insights-grid" id="insights-grid-content">
+                                    <!-- Populated via JS -->
+                                </div>
+                            </div>
+
+                            <!-- Scanner Trigger Buttons -->
+                            <div class="scanner-action-bar">
+                                <button type="button" class="btn-start-scan" id="btn-trigger-scan">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                    <span id="scan-btn-label">Start Document Scan</span>
+                                </button>
+                                <button type="button" class="btn-proceed-scanned" id="btn-proceed-scanned" style="display:none;">
+                                    <span>Proceed with Extracted Records</span>
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- STEP VIEW 4: AI Clinical Summary Display -->
+                    <div class="arogya-step-view" id="step-view-4" style="display:none;">
+                        <div class="clinical-summary-card">
+                            <div class="summary-card-header">
+                                <div class="summary-header-left">
+                                    <div class="summary-ai-badge">AI Clinical Assessment</div>
+                                    <h3 class="summary-patient-title" id="summary-patient-name">Rahul Verma • 32M</h3>
+                                    <span class="summary-abha-id">ABHA ID: 91-4820-1928-3746</span>
+                                </div>
+                                <div class="summary-triage-badge triage-moderate" id="summary-triage-badge">
+                                    <span class="triage-dot"></span>
+                                    <span>Triage: Moderate (OPD)</span>
+                                </div>
+                            </div>
+
+                            <!-- Summary Details Grid -->
+                            <div class="summary-matrix-grid">
+                                <div class="matrix-box">
+                                    <span class="matrix-label">Chief Complaint</span>
+                                    <strong class="matrix-val" id="summary-chief-complaint">Fever, Persistent Headache</strong>
+                                </div>
+                                <div class="matrix-box">
+                                    <span class="matrix-label">Duration & Onset</span>
+                                    <strong class="matrix-val" id="summary-duration">1 - 2 Days (Acute)</strong>
+                                </div>
+                                <div class="matrix-box">
+                                    <span class="matrix-label">Severity Level</span>
+                                    <strong class="matrix-val text-amber" id="summary-severity">Moderate Discomfort</strong>
+                                </div>
+                                <div class="matrix-box">
+                                    <span class="matrix-label">Document Verification</span>
+                                    <strong class="matrix-val text-emerald" id="summary-doc-status">No Attached Docs (Patient Input)</strong>
+                                </div>
+                            </div>
+
+                            <!-- Scanned Documents Attachment Findings -->
+                            <div class="summary-doc-section" id="summary-doc-section" style="display:none;">
+                                <div class="summary-doc-heading">
+                                    <span>📑 Scanned Document Insights</span>
+                                    <span class="doc-badge-pill" id="summary-doc-pill">1 Scanned Rx</span>
+                                </div>
+                                <div class="summary-doc-details" id="summary-doc-details">
+                                    <!-- Populated dynamically -->
+                                </div>
+                            </div>
+
+                            <!-- Doctor & Department Routing -->
+                            <div class="summary-routing-box">
+                                <div class="routing-icon">🩺</div>
+                                <div class="routing-info">
+                                    <strong class="routing-title">Recommended Routing: General Medicine OPD</strong>
+                                    <p class="routing-sub">Assigned: <strong>Dr. Priya Sharma (Consultant Physician)</strong> • Room #4</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- STEP VIEW 5: Review & Confirm Screen -->
+                    <div class="arogya-step-view" id="step-view-5" style="display:none;">
+                        <div class="review-confirm-card">
+                            <h3 class="review-heading">Please Review & Confirm Your Details</h3>
+                            <p class="review-sub">Verify that your reported symptoms and document records are accurate before hospital token generation.</p>
+
+                            <div class="review-checklist">
+                                <div class="review-check-item">
+                                    <div class="check-icon-wrap">✓</div>
+                                    <div class="check-text">
+                                        <strong>Patient Identity Verified</strong>
+                                        <span>Rahul Verma (ABHA: 91-4820-1928-3746)</span>
+                                    </div>
+                                </div>
+                                <div class="review-check-item">
+                                    <div class="check-icon-wrap">✓</div>
+                                    <div class="check-text">
+                                        <strong>Clinical Complaints Recorded</strong>
+                                        <span id="review-symptoms-text">Fever and headache for 1-2 days</span>
+                                    </div>
+                                </div>
+                                <div class="review-check-item">
+                                    <div class="check-icon-wrap" id="review-doc-check-icon">✓</div>
+                                    <div class="check-text">
+                                        <strong>Document Scan Status</strong>
+                                        <span id="review-doc-text">No documents attached (Interview summary only)</span>
+                                    </div>
+                                </div>
+                                <div class="review-check-item">
+                                    <div class="check-icon-wrap">✓</div>
+                                    <div class="check-text">
+                                        <strong>Triage & OPD Department Assigned</strong>
+                                        <span>General Medicine • Room #4</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Consent Agreement Checkbox -->
+                            <label class="consent-agreement-box">
+                                <input type="checkbox" id="intake-consent-check" checked>
+                                <span>I confirm that the health information and documents provided are accurate to the best of my knowledge.</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- STEP VIEW 6: Final Confirmation Screen & Token Generation -->
+                    <div class="arogya-step-view" id="step-view-6" style="display:none;">
+                        <div class="token-generation-card">
+                            <div class="token-success-header">
+                                <div class="token-check-ring">
+                                    <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                    </svg>
+                                </div>
+                                <h2 class="token-headline">Intake Assessment Confirmed!</h2>
+                                <p class="token-subheadline">Your clinical intake is registered. Please proceed to the consultation room.</p>
+                            </div>
+
+                            <!-- High-Fidelity Hospital Token Pass -->
+                            <div class="hospital-token-pass">
+                                <div class="token-pass-top">
+                                    <div class="pass-brand">
+                                        <span class="pass-logo">MediCare<span class="text-blue">AI</span></span>
+                                        <span class="pass-tag">Official OPD Pass</span>
+                                    </div>
+                                    <div class="pass-queue-badge">
+                                        <span>Queue Position:</span>
+                                        <strong id="token-queue-pos">#04</strong>
+                                    </div>
+                                </div>
+
+                                <div class="token-number-hero">
+                                    <span class="token-prefix">PATIENT TOKEN</span>
+                                    <h1 class="token-main-number" id="final-token-number">#MC-8492</h1>
+                                    <div class="token-wait-time">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                        <span>Estimated Wait Time: <strong>~3 mins</strong></span>
+                                    </div>
+                                </div>
+
+                                <div class="token-pass-divider">
+                                    <div class="divider-notch notch-left"></div>
+                                    <div class="divider-line"></div>
+                                    <div class="divider-notch notch-right"></div>
+                                </div>
+
+                                <div class="token-pass-bottom">
+                                    <div class="token-meta-grid">
+                                        <div class="meta-item">
+                                            <span class="meta-lbl">Patient Name</span>
+                                            <strong class="meta-txt">Rahul Verma</strong>
+                                        </div>
+                                        <div class="meta-item">
+                                            <span class="meta-lbl">Consulting Doctor</span>
+                                            <strong class="meta-txt">Dr. Priya Sharma</strong>
+                                        </div>
+                                        <div class="meta-item">
+                                            <span class="meta-lbl">Department & Room</span>
+                                            <strong class="meta-txt text-blue">Gen. Medicine (Room #4)</strong>
+                                        </div>
+                                        <div class="meta-item">
+                                            <span class="meta-lbl">Document Attachment</span>
+                                            <strong class="meta-txt text-emerald" id="token-doc-verified-text">Self Reported</strong>
+                                        </div>
+                                    </div>
+
+                                    <!-- QR Code for fast kiosk scan -->
+                                    <div class="token-qr-section">
+                                        <div class="token-qr-box">
+                                            <svg width="68" height="68" viewBox="0 0 24 24" fill="#1e293b">
+                                                <rect x="2" y="2" width="8" height="8" rx="1" fill="none" stroke="#2563eb" stroke-width="2"/>
+                                                <rect x="4" y="4" width="4" height="4" fill="#2563eb"/>
+                                                <rect x="14" y="2" width="8" height="8" rx="1" fill="none" stroke="#2563eb" stroke-width="2"/>
+                                                <rect x="16" y="4" width="4" height="4" fill="#2563eb"/>
+                                                <rect x="2" y="14" width="8" height="8" rx="1" fill="none" stroke="#2563eb" stroke-width="2"/>
+                                                <rect x="4" y="16" width="4" height="4" fill="#2563eb"/>
+                                                <rect x="14" y="14" width="3" height="3" fill="#2563eb"/>
+                                                <rect x="19" y="14" width="3" height="3" fill="#2563eb"/>
+                                                <rect x="14" y="19" width="3" height="3" fill="#2563eb"/>
+                                                <rect x="19" y="19" width="3" height="3" fill="#2563eb"/>
+                                            </svg>
+                                        </div>
+                                        <span class="qr-label">Scan at Room #4 Kiosk</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Token Actions -->
+                            <div class="token-actions-row">
+                                <button type="button" class="btn-token-action btn-print-token" id="btn-print-token">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+                                    <span>Print Token Pass</span>
+                                </button>
+                                <button type="button" class="btn-token-action btn-speak-token" id="btn-speak-token">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                                    <span>Read Token Details</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Primary Action Button Bottom Bar -->
+                    <div class="arogya-bottom-actions" id="arogya-bottom-actions">
+                        <button type="button" class="btn-arogya-continue" id="btn-arogya-continue">
+                            <span>Continue</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </button>
+                        <div class="arogya-security-badge">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                            </svg>
+                            <span>Your information is safe and secure</span>
+                        </div>
+                    </div>
+                </main>
+
+                <!-- Column 3: Right Sidebar (How it works & Emergency) -->
+                <aside class="arogya-info-sidebar">
+                    <!-- How it works Card -->
+                    <div class="arogya-info-card how-it-works-card">
+                        <h3 class="info-card-title">
+                            <span class="sparkle-icon">✨</span>
+                            <span>How it works</span>
+                        </h3>
+                        <ul class="how-it-works-list">
+                            <li>
+                                <div class="hiw-icon hiw-chat">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                                        <line x1="9" y1="10" x2="9.01" y2="10"></line>
+                                        <line x1="15" y1="10" x2="15.01" y2="10"></line>
+                                    </svg>
+                                </div>
+                                <span class="hiw-text">Our AI will ask you simple questions</span>
+                            </li>
+                            <li>
+                                <div class="hiw-icon hiw-lang">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                                        <path d="M2 12h20"></path>
+                                    </svg>
+                                </div>
+                                <span class="hiw-text">You can speak in your preferred language</span>
+                            </li>
+                            <li>
+                                <div class="hiw-icon hiw-summary">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                        <polyline points="9 12 11 14 15 10"></polyline>
+                                    </svg>
+                                </div>
+                                <span class="hiw-text">We'll understand and prepare a summary for the doctor</span>
+                            </li>
+                            <li>
+                                <div class="hiw-icon hiw-alert">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                    </svg>
+                                </div>
+                                <span class="hiw-text">In case of emergency, the doctor will be alerted immediately</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Medical Emergency Card -->
+                    <div class="arogya-emergency-card">
+                        <h4 class="emergency-card-title">Medical Emergency?</h4>
+                        <p class="emergency-card-desc">If you are in severe pain or distress, please inform our staff immediately.</p>
+                        <button type="button" class="btn-arogya-emergency" id="btn-arogya-emergency">
+                            <span class="siren-icon">🚨</span>
+                            <span>Alert Staff</span>
+                        </button>
+                    </div>
+                </aside>
+
+            </div>
+
+            <!-- Bottom Brand Footer -->
+            <footer class="arogya-intake-footer">
+                <span>Powered by <strong>ArogyaAI</strong></span>
+                <span class="footer-dot">•</span>
+                <span>Secure</span>
+                <span class="footer-dot">•</span>
+                <span>Private</span>
+                <span class="footer-dot">•</span>
+                <span>HIPAA Compliant</span>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Ongoing Condition & Chronic Care Management Portal -->
+    <div class="ongoing-care-view" id="ongoing-care-page">
+        <div class="ongoing-care-wrapper">
+            <!-- Header Bar -->
+            <header class="ongoing-care-header">
+                <div class="ongoing-brand-box">
+                    <div class="ongoing-logo-icon">
+                        <svg width="34" height="34" viewBox="0 0 32 32" fill="none">
+                            <rect width="32" height="32" rx="8" fill="#ecfdf5"/>
+                            <path d="M16 6V26M6 16H26" stroke="#059669" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="23" cy="9" r="3.5" fill="#10b981"/>
+                        </svg>
+                    </div>
+                    <div class="ongoing-brand-text">
+                        <span class="ongoing-brand-name">Arogya<span class="ongoing-brand-accent">Care</span></span>
+                        <span class="ongoing-brand-sub">Ongoing Care & Clinical Locker</span>
+                    </div>
+                </div>
+
+                <!-- Single Primary Verified Patient Account Box -->
+                <div class="verified-single-account-bar">
+                    <div class="account-badge-avatar" id="ongoing-header-avatar">👨‍💼</div>
+                    <div class="account-badge-info">
+                        <div class="acc-badge-title">
+                            <strong id="ongoing-header-name">Rahul Verma (32M)</strong>
+                            <span class="acc-active-pill">Verified EHR Active</span>
+                        </div>
+                        <span class="acc-badge-sub" id="ongoing-header-abha">ABHA: 91-4820-1928-3746 • ABDM Linked</span>
+                    </div>
+                </div>
+
+                <div class="ongoing-header-actions">
+                    <button type="button" class="btn-ongoing-back" id="btn-ongoing-back" title="Back to Status Selection">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="19" y1="12" x2="5" y2="12"></line>
+                            <polyline points="12 19 5 12 12 5"></polyline>
+                        </svg>
+                        <span>Back</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Main Treatment Dashboard Grid -->
+            <div class="ongoing-dashboard-grid">
+
+                <!-- Left Column: Patient Profile & Care Team -->
+                <aside class="ongoing-profile-sidebar">
+                    <!-- Profile Card -->
+                    <div class="ongoing-card patient-id-card">
+                        <div class="patient-card-top">
+                            <div class="patient-large-avatar" id="ongoing-avatar">👨‍💼</div>
+                            <div class="patient-id-meta">
+                                <h3 class="patient-main-name" id="ongoing-name">Rahul Verma</h3>
+                                <span class="patient-main-meta" id="ongoing-demo-meta">32 Yrs • Male • O+ Positive</span>
+                                <span class="patient-active-badge">Active Care Plan</span>
+                            </div>
+                        </div>
+
+                        <div class="patient-metrics-list">
+                            <div class="p-metric-row">
+                                <span class="p-metric-lbl">Primary Diagnosis</span>
+                                <strong class="p-metric-val" id="ongoing-diagnosis-val">Essential Hypertension (Stage-1)</strong>
+                            </div>
+                            <div class="p-metric-row">
+                                <span class="p-metric-lbl">Last OPD Consultation</span>
+                                <strong class="p-metric-val" id="ongoing-last-visit">14 Days Ago (Follow-up Due)</strong>
+                            </div>
+                            <div class="p-metric-row">
+                                <span class="p-metric-lbl">Care Coordinator</span>
+                                <strong class="p-metric-val text-blue">Sister Mary (OPD Desk 2)</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Medication Adherence Score Card -->
+                    <div class="ongoing-card adherence-card">
+                        <div class="adherence-header">
+                            <span class="adherence-title">Rx Adherence Score</span>
+                            <span class="adherence-streak" id="ongoing-streak">🔥 14 Days Streak</span>
+                        </div>
+                        <div class="adherence-progress-row">
+                            <div class="adherence-ring-box">
+                                <span class="adherence-ring-num" id="ongoing-adherence-num">94%</span>
+                            </div>
+                            <div class="adherence-tips">
+                                <strong>Excellent Compliance!</strong>
+                                <p>You have taken all prescribed morning and evening doses on schedule.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Assigned Doctor Card -->
+                    <div class="ongoing-card doctor-team-card">
+                        <div class="doc-team-header">
+                            <span class="doc-team-title">Attending Physician</span>
+                            <span class="doc-room-pill" id="ongoing-doc-room">Room #2</span>
+                        </div>
+                        <div class="doc-profile-row">
+                            <div class="doc-avatar-box">👨‍⚕️</div>
+                            <div class="doc-details">
+                                <strong class="doc-name" id="ongoing-doc-name">Dr. Rajesh Iyer</strong>
+                                <span class="doc-dept" id="ongoing-doc-dept">MD (Cardiology & Internal Medicine)</span>
+                                <span class="doc-available-tag">🟢 On-Duty Today</span>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Center Column: Active Prescriptions, Reactivation & Explain Symptoms -->
+                <main class="ongoing-center-panel">
+
+                    <!-- Active Care Banner & Fast-Track Token Callout -->
+                    <div class="ongoing-banner-card">
+                        <div class="banner-content">
+                            <div class="banner-tag">Follow-up Consultation Ready</div>
+                            <h2 class="banner-title" id="ongoing-banner-title">Managing: Essential Hypertension & Recurring Care</h2>
+                            <p class="banner-desc">Your clinical records and vitals history are already synchronized. Skip general registration and generate an instant follow-up token for your doctor.</p>
+                        </div>
+                        <button type="button" class="btn-gen-followup-token" id="btn-gen-followup-token">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                            <span>Generate Priority Follow-up Token</span>
+                        </button>
+                    </div>
+
+                    <!-- Explain What Else Is Happening (Voice / Text Patient Note) -->
+                    <div class="ongoing-card explain-symptoms-card">
+                        <div class="card-section-header">
+                            <div class="c-header-left">
+                                <h3 class="c-title">🎙️ Explain What's Happening (New Symptoms & Health Update)</h3>
+                                <span class="c-sub">Describe any new changes, medication side effects, or recurring issues directly to your doctor</span>
+                            </div>
+                            <button type="button" class="btn-voice-explain" id="btn-voice-explain" title="Click to speak your symptoms">
+                                <span class="mic-icon">🎙️</span>
+                                <span id="voice-explain-status">Voice Record</span>
+                            </button>
+                        </div>
+
+                        <div class="explain-textarea-wrapper">
+                            <textarea class="explain-textarea" id="ongoing-explain-input" rows="3" placeholder="Explain what is happening (e.g. 'I felt mild morning dizziness and chest heaviness after climbing stairs yesterday...')"></textarea>
+                        </div>
+
+                        <!-- Quick Observation Tag Chips -->
+                        <div class="explain-chips-row">
+                            <span class="chips-label">Quick Add:</span>
+                            <button type="button" class="exp-chip" data-text="Morning dizziness after medication">💫 Morning Dizziness</button>
+                            <button type="button" class="exp-chip" data-text="Mild chest tightness when exerting">❤️‍🩹 Chest Tightness</button>
+                            <button type="button" class="exp-chip" data-text="Wheezing cough at night">🗣️ Night Cough</button>
+                            <button type="button" class="exp-chip" data-text="Stomach irritation after pills">💊 Pill Sensitivity</button>
+                        </div>
+
+                        <div class="explain-action-bar">
+                            <button type="button" class="btn-submit-explain" id="btn-submit-explain">
+                                <span>Submit Clinical Note to Doctor's Queue</span>
+                                <span class="arrow-icon">&rarr;</span>
+                            </button>
+                            <span class="explain-hint">AI analyzes and prioritizes your note for Dr. Rajesh Iyer</span>
+                        </div>
+
+                        <!-- Real-time Recorded Observation Box -->
+                        <div class="ai-clinical-addendum-box" id="ai-clinical-addendum" style="display:none;">
+                            <div class="addendum-icon">✨</div>
+                            <div class="addendum-content">
+                                <strong class="addendum-title">Clinical Addendum Logged in EHR Chart:</strong>
+                                <p class="addendum-text" id="addendum-text-content"></p>
+                                <span class="addendum-flag">🟢 Flagged for Attending Doctor Review</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Disease & Relapse Manager: Active vs Cured / Resolved Conditions -->
+                    <div class="ongoing-card disease-history-card">
+                        <div class="card-section-header">
+                            <div class="c-header-left">
+                                <h3 class="c-title">🩺 Condition History & Reactivation Manager</h3>
+                                <span class="c-sub">Manage ongoing conditions or reactivate previously cured diseases if symptoms return</span>
+                            </div>
+                        </div>
+
+                        <!-- Active Condition Item -->
+                        <div class="disease-items-list">
+                            <div class="disease-item-row active-condition">
+                                <div class="disease-icon-box">❤️</div>
+                                <div class="disease-info">
+                                    <div class="disease-header-line">
+                                        <strong class="disease-name">Essential Hypertension (Stage-1)</strong>
+                                        <span class="disease-status-pill status-active">🟢 Active Treatment</span>
+                                    </div>
+                                    <p class="disease-desc">Maintenance therapy with Telmisartan 40mg. Blood pressure controlled at 122/82 mmHg.</p>
+                                </div>
+                            </div>
+
+                            <!-- Cured / Resolved Disease 1 (Reactivatable) -->
+                            <div class="disease-item-row resolved-condition" id="disease-asthma-card">
+                                <div class="disease-icon-box">🫁</div>
+                                <div class="disease-info">
+                                    <div class="disease-header-line">
+                                        <strong class="disease-name" id="asthma-title">Seasonal Allergic Bronchitis & Wheezing</strong>
+                                        <span class="disease-status-pill status-cured" id="asthma-status-pill">✅ Cured / Inactive (3 Mos Ago)</span>
+                                    </div>
+                                    <p class="disease-desc" id="asthma-desc">Previously resolved with Budecort inhaler & antihistamines. Normal spirometry peak flow recorded.</p>
+                                </div>
+                                <button type="button" class="btn-reactivate-condition" id="btn-reactivate-asthma" data-disease="asthma">
+                                    <span class="btn-react-icon">🔄</span>
+                                    <span>Got it Again? Reactivate</span>
+                                </button>
+                            </div>
+
+                            <!-- Cured / Resolved Disease 2 (Reactivatable) -->
+                            <div class="disease-item-row resolved-condition" id="disease-gerd-card">
+                                <div class="disease-icon-box">🫄</div>
+                                <div class="disease-info">
+                                    <div class="disease-header-line">
+                                        <strong class="disease-name" id="gerd-title">Acid Reflux & Gastritis (GERD)</strong>
+                                        <span class="disease-status-pill status-cured" id="gerd-status-pill">✅ Cured / Inactive (6 Mos Ago)</span>
+                                    </div>
+                                    <p class="disease-desc" id="gerd-desc">Previously treated with Pantoprazole 40mg course. Endoscopy review was clear.</p>
+                                </div>
+                                <button type="button" class="btn-reactivate-condition" id="btn-reactivate-gerd" data-disease="gerd">
+                                    <span class="btn-react-icon">🔄</span>
+                                    <span>Got it Again? Reactivate</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Active Prescriptions & Refill Hub -->
+                    <div class="ongoing-card rx-management-card">
+                        <div class="card-section-header">
+                            <div class="c-header-left">
+                                <h3 class="c-title">💊 Active Prescriptions & Refill Hub</h3>
+                                <span class="c-sub">Track daily intake or request instant 30-day pharmacy refill</span>
+                            </div>
+                            <button type="button" class="btn-refill-all" id="btn-refill-all">
+                                <span>Refill All Prescriptions</span>
+                            </button>
+                        </div>
+
+                        <div class="prescriptions-list" id="ongoing-rx-list">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+
+                </main>
+
+                <!-- Right Column: Digital Health Locker & Vitals Trends -->
+                <aside class="ongoing-health-sidebar">
+
+                    <!-- Vitals History Card -->
+                    <div class="ongoing-card vitals-history-card">
+                        <h4 class="sidebar-heading">📊 Recent Vitals Trend</h4>
+                        <div class="vitals-matrix" id="ongoing-vitals-matrix">
+                            <div class="vital-item">
+                                <span class="vital-lbl">Blood Pressure</span>
+                                <strong class="vital-val text-emerald" id="vital-bp">122/82 mmHg</strong>
+                                <span class="vital-tag">Normal (Controlled)</span>
+                            </div>
+                            <div class="vital-item">
+                                <span class="vital-lbl">Heart Rate</span>
+                                <strong class="vital-val" id="vital-hr">74 bpm</strong>
+                                <span class="vital-tag">Regular Sinus</span>
+                            </div>
+                            <div class="vital-item">
+                                <span class="vital-lbl">SpO2 Oxygen</span>
+                                <strong class="vital-val" id="vital-spo2">99%</strong>
+                                <span class="vital-tag">Room Air</span>
+                            </div>
+                            <div class="vital-item">
+                                <span class="vital-lbl">Temperature</span>
+                                <strong class="vital-val" id="vital-temp">98.4 °F</strong>
+                                <span class="vital-tag">Afebrile</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Digital Health Locker Documents -->
+                    <div class="ongoing-card health-locker-card">
+                        <div class="locker-header">
+                            <h4 class="sidebar-heading" style="margin-bottom:0;">📁 Digital Health Locker</h4>
+                            <span class="locker-count-pill" id="ongoing-locker-count">3 Records</span>
+                        </div>
+
+                        <div class="locker-records-list" id="ongoing-records-list">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- Doctor's Advice Box -->
+                    <div class="ongoing-card doc-advice-card">
+                        <div class="advice-header">
+                            <span>🩺 Doctor's Special Advice</span>
+                        </div>
+                        <p class="advice-body" id="ongoing-doc-advice">
+                            "Continue daily morning walk (30 mins). Limit dietary sodium to less than 2g/day. Monitor BP once weekly in the morning before breakfast."
+                        </p>
+                    </div>
+
+                </aside>
+
+            </div>
+
+            <!-- Follow-up Generated Token Modal Overlay -->
+            <div class="followup-token-modal" id="followup-token-modal" style="display:none;">
+                <div class="followup-token-backdrop" id="close-followup-backdrop"></div>
+                <div class="followup-token-card-box">
+                    <div class="followup-token-header">
+                        <div class="token-modal-check">✓</div>
+                        <div>
+                            <h3 class="token-modal-title">Priority Follow-up Token Active</h3>
+                            <p class="token-modal-sub">Fast-track routing for on-going patient chart</p>
+                        </div>
+                        <button type="button" class="btn-close-followup-modal" id="btn-close-followup-modal">&times;</button>
+                    </div>
+
+                    <!-- Hospital Token Pass -->
+                    <div class="hospital-token-pass" style="max-width: 100%; margin: 16px 0;">
+                        <div class="token-pass-top">
+                            <div class="pass-brand">
+                                <span class="pass-logo">MediCare<span class="text-blue">AI</span></span>
+                                <span class="pass-tag" style="background:#ecfdf5; color:#059669; border-color:#a7f3d0;">Follow-up Pass</span>
+                            </div>
+                            <div class="pass-queue-badge">
+                                <span>Queue Position:</span>
+                                <strong id="followup-queue-pos">#02</strong>
+                            </div>
+                        </div>
+
+                        <div class="token-number-hero">
+                            <span class="token-prefix">PRIORITY FOLLOW-UP</span>
+                            <h1 class="token-main-number" id="followup-token-number">#FU-2049</h1>
+                            <div class="token-wait-time" style="background:#ecfdf5; color:#059669;">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                <span>Estimated Wait Time: <strong>~2 mins</strong></span>
+                            </div>
+                        </div>
+
+                        <div class="token-pass-divider">
+                            <div class="divider-notch notch-left"></div>
+                            <div class="divider-line"></div>
+                            <div class="divider-notch notch-right"></div>
+                        </div>
+
+                        <div class="token-pass-bottom">
+                            <div class="token-meta-grid">
+                                <div class="meta-item">
+                                    <span class="meta-lbl">Patient Name</span>
+                                    <strong class="meta-txt" id="token-modal-pname">Rahul Verma</strong>
+                                </div>
+                                <div class="meta-item">
+                                    <span class="meta-lbl">Consulting Doctor</span>
+                                    <strong class="meta-txt" id="token-modal-dname">Dr. Rajesh Iyer</strong>
+                                </div>
+                                <div class="meta-item">
+                                    <span class="meta-lbl">Department & Room</span>
+                                    <strong class="meta-txt text-blue" id="token-modal-room">Cardiology (Room #2)</strong>
+                                </div>
+                                <div class="meta-item">
+                                    <span class="meta-lbl">Health Locker Status</span>
+                                    <strong class="meta-txt text-emerald">Active Synced (3 Records)</strong>
+                                </div>
+                            </div>
+
+                            <!-- QR Code -->
+                            <div class="token-qr-section">
+                                <div class="token-qr-box">
+                                    <svg width="64" height="64" viewBox="0 0 24 24" fill="#1e293b">
+                                        <rect x="2" y="2" width="8" height="8" rx="1" fill="none" stroke="#059669" stroke-width="2"/>
+                                        <rect x="4" y="4" width="4" height="4" fill="#059669"/>
+                                        <rect x="14" y="2" width="8" height="8" rx="1" fill="none" stroke="#059669" stroke-width="2"/>
+                                        <rect x="16" y="4" width="4" height="4" fill="#059669"/>
+                                        <rect x="2" y="14" width="8" height="8" rx="1" fill="none" stroke="#059669" stroke-width="2"/>
+                                        <rect x="4" y="16" width="4" height="4" fill="#059669"/>
+                                        <rect x="14" y="14" width="3" height="3" fill="#059669"/>
+                                        <rect x="19" y="14" width="3" height="3" fill="#059669"/>
+                                        <rect x="14" y="19" width="3" height="3" fill="#059669"/>
+                                        <rect x="19" y="19" width="3" height="3" fill="#059669"/>
+                                    </svg>
+                                </div>
+                                <span class="qr-label">Scan at Room Kiosk</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="token-actions-row" style="max-width:100%;">
+                        <button type="button" class="btn-token-action btn-print-token" id="btn-print-followup">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+                            <span>Print Token Pass</span>
+                        </button>
+                        <button type="button" class="btn-token-action btn-speak-token" id="btn-speak-followup">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                            <span>Listen to Audio</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Prescription Refill Confirmation Modal Overlay -->
+            <div class="followup-token-modal" id="prescription-refill-modal" style="display:none;">
+                <div class="followup-token-backdrop" id="close-refill-backdrop"></div>
+                <div class="followup-token-card-box refill-modal-box">
+                    <div class="followup-token-header">
+                        <div class="token-modal-check" style="background:#2563eb;">💊</div>
+                        <div>
+                            <h3 class="token-modal-title">Prescription Refill Ordered</h3>
+                            <p class="token-modal-sub">E-Prescription transferred to Hospital Pharmacy</p>
+                        </div>
+                        <button type="button" class="btn-close-followup-modal" id="btn-close-refill-modal">&times;</button>
+                    </div>
+
+                    <!-- Refill Card Details -->
+                    <div class="refill-order-card">
+                        <div class="refill-order-top">
+                            <div>
+                                <span class="refill-ord-label">Refill Order ID:</span>
+                                <strong class="refill-ord-id" id="refill-order-id">#RX-9428</strong>
+                            </div>
+                            <span class="refill-status-badge">🟢 Sent to Pharmacy</span>
+                        </div>
+
+                        <div class="refill-meds-summary" id="refill-meds-summary">
+                            <!-- Injected dynamically -->
+                        </div>
+
+                        <div class="refill-pickup-details">
+                            <div class="pickup-row">
+                                <span class="pickup-icon">🏥</span>
+                                <div>
+                                    <strong>Apollo 24/7 Hospital Pharmacy Counter</strong>
+                                    <p>Ground Floor, Block B • Ready for express pickup in ~10 mins</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="token-actions-row" style="max-width:100%; margin-top: 14px;">
+                        <button type="button" class="btn-token-action btn-print-token" id="btn-print-refill">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+                            <span>Print Refill Slip</span>
+                        </button>
+                        <button type="button" class="btn-token-action btn-speak-token" id="btn-done-refill">
+                            <span>Done & Close</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Clinical Explanation & Reactivation Assessment Summary Modal -->
+            <div class="followup-token-modal" id="reactivation-summary-modal" style="display:none;">
+                <div class="followup-token-backdrop" id="close-react-summary-backdrop"></div>
+                <div class="followup-token-card-box" style="max-width: 620px;">
+                    <div class="followup-token-header">
+                        <div class="token-modal-check" style="background:#059669;">✨</div>
+                        <div>
+                            <h3 class="token-modal-title">Clinical Assessment Summary</h3>
+                            <p class="token-modal-sub">ArogyaAI Intake & Condition Reactivation Evaluation</p>
+                        </div>
+                        <button type="button" class="btn-close-followup-modal" id="btn-close-react-summary">&times;</button>
+                    </div>
+
+                    <!-- Clinical Summary Matrix -->
+                    <div class="clinical-summary-card" style="margin: 16px 0; max-width: 100%;">
+                        <div class="summary-card-header">
+                            <span class="summary-tag-badge">AI Clinical Review</span>
+                            <span class="summary-triage-pill triage-moderate" id="react-summary-triage">Moderate Priority</span>
+                        </div>
+
+                        <div class="summary-meta-grid">
+                            <div class="sum-item">
+                                <span class="sum-lbl">Patient Name</span>
+                                <strong class="sum-val" id="react-sum-name">Rahul Verma</strong>
+                            </div>
+                            <div class="sum-item">
+                                <span class="sum-lbl">ABHA ID</span>
+                                <strong class="sum-val" id="react-sum-abha">91-4820-1928-3746</strong>
+                            </div>
+                            <div class="sum-item" style="grid-column: 1 / -1;">
+                                <span class="sum-lbl">Reported Health Update / Explanation</span>
+                                <strong class="sum-val text-blue" id="react-sum-complaint">Morning dizziness and recurring chest heaviness</strong>
+                            </div>
+                            <div class="sum-item" style="grid-column: 1 / -1;">
+                                <span class="sum-lbl">Condition Status</span>
+                                <strong class="sum-val text-emerald" id="react-sum-status">Hypertension Maintenance + Bronchitis Reactivated</strong>
+                            </div>
+                            <div class="sum-item" style="grid-column: 1 / -1;">
+                                <span class="sum-lbl">Assigned Doctor & Department</span>
+                                <strong class="sum-val" id="react-sum-doctor">Dr. Rajesh Iyer (MD Cardiology & Internal Medicine • Room #2)</strong>
+                            </div>
+                        </div>
+
+                        <div class="summary-routing-box" style="margin-top:12px;">
+                            <div class="routing-icon">🩺</div>
+                            <div class="routing-details">
+                                <strong class="routing-dr">Clinical Guidance Note:</strong>
+                                <span class="routing-loc" id="react-sum-guidance">Symptom escalation recorded in active EHR chart. Priority OPD token generated for immediate physician review.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Button to Issue Token -->
+                    <div class="token-actions-row" style="max-width:100%;">
+                        <button type="button" class="btn-token-action btn-print-token" id="btn-confirm-react-token" style="background:#059669;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                            <span>Confirm & Generate Priority Doctor Token</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Brand Footer -->
+            <footer class="ongoing-care-footer">
+                <span>Powered by <strong>ArogyaCare EHR</strong></span>
+                <span class="footer-dot">•</span>
+                <span>ABDM Integrated</span>
+                <span class="footer-dot">•</span>
+                <span>Fast-Track Follow-up</span>
+                <span class="footer-dot">•</span>
+                <span>Encrypted Health Locker</span>
+            </footer>
+        </div>
+    </div>
+
     <!-- Our Services Page View -->
     <div class="services-page-view" id="services-page">
         <!-- Background Layer -->
