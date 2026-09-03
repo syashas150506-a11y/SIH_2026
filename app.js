@@ -3002,6 +3002,12 @@ document.addEventListener('DOMContentLoaded', () => {
             openAboutPage();
         } else if (h === 'contact') {
             openContactPage();
+        } else if (h === 'doctor') {
+            openDoctorDashboard();
+        } else if (h === 'pharmacy') {
+            openPharmacyDashboard();
+        } else if (h === 'my-medicines') {
+            openPatientMedsModal();
         }
     });
 
@@ -3136,4 +3142,905 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Call updateNavTokenBadge on startup
     updateNavTokenBadge();
+
+    // ==========================================================================
+    // DOCTOR CONSULTATION & DIGITAL PRESCRIPTION SYSTEM
+    // ==========================================================================
+    const doctorDashboardPage = document.getElementById('doctor-dashboard-page');
+    const navDoctorBtn = document.getElementById('nav-doctor-btn');
+    const docDashGoBack = document.getElementById('doc-dash-go-back');
+    const docPatientQueueList = document.getElementById('doc-patient-queue-list');
+    const countAll = document.getElementById('count-all');
+    const countWait = document.getElementById('count-wait');
+    const countDone = document.getElementById('count-done');
+    const docQueueCounterTxt = document.getElementById('doc-queue-counter-txt');
+
+    // Doctor Patient State Data
+    let activeDoctorPatientId = 'p1';
+    let doctorQueueData = [
+        {
+            id: 'p1',
+            name: 'Rahul Verma',
+            token: '#MC-8492',
+            abha: '91-4820-1928-3746',
+            ageGender: '32 Yrs • Male • O+ Positive',
+            visitType: 'Follow-up & Flare-up',
+            risk: 'Moderate',
+            status: 'In Consultation',
+            reason: 'Returning wheezing, nocturnal cough & morning dizziness',
+            symptoms: 'Persistent Cough, Chest tightness (Moderate • 2-3 Days)',
+            vitals: 'BP 132/86 mmHg • HR 78 bpm • SpO2 98% • Temp 98.6°F',
+            history: 'Essential Hypertension (1 Yr) • Allergic Bronchitis (Resolved 3 mos ago)',
+            observations: 'Symptom pattern suggests mild bronchospasm flare-up secondary to seasonal allergen exposure. Blood pressure shows mild elevation from baseline. Medication adherence to Telmisartan is high (94%).',
+            defaultAssessment: 'Patient alert and oriented. Bilateral mild expiratory wheezing noted on auscultation. Heart sounds regular. Blood pressure slightly elevated at 132/86 mmHg.',
+            defaultDiagnosis: 'Essential Hypertension with Seasonal Bronchitis Flare-up',
+            defaultNotes: 'Avoid cold beverages and dust exposure. Follow up in 7 days for pulmonary review.',
+            defaultTests: 'Peak Flow Spirometry, Serum Potassium',
+            defaultFollowup: '7 Days (1 Week)',
+            prescriptions: [
+                {
+                    name: 'Telmisartan Tablets',
+                    strength: '40 mg',
+                    dosage: '1 Tablet',
+                    frequency: 'Once Daily',
+                    duration: '30 Days',
+                    timings: ['morning'],
+                    instructions: 'Take after breakfast with water. Do not skip doses.'
+                },
+                {
+                    name: 'Budecort 200 Rotacaps / Inhaler',
+                    strength: '200 mcg',
+                    dosage: '2 Puffs',
+                    frequency: 'Twice Daily',
+                    duration: '14 Days',
+                    timings: ['morning', 'night'],
+                    instructions: 'Inhale 2 puffs morning and night. Rinse mouth with water after inhalation.'
+                }
+            ]
+        },
+        {
+            id: 'p2',
+            name: 'Sunita Sharma',
+            token: '#OPD-3041',
+            abha: '45-1029-3847-5612',
+            ageGender: '48 Yrs • Female • B+ Positive',
+            visitType: 'New Consultation',
+            risk: 'High',
+            status: 'Waiting',
+            reason: 'Severe acid reflux and retrosternal burning sensation after meals',
+            symptoms: 'Acid regurgitation, epigastric burning (Severe • 4 Days)',
+            vitals: 'BP 124/80 mmHg • HR 72 bpm • SpO2 99% • Temp 98.4°F',
+            history: 'No known prior chronic diseases. Occasional NSAID analgesic use for knee pain.',
+            observations: 'Classic presentation of acute GERD flare. Epigastric tenderness on palpation. Advise PPI therapy and dietary modifications.',
+            defaultAssessment: 'Epigastric tenderness present without rebound. Bowel sounds normal. ECG within normal limits.',
+            defaultDiagnosis: 'Gastroesophageal Reflux Disease (GERD)',
+            defaultNotes: 'Avoid spicy and oily food. Elevate head of bed during sleep.',
+            defaultTests: 'Upper GI Endoscopy if symptoms persist > 2 weeks',
+            defaultFollowup: '14 Days (2 Weeks)',
+            prescriptions: [
+                {
+                    name: 'Pantoprazole Gastro-Resistant',
+                    strength: '40 mg',
+                    dosage: '1 Tablet',
+                    frequency: 'Once Daily',
+                    duration: '14 Days',
+                    timings: ['morning'],
+                    instructions: 'Take 30 minutes before breakfast on empty stomach.'
+                },
+                {
+                    name: 'Sucralfate Oral Suspension',
+                    strength: '1000 mg / 10ml',
+                    dosage: '10 ml',
+                    frequency: 'Twice Daily',
+                    duration: '7 Days',
+                    timings: ['lunch', 'night'],
+                    instructions: 'Take 1 hour before lunch and dinner for mucosal coating.'
+                }
+            ]
+        },
+        {
+            id: 'p3',
+            name: 'Amit Kumar',
+            token: '#OPD-5519',
+            abha: '78-9921-4456-1123',
+            ageGender: '27 Yrs • Male • A+ Positive',
+            visitType: 'New Consultation',
+            risk: 'Low',
+            status: 'Waiting',
+            reason: 'Frontal headache and body aches following seasonal change',
+            symptoms: 'Throbbing headache, mild feverish feeling (1-2 Days)',
+            vitals: 'BP 118/76 mmHg • HR 82 bpm • SpO2 99% • Temp 99.2°F',
+            history: 'Occasional tension headache. Non-smoker.',
+            observations: 'Mild viral prodrome with tension headache. Advise oral hydration and symptomatic analgesic.',
+            defaultAssessment: 'General examination normal. Pharynx mildly congested. No neck stiffness.',
+            defaultDiagnosis: 'Tension Headache & Mild Viral Pyrexia',
+            defaultNotes: 'Adequate hydration (3L/day). Rest in dark quiet room during acute headache.',
+            defaultTests: 'Complete Blood Count (CBC) if fever exceeds 101°F',
+            defaultFollowup: 'No Follow-up Required',
+            prescriptions: [
+                {
+                    name: 'Paracetamol Tablets IP',
+                    strength: '650 mg',
+                    dosage: '1 Tablet',
+                    frequency: 'SOS / Thrice Daily',
+                    duration: '3 Days',
+                    timings: ['morning', 'lunch', 'night'],
+                    instructions: 'Take after meals for fever or severe headache. Max 3 tabs/day.'
+                }
+            ]
+        }
+    ];
+
+    function openDoctorDashboard() {
+        closeArogyaIntake();
+        closeOngoingCarePage();
+        closeStatusPage();
+        closeServicesPage();
+        closeAboutPage();
+        closeContactPage();
+        closePharmacyDashboard();
+        if (doctorDashboardPage) doctorDashboardPage.style.display = 'block';
+        saveAppState('doctor');
+        renderDoctorQueue('all');
+        loadPatientIntoConsultation(activeDoctorPatientId);
+    }
+
+    function closeDoctorDashboard() {
+        if (doctorDashboardPage) doctorDashboardPage.style.display = 'none';
+        saveAppState('home');
+    }
+
+    if (navDoctorBtn) navDoctorBtn.addEventListener('click', openDoctorDashboard);
+    if (docDashGoBack) docDashGoBack.addEventListener('click', closeDoctorDashboard);
+
+    // Queue Filter Tabs
+    document.querySelectorAll('.queue-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.queue-tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            const filter = tab.getAttribute('data-filter') || 'all';
+            renderDoctorQueue(filter);
+        });
+    });
+
+    function renderDoctorQueue(filter = 'all') {
+        if (!docPatientQueueList) return;
+        docPatientQueueList.innerHTML = '';
+
+        let filtered = doctorQueueData;
+        if (filter === 'waiting') {
+            filtered = doctorQueueData.filter(p => p.status === 'Waiting');
+        } else if (filter === 'completed') {
+            filtered = doctorQueueData.filter(p => p.status === 'Completed');
+        }
+
+        // Update counts
+        const allC = doctorQueueData.length;
+        const waitC = doctorQueueData.filter(p => p.status === 'Waiting').length;
+        const doneC = doctorQueueData.filter(p => p.status === 'Completed').length;
+        if (countAll) countAll.textContent = allC;
+        if (countWait) countWait.textContent = waitC;
+        if (countDone) countDone.textContent = doneC;
+        if (docQueueCounterTxt) docQueueCounterTxt.textContent = `${waitC + (doctorQueueData.find(p => p.status === 'In Consultation') ? 1 : 0)} Patients in Queue`;
+
+        filtered.forEach(p => {
+            const card = document.createElement('div');
+            card.className = `queue-patient-card ${p.id === activeDoctorPatientId ? 'active' : ''}`;
+            const riskClass = p.risk === 'High' ? 'risk-high' : (p.risk === 'Moderate' ? 'risk-moderate' : 'risk-low');
+            card.innerHTML = `
+                <div class="q-pat-top">
+                    <strong class="q-pat-name">${p.name}</strong>
+                    <span class="q-pat-token">${p.token}</span>
+                </div>
+                <div class="q-pat-meta">ABHA: ${p.abha} • ${p.ageGender.split('•')[0]}</div>
+                <div class="q-pat-badges">
+                    <span class="q-risk-pill ${riskClass}">⚡ ${p.risk} Risk</span>
+                    <span class="pat-status-pill ${p.status === 'Completed' ? 'status-active' : (p.status === 'In Consultation' ? 'status-in-consult' : 'status-cured')}">${p.status}</span>
+                </div>
+            `;
+
+            card.addEventListener('click', () => {
+                activeDoctorPatientId = p.id;
+                document.querySelectorAll('.queue-patient-card').forEach(c => c.classList.remove('active'));
+                card.classList.add('active');
+                loadPatientIntoConsultation(p.id);
+            });
+
+            docPatientQueueList.appendChild(card);
+        });
+    }
+
+    function loadPatientIntoConsultation(patientId) {
+        const p = doctorQueueData.find(item => item.id === patientId) || doctorQueueData[0];
+        if (!p) return;
+
+        // Set banner
+        const elName = document.getElementById('doc-pat-name');
+        const elToken = document.getElementById('doc-pat-token');
+        const elAbha = document.getElementById('doc-pat-abha');
+        const elDemo = document.getElementById('doc-pat-demographics');
+        const elVisit = document.getElementById('doc-pat-visittype');
+        const elRisk = document.getElementById('doc-pat-riskbadge');
+        const elStatus = document.getElementById('doc-pat-status-pill');
+
+        if (elName) elName.textContent = p.name;
+        if (elToken) elToken.textContent = p.token;
+        if (elAbha) elAbha.textContent = p.abha;
+        if (elDemo) elDemo.textContent = p.ageGender;
+        if (elVisit) elVisit.textContent = p.visitType;
+        if (elRisk) {
+            elRisk.className = `ai-risk-badge ${p.risk === 'High' ? 'risk-high' : (p.risk === 'Moderate' ? 'risk-moderate' : 'risk-low')}`;
+            elRisk.textContent = `⚡ ${p.risk} Risk`;
+        }
+        if (elStatus) {
+            elStatus.textContent = p.status;
+            elStatus.className = `pat-status-pill ${p.status === 'Completed' ? 'status-active' : 'status-in-consult'}`;
+        }
+
+        // Set AI summary fields
+        const elReason = document.getElementById('doc-ai-reason');
+        const elSymptoms = document.getElementById('doc-ai-symptoms');
+        const elVitals = document.getElementById('doc-ai-vitals');
+        const elHistory = document.getElementById('doc-ai-history');
+        const elObs = document.getElementById('doc-ai-observations');
+
+        if (elReason) elReason.textContent = p.reason;
+        if (elSymptoms) elSymptoms.textContent = p.symptoms;
+        if (elVitals) elVitals.textContent = p.vitals;
+        if (elHistory) elHistory.textContent = p.history;
+        if (elObs) elObs.textContent = p.observations;
+
+        // Set form defaults
+        const elAssess = document.getElementById('doc-clinical-assessment');
+        const elDiag = document.getElementById('doc-diagnosis-select');
+        const elNotes = document.getElementById('doc-consult-notes');
+        const elTests = document.getElementById('doc-tests-input');
+        const elFollowup = document.getElementById('doc-followup-select');
+
+        if (elAssess) elAssess.value = p.defaultAssessment || '';
+        if (elDiag) elDiag.value = p.defaultDiagnosis || elDiag.options[0].value;
+        if (elNotes) elNotes.value = p.defaultNotes || '';
+        if (elTests) elTests.value = p.defaultTests || '';
+        if (elFollowup) elFollowup.value = p.defaultFollowup || '7 Days (1 Week)';
+
+        // Render Prescription Builder rows
+        renderRxBuilderRows(p.prescriptions);
+    }
+
+    // Prescription Builder Rows
+    let activeBuilderRx = [];
+    const rxMedicinesBuilderList = document.getElementById('rx-medicines-builder-list');
+    const btnAddMedicineRow = document.getElementById('btn-add-medicine-row');
+
+    function renderRxBuilderRows(medsArray) {
+        if (!rxMedicinesBuilderList) return;
+        activeBuilderRx = medsArray ? JSON.parse(JSON.stringify(medsArray)) : [];
+        rxMedicinesBuilderList.innerHTML = '';
+
+        activeBuilderRx.forEach((med, idx) => {
+            const row = document.createElement('div');
+            row.className = 'rx-builder-row';
+            row.innerHTML = `
+                <div class="rx-row-top">
+                    <div>
+                        <label style="font-size:11px; font-weight:700; color:#64748b; display:block; margin-bottom:4px;">Medicine Name</label>
+                        <input type="text" class="consult-input rx-field-name" value="${med.name}" placeholder="Medicine Name (e.g. Telmisartan)">
+                    </div>
+                    <div>
+                        <label style="font-size:11px; font-weight:700; color:#64748b; display:block; margin-bottom:4px;">Strength</label>
+                        <input type="text" class="consult-input rx-field-strength" value="${med.strength}" placeholder="e.g. 40 mg">
+                    </div>
+                    <div>
+                        <label style="font-size:11px; font-weight:700; color:#64748b; display:block; margin-bottom:4px;">Dosage</label>
+                        <input type="text" class="consult-input rx-field-dosage" value="${med.dosage}" placeholder="e.g. 1 Tab / 2 Puffs">
+                    </div>
+                    <div>
+                        <label style="font-size:11px; font-weight:700; color:#64748b; display:block; margin-bottom:4px;">Duration</label>
+                        <input type="text" class="consult-input rx-field-duration" value="${med.duration}" placeholder="e.g. 14 Days">
+                    </div>
+                    <div style="padding-top:16px;">
+                        <button type="button" class="btn-remove-med" data-idx="${idx}" title="Remove Medicine">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="rx-row-timing-box">
+                    <span class="timing-label">Intake Timing:</span>
+                    <div class="timing-checkbox-group">
+                        <label class="timing-opt">
+                            <input type="checkbox" class="rx-timing-chk" value="morning" ${med.timings && med.timings.includes('morning') ? 'checked' : ''}>
+                            <span>🌅 After Breakfast</span>
+                        </label>
+                        <label class="timing-opt">
+                            <input type="checkbox" class="rx-timing-chk" value="lunch" ${med.timings && med.timings.includes('lunch') ? 'checked' : ''}>
+                            <span>☀️ After Lunch</span>
+                        </label>
+                        <label class="timing-opt">
+                            <input type="checkbox" class="rx-timing-chk" value="night" ${med.timings && med.timings.includes('night') ? 'checked' : ''}>
+                            <span>🌙 After Dinner</span>
+                        </label>
+                        <label class="timing-opt">
+                            <input type="checkbox" class="rx-timing-chk" value="bedtime" ${med.timings && med.timings.includes('bedtime') ? 'checked' : ''}>
+                            <span>💤 Before Sleep</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div>
+                    <input type="text" class="consult-input rx-field-inst" value="${med.instructions || ''}" placeholder="Patient instructions (e.g. Take with warm water / Rinse mouth after inhalation)">
+                </div>
+            `;
+
+            // Attach Remove listener
+            const removeBtn = row.querySelector('.btn-remove-med');
+            if (removeBtn) {
+                removeBtn.addEventListener('click', () => {
+                    activeBuilderRx.splice(idx, 1);
+                    renderRxBuilderRows(activeBuilderRx);
+                });
+            }
+
+            rxMedicinesBuilderList.appendChild(row);
+        });
+    }
+
+    if (btnAddMedicineRow) {
+        btnAddMedicineRow.addEventListener('click', () => {
+            activeBuilderRx.push({
+                name: 'Pantoprazole Gastro-Resistant',
+                strength: '40 mg',
+                dosage: '1 Tablet',
+                frequency: 'Once Daily',
+                duration: '7 Days',
+                timings: ['morning'],
+                instructions: 'Take 30 mins before breakfast.'
+            });
+            renderRxBuilderRows(activeBuilderRx);
+            showToast('Added new medicine entry');
+        });
+    }
+
+    // Toggle Medical History Timeline
+    const btnToggleHistory = document.getElementById('btn-toggle-history');
+    const historyTimelineBody = document.getElementById('history-timeline-body');
+    const historyToggleTxt = document.getElementById('history-toggle-txt');
+
+    if (btnToggleHistory && historyTimelineBody) {
+        btnToggleHistory.addEventListener('click', () => {
+            const isHidden = historyTimelineBody.style.display === 'none';
+            historyTimelineBody.style.display = isHidden ? 'block' : 'none';
+            if (historyToggleTxt) historyToggleTxt.textContent = isHidden ? 'Collapse Timeline ▲' : 'Expand Timeline ▼';
+        });
+    }
+
+    // Save Consultation Draft
+    const btnDocSaveDraft = document.getElementById('btn-doc-save-draft');
+    if (btnDocSaveDraft) {
+        btnDocSaveDraft.addEventListener('click', () => {
+            const p = doctorQueueData.find(item => item.id === activeDoctorPatientId);
+            showToast(`✓ Consultation notes draft saved for ${p ? p.name : 'Patient'}.`);
+        });
+    }
+
+    // ==========================================================================
+    // PRESCRIPTION REVIEW & CONFIRMATION MODAL
+    // ==========================================================================
+    const btnDocReviewRx = document.getElementById('btn-doc-review-rx');
+    const prescriptionReviewModal = document.getElementById('prescription-review-modal');
+    const closeRxReviewModal = document.getElementById('close-rx-review-modal');
+    const btnEditRxBack = document.getElementById('btn-edit-rx-back');
+    const btnConfirmSendPharmacy = document.getElementById('btn-confirm-send-pharmacy');
+
+    let currentReviewPrescription = null;
+
+    if (btnDocReviewRx) {
+        btnDocReviewRx.addEventListener('click', () => {
+            const p = doctorQueueData.find(item => item.id === activeDoctorPatientId);
+            if (!p) return;
+
+            // Collect active rows from DOM
+            const compiledMeds = [];
+            const rowElements = document.querySelectorAll('.rx-builder-row');
+            rowElements.forEach(row => {
+                const name = row.querySelector('.rx-field-name')?.value.trim();
+                const strength = row.querySelector('.rx-field-strength')?.value.trim();
+                const dosage = row.querySelector('.rx-field-dosage')?.value.trim();
+                const duration = row.querySelector('.rx-field-duration')?.value.trim();
+                const inst = row.querySelector('.rx-field-inst')?.value.trim();
+                const timings = [];
+                row.querySelectorAll('.rx-timing-chk:checked').forEach(c => timings.push(c.value));
+
+                if (name) {
+                    compiledMeds.push({
+                        name,
+                        strength: strength || 'Standard',
+                        dosage: dosage || '1 Unit',
+                        duration: duration || '5 Days',
+                        instructions: inst || 'Take as directed.',
+                        timings
+                    });
+                }
+            });
+
+            if (compiledMeds.length === 0) {
+                showToast('Please add at least one prescribed medicine.');
+                return;
+            }
+
+            const diagVal = document.getElementById('doc-diagnosis-select')?.value || p.defaultDiagnosis;
+            const followupVal = document.getElementById('doc-followup-select')?.value || '7 Days';
+
+            currentReviewPrescription = {
+                rxId: 'RX-2026-00' + Math.floor(100 + Math.random() * 900),
+                patientId: p.id,
+                patientName: p.name,
+                abha: p.abha,
+                ageGender: p.ageGender,
+                diagnosis: diagVal,
+                doctor: 'Dr. Rajesh Iyer, MD',
+                followup: followupVal,
+                date: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+                medicines: compiledMeds
+            };
+
+            // Populate Review Modal
+            const elRxId = document.getElementById('review-rx-id');
+            const elPat = document.getElementById('review-rx-patient');
+            const elAbha = document.getElementById('review-rx-abha');
+            const elDiag = document.getElementById('review-rx-diag');
+            const elCount = document.getElementById('review-rx-count');
+            const elFollowup = document.getElementById('review-rx-followup');
+            const elMedsList = document.getElementById('review-rx-meds-list');
+
+            if (elRxId) elRxId.textContent = currentReviewPrescription.rxId;
+            if (elPat) elPat.textContent = `${p.name} (${p.ageGender.split('•')[0]})`;
+            if (elAbha) elAbha.textContent = p.abha;
+            if (elDiag) elDiag.textContent = currentReviewPrescription.diagnosis;
+            if (elCount) elCount.textContent = compiledMeds.length;
+            if (elFollowup) elFollowup.textContent = followupVal;
+
+            if (elMedsList) {
+                elMedsList.innerHTML = compiledMeds.map((m, i) => `
+                    <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:10px; padding:10px 12px; display:flex; justify-content:space-between; align-items:center;">
+                        <div>
+                            <strong style="font-size:13px; color:#0f172a;">${i + 1}. ${m.name} (${m.strength})</strong>
+                            <div style="font-size:11.5px; color:#2563eb; margin-top:2px;">
+                                ${m.dosage} • ${m.timings.map(t => t === 'morning' ? '🌅 Morning' : (t === 'lunch' ? '☀️ Lunch' : '🌙 Night')).join(' + ') || 'Daily'} • ${m.duration}
+                            </div>
+                            <span style="font-size:11px; color:#64748b; font-style:italic;">${m.instructions}</span>
+                        </div>
+                        <span style="background:#eff6ff; color:#2563eb; border:1px solid #bfdbfe; font-size:11px; font-weight:700; padding:2px 8px; border-radius:6px;">Approved</span>
+                    </div>
+                `).join('');
+            }
+
+            if (prescriptionReviewModal) prescriptionReviewModal.classList.add('active');
+        });
+    }
+
+    if (closeRxReviewModal) {
+        closeRxReviewModal.addEventListener('click', () => {
+            if (prescriptionReviewModal) prescriptionReviewModal.classList.remove('active');
+        });
+    }
+
+    if (btnEditRxBack) {
+        btnEditRxBack.addEventListener('click', () => {
+            if (prescriptionReviewModal) prescriptionReviewModal.classList.remove('active');
+        });
+    }
+
+    if (btnConfirmSendPharmacy) {
+        btnConfirmSendPharmacy.addEventListener('click', () => {
+            if (!currentReviewPrescription) return;
+
+            // 1. Add order to Pharmacy queue
+            pharmacyOrdersData.unshift({
+                rxId: currentReviewPrescription.rxId,
+                patientName: currentReviewPrescription.patientName,
+                abha: currentReviewPrescription.abha,
+                doctor: currentReviewPrescription.doctor,
+                date: `Today • ${currentReviewPrescription.date}`,
+                status: 'Ready',
+                medicines: currentReviewPrescription.medicines
+            });
+
+            // 2. Mark doctor patient status completed
+            const p = doctorQueueData.find(item => item.id === currentReviewPrescription.patientId);
+            if (p) {
+                p.status = 'Completed';
+                p.prescriptions = currentReviewPrescription.medicines;
+            }
+
+            // 3. Update Patient Ongoing Care prescriptions
+            if (ongoingDemoProfiles[activeDemoKey]) {
+                ongoingDemoProfiles[activeDemoKey].prescriptions = currentReviewPrescription.medicines.map(m => ({
+                    name: `${m.name} ${m.strength}`,
+                    dosage: `${m.dosage} (${m.timings.join('+')})`,
+                    time: m.timings.includes('night') ? 'Bedtime • 10:00 PM' : 'Morning • 8:30 AM',
+                    stock: 'Dispatched to Pharmacy'
+                }));
+            }
+
+            // 4. Update live tracker
+            updatePatientMedsSchedule(currentReviewPrescription);
+
+            if (prescriptionReviewModal) prescriptionReviewModal.classList.remove('active');
+            renderDoctorQueue('all');
+            loadPatientIntoConsultation(activeDoctorPatientId);
+
+            showToast(`🚀 Prescription ${currentReviewPrescription.rxId} dispatched to Hospital Pharmacy!`);
+
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const u = new SpeechSynthesisUtterance(`Prescription ${currentReviewPrescription.rxId.replace('-', ' ')} confirmed and sent to Hospital Pharmacy for dispensing.`);
+                u.rate = 0.95;
+                window.speechSynthesis.speak(u);
+            }
+        });
+    }
+
+    // ==========================================================================
+    // HOSPITAL PHARMACY PORTAL CONTROLLER
+    // ==========================================================================
+    const pharmacyDashboardPage = document.getElementById('pharmacy-dashboard-page');
+    const navPharmacyBtn = document.getElementById('nav-pharmacy-btn');
+    const pharmacyGoBack = document.getElementById('pharmacy-go-back');
+    const pharmacyOrdersGrid = document.getElementById('pharmacy-orders-grid');
+    const pharmacyAbhaSearch = document.getElementById('pharmacy-abha-search');
+    const btnPharmVerifyAbha = document.getElementById('btn-pharm-verify-abha');
+    const pharmPendingCounterTxt = document.getElementById('pharm-pending-counter-txt');
+
+    let pharmacyFilter = 'all';
+    let pharmacyOrdersData = [
+        {
+            rxId: 'RX-2026-00124',
+            patientName: 'Rahul Verma',
+            abha: '91-4820-1928-3746',
+            doctor: 'Dr. Rajesh Iyer',
+            date: 'Today • 11:20 AM',
+            status: 'Ready',
+            medicines: [
+                {
+                    name: 'Telmisartan Tablets',
+                    strength: '40 mg',
+                    dosage: '1 Tablet',
+                    duration: '30 Days',
+                    timings: ['morning'],
+                    instructions: 'Take after breakfast.'
+                },
+                {
+                    name: 'Budecort 200 Rotacaps Inhaler',
+                    strength: '200 mcg',
+                    dosage: '2 Puffs',
+                    duration: '14 Days',
+                    timings: ['morning', 'night'],
+                    instructions: 'Inhale 2 puffs morning & night.'
+                }
+            ]
+        },
+        {
+            rxId: 'RX-2026-00120',
+            patientName: 'Sunita Sharma',
+            abha: '45-1029-3847-5612',
+            doctor: 'Dr. Priya Sharma',
+            date: 'Today • 10:45 AM',
+            status: 'Pending',
+            medicines: [
+                {
+                    name: 'Pantoprazole Gastro-Resistant',
+                    strength: '40 mg',
+                    dosage: '1 Tablet',
+                    duration: '14 Days',
+                    timings: ['morning'],
+                    instructions: 'Take 30 mins before breakfast.'
+                }
+            ]
+        }
+    ];
+
+    function openPharmacyDashboard() {
+        closeArogyaIntake();
+        closeOngoingCarePage();
+        closeStatusPage();
+        closeServicesPage();
+        closeAboutPage();
+        closeContactPage();
+        closeDoctorDashboard();
+        if (pharmacyDashboardPage) pharmacyDashboardPage.style.display = 'block';
+        saveAppState('pharmacy');
+        renderPharmacyOrders(pharmacyFilter, '');
+    }
+
+    function closePharmacyDashboard() {
+        if (pharmacyDashboardPage) pharmacyDashboardPage.style.display = 'none';
+        saveAppState('home');
+    }
+
+    if (navPharmacyBtn) navPharmacyBtn.addEventListener('click', openPharmacyDashboard);
+    if (pharmacyGoBack) pharmacyGoBack.addEventListener('click', closePharmacyDashboard);
+
+    // Filter tabs
+    document.querySelectorAll('.pharm-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.pharm-tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            pharmacyFilter = tab.getAttribute('data-filter') || 'all';
+            const query = pharmacyAbhaSearch ? pharmacyAbhaSearch.value.trim() : '';
+            renderPharmacyOrders(pharmacyFilter, query);
+        });
+    });
+
+    // ABHA Search & Instant Retrieval
+    if (pharmacyAbhaSearch) {
+        pharmacyAbhaSearch.addEventListener('input', () => {
+            const query = pharmacyAbhaSearch.value.trim();
+            renderPharmacyOrders(pharmacyFilter, query);
+        });
+    }
+
+    if (btnPharmVerifyAbha) {
+        btnPharmVerifyAbha.addEventListener('click', () => {
+            const query = pharmacyAbhaSearch ? pharmacyAbhaSearch.value.trim() : '';
+            if (!query) {
+                showToast('Please enter an ABHA ID or patient name to verify.');
+                return;
+            }
+            renderPharmacyOrders('all', query);
+            const found = pharmacyOrdersData.find(o => o.abha.includes(query) || o.patientName.toLowerCase().includes(query.toLowerCase()));
+            if (found) {
+                showToast(`✓ ABHA Verified: Active prescription found for ${found.patientName}!`);
+            } else {
+                showToast(`No active prescription found matching "${query}".`);
+            }
+        });
+    }
+
+    function renderPharmacyOrders(filter = 'all', searchQuery = '') {
+        if (!pharmacyOrdersGrid) return;
+        pharmacyOrdersGrid.innerHTML = '';
+
+        let list = pharmacyOrdersData;
+        if (filter !== 'all') {
+            list = list.filter(o => o.status.toLowerCase() === filter.toLowerCase());
+        }
+        if (searchQuery) {
+            const q = searchQuery.toLowerCase();
+            list = list.filter(o => o.abha.toLowerCase().includes(q) || o.patientName.toLowerCase().includes(q) || o.rxId.toLowerCase().includes(q));
+        }
+
+        const pendingC = pharmacyOrdersData.filter(o => o.status === 'Pending' || o.status === 'Preparing').length;
+        if (pharmPendingCounterTxt) pharmPendingCounterTxt.textContent = `${pendingC} Orders Pending`;
+
+        if (list.length === 0) {
+            pharmacyOrdersGrid.innerHTML = `
+                <div style="grid-column:1 / -1; background:#ffffff; border:1.5px solid #e2e8f0; border-radius:18px; padding:36px; text-align:center;">
+                    <div style="font-size:32px; margin-bottom:10px;">📦</div>
+                    <strong style="font-size:16px; color:#0f172a; display:block;">No Prescriptions Found</strong>
+                    <p style="font-size:12.5px; color:#64748b; margin-top:4px;">No active pharmacy orders matching the selected filter or ABHA lookup.</p>
+                </div>
+            `;
+            return;
+        }
+
+        list.forEach((order, idx) => {
+            const card = document.createElement('div');
+            card.className = 'order-item-card';
+
+            const statusClass = order.status === 'Dispensed' ? 'badge-dispensed' : (order.status === 'Ready' ? 'badge-ready' : 'badge-pending');
+
+            card.innerHTML = `
+                <div class="order-card-header">
+                    <div>
+                        <div class="ord-id">${order.rxId}</div>
+                        <div class="ord-timestamp">${order.date} • Prescribed by ${order.doctor}</div>
+                    </div>
+                    <span class="ord-status-badge ${statusClass}">${order.status}</span>
+                </div>
+
+                <div class="ord-pat-info">
+                    <div><span style="color:#64748b;">Patient:</span> <strong>${order.patientName}</strong></div>
+                    <div><span style="color:#64748b;">ABHA ID:</span> <strong class="text-blue">${order.abha}</strong></div>
+                </div>
+
+                <div class="ord-meds-list">
+                    ${order.medicines.map(m => `
+                        <div class="ord-med-item">
+                            <div class="ord-med-main">
+                                <span class="ord-med-title">${m.name} (${m.strength})</span>
+                                <span class="ord-med-timing">⏰ ${m.timings ? m.timings.map(t => t === 'morning' ? '🌅 Morning' : (t === 'lunch' ? '☀️ Lunch' : '🌙 Night')).join(' • ') : 'Daily'} (${m.duration})</span>
+                            </div>
+                            <span class="ord-med-qty">${m.dosage}</span>
+                        </div>
+                    `).join('')}
+                </div>
+
+                <div class="ord-actions-bar">
+                    ${order.status === 'Pending' ? `
+                        <button type="button" class="btn btn-secondary btn-pharm-prep" data-rx="${order.rxId}" style="font-size:12px; padding:6px 12px;">
+                            Mark as Preparing
+                        </button>
+                    ` : ''}
+                    ${order.status !== 'Dispensed' ? `
+                        <button type="button" class="btn btn-primary btn-pharm-dispense" data-rx="${order.rxId}" style="background:#059669; border-color:#059669; font-size:12px; padding:6px 14px;">
+                            ✓ Mark as Dispensed
+                        </button>
+                    ` : `
+                        <span style="font-size:12px; color:#059669; font-weight:700;">✓ Sealed & Dispensed to Patient</span>
+                    `}
+                </div>
+            `;
+
+            // Attach Dispense listeners
+            const prepBtn = card.querySelector('.btn-pharm-prep');
+            if (prepBtn) {
+                prepBtn.addEventListener('click', () => {
+                    order.status = 'Preparing';
+                    renderPharmacyOrders(pharmacyFilter, searchQuery);
+                    showToast(`Order ${order.rxId} marked as Preparing in dispensary`);
+                });
+            }
+
+            const dispenseBtn = card.querySelector('.btn-pharm-dispense');
+            if (dispenseBtn) {
+                dispenseBtn.addEventListener('click', () => {
+                    if (confirm(`Confirm medicine packet collection & dispense for ${order.patientName} (ABHA: ${order.abha})?`)) {
+                        order.status = 'Dispensed';
+                        order.dispensedTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                        renderPharmacyOrders(pharmacyFilter, searchQuery);
+                        updatePatientMedsDispensed(order.rxId);
+                        showToast(`✓ Prescription ${order.rxId} successfully dispensed to ${order.patientName}!`);
+
+                        if ('speechSynthesis' in window) {
+                            window.speechSynthesis.cancel();
+                            const u = new SpeechSynthesisUtterance(`Prescription ${order.rxId.replace('-', ' ')} verified and dispensed for ${order.patientName}.`);
+                            u.rate = 0.95;
+                            window.speechSynthesis.speak(u);
+                        }
+                    }
+                });
+            }
+
+            pharmacyOrdersGrid.appendChild(card);
+        });
+    }
+
+    // ==========================================================================
+    // PATIENT "MY MEDICINES" & 5-STAGE TRACKER CONTROLLER
+    // ==========================================================================
+    const patientMedicinesModal = document.getElementById('patient-medicines-modal');
+    const navMedicinesBtn = document.getElementById('nav-medicines-btn');
+    const btnClosePatientMedsModal = document.getElementById('close-patient-meds-modal');
+    const trackerRxId = document.getElementById('tracker-rx-id');
+    const trackerOverallStatusPill = document.getElementById('tracker-overall-status-pill');
+    const patientScheduleList = document.getElementById('patient-schedule-list');
+
+    let patientMedsScheduleData = {
+        rxId: 'RX-2026-00124',
+        patientName: 'Rahul Verma',
+        abha: '91-4820-1928-3746',
+        status: 'Ready', // 'Pending', 'Ready', 'Dispensed'
+        medicines: [
+            {
+                name: 'Telmisartan Tablets',
+                strength: '40 mg',
+                dosage: '1 Tablet',
+                duration: '30 Days Remaining',
+                timings: ['morning'],
+                timeLabel: '🌅 Morning (After Breakfast • 8:30 AM)',
+                instructions: 'Take after breakfast with water.'
+            },
+            {
+                name: 'Budecort 200 Rotacaps Inhaler',
+                strength: '200 mcg',
+                dosage: '2 Puffs',
+                duration: '14 Days Remaining',
+                timings: ['morning', 'night'],
+                timeLabel: '🌅 Morning (8:30 AM) & 🌙 Night (9:00 PM)',
+                instructions: 'Inhale 2 puffs. Rinse mouth after use.'
+            }
+        ]
+    };
+
+    function openPatientMedsModal() {
+        renderPatientMedsModal();
+        if (patientMedicinesModal) patientMedicinesModal.classList.add('active');
+    }
+
+    function closePatientMedsModal() {
+        if (patientMedicinesModal) patientMedicinesModal.classList.remove('active');
+    }
+
+    if (navMedicinesBtn) navMedicinesBtn.addEventListener('click', openPatientMedsModal);
+    if (btnClosePatientMedsModal) btnClosePatientMedsModal.addEventListener('click', closePatientMedsModal);
+
+    if (patientMedicinesModal) {
+        patientMedicinesModal.addEventListener('click', (e) => {
+            if (e.target === patientMedicinesModal) {
+                patientMedicinesModal.classList.remove('active');
+            }
+        });
+    }
+
+    function updatePatientMedsSchedule(rxData) {
+        patientMedsScheduleData = {
+            rxId: rxData.rxId,
+            patientName: rxData.patientName,
+            abha: rxData.abha,
+            status: 'Ready',
+            medicines: rxData.medicines.map(m => ({
+                name: m.name,
+                strength: m.strength,
+                dosage: m.dosage,
+                duration: `${m.duration} Remaining`,
+                timings: m.timings,
+                timeLabel: m.timings.map(t => t === 'morning' ? '🌅 Morning (8:30 AM)' : (t === 'lunch' ? '☀️ Lunch (1:30 PM)' : '🌙 Night (9:00 PM)')).join(' • ') || 'Daily',
+                instructions: m.instructions
+            }))
+        };
+    }
+
+    function updatePatientMedsDispensed(rxId) {
+        if (patientMedsScheduleData && patientMedsScheduleData.rxId === rxId) {
+            patientMedsScheduleData.status = 'Dispensed';
+        }
+    }
+
+    function renderPatientMedsModal() {
+        const data = patientMedsScheduleData;
+        if (!data) return;
+
+        if (trackerRxId) trackerRxId.textContent = data.rxId;
+        if (trackerOverallStatusPill) {
+            trackerOverallStatusPill.textContent = data.status === 'Dispensed' ? '✓ Dispensed from Pharmacy' : (data.status === 'Ready' ? 'Ready for Pickup' : 'Sent to Pharmacy');
+            trackerOverallStatusPill.className = `rx-stage-pill ${data.status === 'Dispensed' ? 'stage-dispensed' : 'stage-ready'}`;
+        }
+
+        // Update 5-stage nodes
+        const node4 = document.getElementById('step-node-4');
+        const node5 = document.getElementById('step-node-5');
+        const bar3 = document.getElementById('bar-3');
+        const bar4 = document.getElementById('bar-4');
+        const circle4 = document.getElementById('circle-node-4');
+        const circle5 = document.getElementById('circle-node-5');
+
+        if (data.status === 'Dispensed') {
+            if (node4) { node4.className = 'tracker-step-node completed'; }
+            if (circle4) { circle4.textContent = '✓'; }
+            if (bar3) { bar3.className = 'tracker-connect-bar completed'; }
+            if (bar4) { bar4.className = 'tracker-connect-bar completed'; }
+            if (node5) { node5.className = 'tracker-step-node completed'; }
+            if (circle5) { circle5.textContent = '✓'; }
+        } else if (data.status === 'Ready') {
+            if (node4) { node4.className = 'tracker-step-node active'; }
+            if (circle4) { circle4.textContent = '4'; }
+            if (bar3) { bar3.className = 'tracker-connect-bar active'; }
+            if (bar4) { bar4.className = 'tracker-connect-bar'; }
+            if (node5) { node5.className = 'tracker-step-node'; }
+            if (circle5) { circle5.textContent = '5'; }
+        }
+
+        // Render schedule list
+        if (patientScheduleList) {
+            patientScheduleList.innerHTML = data.medicines.map(m => `
+                <div class="patient-schedule-item">
+                    <div>
+                        <div style="display:flex; align-items:center; gap:8px;">
+                            <strong style="font-size:14px; color:#0f172a;">${m.name}</strong>
+                            <span style="background:#eff6ff; color:#2563eb; border:1px solid #bfdbfe; padding:2px 7px; border-radius:6px; font-size:11px; font-weight:700;">${m.strength}</span>
+                        </div>
+                        <div style="margin-top:4px;">
+                            <span class="sched-timing-badge">${m.timeLabel}</span>
+                        </div>
+                        <p style="font-size:11.5px; color:#64748b; margin-top:4px;">${m.instructions}</p>
+                    </div>
+                    <div style="text-align:right;">
+                        <span style="font-size:11px; color:#059669; font-weight:700; display:block;">${m.duration}</span>
+                        <span style="font-size:12px; color:#334155; font-weight:600;">${m.dosage}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+    }
 });

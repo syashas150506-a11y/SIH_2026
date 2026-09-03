@@ -141,6 +141,9 @@
                     <li class="nav-item active">
                         <a href="#home" class="nav-link" id="nav-link-home">Home</a>
                     </li>
+                    <li class="nav-item"><a href="#doctor" class="nav-link" id="nav-doctor-btn">Doctor Portal</a></li>
+                    <li class="nav-item"><a href="#pharmacy" class="nav-link" id="nav-pharmacy-btn">Pharmacy</a></li>
+                    <li class="nav-item"><a href="#my-medicines" class="nav-link" id="nav-medicines-btn">My Medicines</a></li>
                     <li class="nav-item"><a href="#services" class="nav-link" id="nav-services-btn">Services</a></li>
                     <li class="nav-item"><a href="#about" class="nav-link" id="nav-about-btn">About Us</a></li>
                     <li class="nav-item"><a href="#contact" class="nav-link" id="nav-contact-btn">Contact</a></li>
@@ -2460,6 +2463,440 @@
                 <span class="footer-dot">•</span>
                 <span>Encrypted Health Locker</span>
             </footer>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+         DOCTOR CONSULTATION DASHBOARD PAGE
+         ========================================================================== -->
+    <div class="doctor-dashboard-view" id="doctor-dashboard-page" style="display:none;">
+        <div class="doc-dash-container">
+            <!-- Top Clinical Header -->
+            <header class="doc-dash-header">
+                <div class="doc-header-left">
+                    <div class="doc-badge-avatar">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"></path>
+                            <path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4"></path>
+                            <circle cx="20" cy="10" r="2"></circle>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="doc-dash-name">Dr. Rajesh Iyer, <span class="text-blue">MD</span></h2>
+                        <p class="doc-dash-sub">Cardiology & General Medicine • OPD Room #2 • Live Clinical Station</p>
+                    </div>
+                </div>
+
+                <div class="doc-header-actions">
+                    <div class="doc-queue-pill">
+                        <span class="pulse-dot-green"></span>
+                        <span id="doc-queue-counter-txt">3 Patients in Queue</span>
+                    </div>
+                    <button class="btn btn-secondary" id="doc-dash-go-back">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                        <span>Exit Station</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Main Doctor Dashboard 2-Column Grid -->
+            <div class="doc-dash-grid">
+                <!-- Left Column: Patient Triage Queue -->
+                <aside class="doc-queue-sidebar">
+                    <div class="doc-sidebar-header">
+                        <h3 class="queue-section-title">Today's Patient Queue</h3>
+                        <div class="queue-filter-tabs">
+                            <button class="queue-tab active" data-filter="all" id="tab-queue-all">All (<span id="count-all">3</span>)</button>
+                            <button class="queue-tab" data-filter="waiting" id="tab-queue-wait">Waiting (<span id="count-wait">2</span>)</button>
+                            <button class="queue-tab" data-filter="completed" id="tab-queue-done">Done (<span id="count-done">0</span>)</button>
+                        </div>
+                    </div>
+
+                    <div class="patient-queue-list" id="doc-patient-queue-list">
+                        <!-- Populated dynamically by app.js -->
+                    </div>
+                </aside>
+
+                <!-- Right Column: Patient Detail & Clinical Consultation Workspace -->
+                <main class="doc-workspace-panel" id="doc-workspace-panel">
+                    <!-- Patient Summary Banner -->
+                    <div class="doc-patient-banner" id="doc-patient-banner">
+                        <div class="banner-pat-left">
+                            <div class="pat-avatar-box" id="doc-pat-avatar">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                            </div>
+                            <div class="pat-meta-details">
+                                <div class="pat-name-row">
+                                    <h2 class="pat-name" id="doc-pat-name">Rahul Verma</h2>
+                                    <span class="pat-token-tag" id="doc-pat-token">#MC-8492</span>
+                                    <span class="pat-status-pill status-in-consult" id="doc-pat-status-pill">In Consultation</span>
+                                </div>
+                                <div class="pat-sub-meta">
+                                    <span id="doc-pat-demographics">32 Yrs • Male • O+ Positive</span>
+                                    <span class="meta-sep">•</span>
+                                    <span class="abha-verify-tag">ABHA: <strong id="doc-pat-abha">91-4820-1928-3746</strong> ✓ Verified</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="banner-pat-right">
+                            <span class="visit-type-pill" id="doc-pat-visittype">Follow-up & Flare-up</span>
+                            <span class="ai-risk-badge risk-moderate" id="doc-pat-riskbadge">⚡ Moderate Risk</span>
+                        </div>
+                    </div>
+
+                    <!-- AI-Generated Clinical Patient Summary -->
+                    <div class="doc-card ai-clinical-summary-box">
+                        <div class="ai-summary-header">
+                            <div class="ai-header-left">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2.2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                                <strong>AI Clinical Intake Summary</strong>
+                            </div>
+                            <span class="ai-disclaimer-tag">AI-generated summary — Doctor verification required</span>
+                        </div>
+
+                        <div class="ai-summary-grid">
+                            <div class="ai-field-item">
+                                <span class="ai-f-lbl">Reason for Visit</span>
+                                <strong class="ai-f-val text-blue" id="doc-ai-reason">Returning wheezing, nocturnal cough & morning dizziness</strong>
+                            </div>
+                            <div class="ai-field-item">
+                                <span class="ai-f-lbl">Symptoms & Duration</span>
+                                <strong class="ai-f-val" id="doc-ai-symptoms">Persistent Cough, Chest tightness (Moderate • 2-3 Days)</strong>
+                            </div>
+                            <div class="ai-field-item">
+                                <span class="ai-f-lbl">Active Vitals</span>
+                                <strong class="ai-f-val text-emerald" id="doc-ai-vitals">BP 132/86 mmHg • HR 78 bpm • SpO2 98% • Temp 98.6°F</strong>
+                            </div>
+                            <div class="ai-field-item">
+                                <span class="ai-f-lbl">Relevant Medical History</span>
+                                <strong class="ai-f-val" id="doc-ai-history">Essential Hypertension (1 Yr) • Allergic Bronchitis (Resolved 3 mos ago)</strong>
+                            </div>
+                            <div class="ai-field-item" style="grid-column: 1 / -1;">
+                                <span class="ai-f-lbl">AI Risk Indicators & Observations</span>
+                                <p class="ai-f-desc" id="doc-ai-observations">Symptom pattern suggests mild bronchospasm flare-up secondary to seasonal allergen exposure. Blood pressure shows mild elevation from baseline. Medication adherence to Telmisartan is high (94%).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Patient History Accordion / Timeline -->
+                    <div class="doc-card pat-history-card">
+                        <div class="history-card-header" id="btn-toggle-history" style="cursor:pointer; display:flex; justify-content:space-between; align-items:center;">
+                            <div style="display:flex; align-items:center; gap:8px;">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                <strong style="font-size:13.5px; color:#0f172a;">Past Consultations & Prescription Timeline (2 Records)</strong>
+                            </div>
+                            <span style="font-size:12px; color:#2563eb; font-weight:700;" id="history-toggle-txt">Expand Timeline ▼</span>
+                        </div>
+                        <div class="history-timeline-body" id="history-timeline-body" style="display:none; margin-top:14px; border-top:1px solid #f1f5f9; padding-top:12px;">
+                            <div class="timeline-event-item">
+                                <div class="event-bullet"></div>
+                                <div class="event-content">
+                                    <div class="event-meta-line">
+                                        <strong>2026-08-15 • Routine Hypertension Follow-up</strong>
+                                        <span class="event-doc">Dr. Rajesh Iyer</span>
+                                    </div>
+                                    <p class="event-desc">BP recorded 128/82 mmHg. Patient stable on Telmisartan 40mg. Advised low sodium diet and 30 min daily brisk walking.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-event-item">
+                                <div class="event-bullet"></div>
+                                <div class="event-content">
+                                    <div class="event-meta-line">
+                                        <strong>2026-07-21 • Bronchial Wheezing & Inhaler Review</strong>
+                                        <span class="event-doc">Dr. Priya Sharma</span>
+                                    </div>
+                                    <p class="event-desc">Prescribed Budecort 200 Inhaler 2 puffs/day for 14 days. Symptoms completely resolved after 10 days.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Doctor Consultation Form -->
+                    <div class="doc-card doc-consult-form-card">
+                        <h3 class="consult-form-heading">Physician Consultation & Clinical Assessment</h3>
+
+                        <div class="consult-form-grid">
+                            <div class="form-group-full">
+                                <label for="doc-clinical-assessment">Clinical Assessment</label>
+                                <textarea class="consult-textarea" id="doc-clinical-assessment" rows="2" placeholder="Enter objective physical findings, lung sounds, heart sounds..."></textarea>
+                            </div>
+
+                            <div class="form-group-half">
+                                <label for="doc-diagnosis-select">Diagnosis</label>
+                                <select class="consult-select" id="doc-diagnosis-select">
+                                    <option value="Essential Hypertension with Seasonal Bronchitis Flare-up">Essential Hypertension with Seasonal Bronchitis Flare-up</option>
+                                    <option value="Acute Bronchial Spasm & Wheezing">Acute Bronchial Spasm & Wheezing</option>
+                                    <option value="Gastroesophageal Reflux Disease (GERD)">Gastroesophageal Reflux Disease (GERD)</option>
+                                    <option value="Tension Headache & Mild Viral Pyrexia">Tension Headache & Mild Viral Pyrexia</option>
+                                    <option value="Other Clinical Diagnosis">Other Clinical Diagnosis (Custom)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group-half">
+                                <label for="doc-followup-select">Follow-up Recommendation</label>
+                                <select class="consult-select" id="doc-followup-select">
+                                    <option value="7 Days (1 Week)">In 7 Days (1 Week)</option>
+                                    <option value="14 Days (2 Weeks)">In 14 Days (2 Weeks)</option>
+                                    <option value="30 Days (1 Month)">In 30 Days (1 Month)</option>
+                                    <option value="No Follow-up Required">No Follow-up Required (SOS Only)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group-half">
+                                <label for="doc-tests-input">Recommended Lab / Diagnostic Tests</label>
+                                <input type="text" class="consult-input" id="doc-tests-input" placeholder="e.g. Peak Expiratory Flow Rate, Serum Electrolytes" value="Peak Flow Spirometry, Serum Potassium">
+                            </div>
+
+                            <div class="form-group-half">
+                                <label for="doc-consult-notes">Doctor's Clinical Notes</label>
+                                <input type="text" class="consult-input" id="doc-consult-notes" placeholder="e.g. Avoid cold drinks and dust exposure" value="Avoid known dust allergens. Stay hydrated and monitor morning BP.">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Digital Prescription Builder with Explicit Medicine Timing -->
+                    <div class="doc-card digital-rx-card">
+                        <div class="rx-builder-header">
+                            <div>
+                                <h3 class="rx-heading">Digital Prescription Builder</h3>
+                                <p class="rx-sub">Define exact medicine strengths, dosages, durations, and timing schedule for patient & hospital pharmacy.</p>
+                            </div>
+                            <button type="button" class="btn btn-secondary" id="btn-add-medicine-row">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                                <span>Add Medicine</span>
+                            </button>
+                        </div>
+
+                        <!-- Medicine Rows Container -->
+                        <div class="rx-medicines-builder-list" id="rx-medicines-builder-list">
+                            <!-- Populated dynamically with default active items -->
+                        </div>
+                    </div>
+
+                    <!-- Consultation Action Bar -->
+                    <div class="doc-consult-actions">
+                        <button type="button" class="btn btn-secondary" id="btn-doc-save-draft">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+                            <span>Save Consultation Draft</span>
+                        </button>
+                        <button type="button" class="btn btn-primary" id="btn-doc-review-rx" style="padding:12px 24px; font-size:14.5px;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                            <span>Review & Complete Prescription</span>
+                        </button>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+         PRESCRIPTION REVIEW & CONFIRMATION MODAL
+         ========================================================================== -->
+    <div class="modal-overlay" id="prescription-review-modal">
+        <div class="modal-card rx-review-modal-card" style="max-width:680px; background:#ffffff; color:#0f172a; border-radius:20px; padding:28px; box-shadow:0 25px 70px rgba(0,0,0,0.35); border:1.5px solid #e2e8f0;">
+            <div class="modal-header" style="display:flex; justify-content:space-between; align-items:flex-start; border-bottom:1.5px solid #e2e8f0; padding-bottom:16px;">
+                <div style="display:flex; align-items:center; gap:12px;">
+                    <div style="width:42px; height:42px; background:#eff6ff; border:1.5px solid #bfdbfe; border-radius:12px; display:flex; align-items:center; justify-content:center; color:#2563eb;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                    </div>
+                    <div>
+                        <h2 style="font-size:18px; font-weight:800; color:#0f172a; line-height:1.2;">Prescription Review & Pharmacy Dispatch</h2>
+                        <p style="font-size:12px; color:#64748b; margin-top:2px;">Official Medical e-Prescription Slip • Hospital Pharmacy Linked</p>
+                    </div>
+                </div>
+                <button class="modal-close" id="close-rx-review-modal" style="background:none; border:none; font-size:26px; color:#64748b; cursor:pointer;">&times;</button>
+            </div>
+
+            <div class="rx-slip-container" style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:14px; padding:18px; margin:18px 0;">
+                <!-- Hospital & Doctor Slip Header -->
+                <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #e2e8f0; padding-bottom:10px; margin-bottom:12px;">
+                    <div>
+                        <strong style="font-size:14px; color:#1e3a8a; display:block;">District Civil Hospital • Arogya OPD</strong>
+                        <span style="font-size:11.5px; color:#64748b;">Attending: <strong id="review-rx-doc">Dr. Rajesh Iyer, MD</strong> (Room #2)</span>
+                    </div>
+                    <div style="text-align:right;">
+                        <span style="font-size:11px; color:#64748b; display:block;">Prescription ID</span>
+                        <strong style="font-size:13px; color:#2563eb;" id="review-rx-id">RX-2026-00124</strong>
+                    </div>
+                </div>
+
+                <!-- Patient Meta Summary -->
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; font-size:12.5px; margin-bottom:14px;">
+                    <div><span style="color:#64748b;">Patient:</span> <strong id="review-rx-patient">Rahul Verma (32 M)</strong></div>
+                    <div><span style="color:#64748b;">ABHA ID:</span> <strong id="review-rx-abha">91-4820-1928-3746</strong></div>
+                    <div style="grid-column:1 / -1;"><span style="color:#64748b;">Diagnosis:</span> <strong id="review-rx-diag" style="color:#0f172a;">Essential Hypertension with Seasonal Bronchitis Flare-up</strong></div>
+                </div>
+
+                <!-- Medicines Table List -->
+                <div style="border-top:1px dashed #cbd5e1; padding-top:12px;">
+                    <div style="font-size:12px; font-weight:800; color:#475569; text-transform:uppercase; margin-bottom:8px;">Prescribed Medicines (<span id="review-rx-count">2</span>)</div>
+                    <div id="review-rx-meds-list" style="display:flex; flex-direction:column; gap:8px;">
+                        <!-- Injected dynamically -->
+                    </div>
+                </div>
+
+                <!-- Doctor Digital Signature -->
+                <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-top:16px; padding-top:12px; border-top:1px solid #e2e8f0; font-size:11.5px; color:#64748b;">
+                    <div>Follow-up: <strong id="review-rx-followup" style="color:#0f172a;">In 7 Days</strong></div>
+                    <div style="text-align:right;">
+                        <span style="color:#059669; font-weight:700;">✓ Digitally Signed by Dr. Rajesh Iyer</span>
+                        <span style="display:block; font-size:10.5px; color:#94a3b8;">Medical Registration: KMC-84920</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:12px;">
+                <button type="button" class="btn btn-secondary" id="btn-edit-rx-back">
+                    &larr; Edit Prescription
+                </button>
+                <button type="button" class="btn btn-primary" id="btn-confirm-send-pharmacy" style="background:#059669; border-color:#059669; padding:12px 22px;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <span>Confirm & Send to Hospital Pharmacy</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+         HOSPITAL PHARMACY PORTAL PAGE
+         ========================================================================== -->
+    <div class="pharmacy-dashboard-view" id="pharmacy-dashboard-page" style="display:none;">
+        <div class="pharmacy-container">
+            <!-- Header -->
+            <header class="pharmacy-header">
+                <div class="pharm-header-left">
+                    <div class="pharm-badge-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.2">
+                            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="pharm-title">Hospital Pharmacy & Dispensary</h2>
+                        <p class="pharm-sub">Central Pharmacy Station • Live ABDM e-Prescription Dispensing</p>
+                    </div>
+                </div>
+
+                <div class="pharm-header-actions">
+                    <div class="pharm-pending-pill">
+                        <span class="pulse-dot-amber"></span>
+                        <span id="pharm-pending-counter-txt">2 Orders Pending</span>
+                    </div>
+                    <button class="btn btn-secondary" id="pharmacy-go-back">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                        <span>Exit Pharmacy</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- ABHA Search & Verification Card -->
+            <div class="pharmacy-search-card">
+                <div class="search-input-wrap">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    <input type="text" id="pharmacy-abha-search" class="pharm-search-field" placeholder="Verify Patient: Enter ABHA ID (e.g. 91-4820-1928-3746) or Patient Name...">
+                    <button type="button" class="btn btn-primary" id="btn-pharm-verify-abha" style="padding:10px 18px; font-size:13px;">
+                        <span>Verify & Retrieve</span>
+                    </button>
+                </div>
+
+                <!-- Filter Tabs -->
+                <div class="pharm-filter-row">
+                    <div class="pharm-tabs">
+                        <button class="pharm-tab active" data-filter="all" id="pharm-tab-all">All Prescriptions</button>
+                        <button class="pharm-tab" data-filter="Pending" id="pharm-tab-pending">Pending</button>
+                        <button class="pharm-tab" data-filter="Ready" id="pharm-tab-ready">Ready for Pickup</button>
+                        <button class="pharm-tab" data-filter="Dispensed" id="pharm-tab-dispensed">Dispensed</button>
+                    </div>
+                    <span class="pharm-live-status-txt">✓ ABDM Prescription Gateway Connected</span>
+                </div>
+            </div>
+
+            <!-- Pharmacy Orders Grid -->
+            <div class="pharmacy-orders-grid" id="pharmacy-orders-grid">
+                <!-- Dynamically populated -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+         PATIENT "MY MEDICINES" & 5-STAGE PRESCRIPTION TRACKER MODAL
+         ========================================================================== -->
+    <div class="modal-overlay" id="patient-medicines-modal">
+        <div class="modal-card my-meds-modal-card" style="max-width:640px; background:#ffffff; color:#0f172a; border-radius:22px; padding:26px; box-shadow:0 25px 70px rgba(0,0,0,0.35); border:1.5px solid #e2e8f0; max-height:90vh; overflow-y:auto;">
+            <div class="modal-header" style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #f1f5f9; padding-bottom:14px; margin-bottom:16px;">
+                <div style="display:flex; align-items:center; gap:10px;">
+                    <div style="width:40px; height:40px; background:#ecfdf5; border:1.5px solid #a7f3d0; border-radius:12px; display:flex; align-items:center; justify-content:center; color:#059669;">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"></path><path d="m8.5 8.5 7 7"></path></svg>
+                    </div>
+                    <div>
+                        <h2 style="font-size:18px; font-weight:800; color:#0f172a; line-height:1.2;">My Active Medicines & Pharmacy Tracker</h2>
+                        <p style="font-size:12px; color:#64748b; margin-top:2px;">Prescription Schedule & Live Hospital Pharmacy Dispensing Status</p>
+                    </div>
+                </div>
+                <button class="modal-close" id="close-patient-meds-modal" style="background:none; border:none; font-size:26px; color:#64748b; cursor:pointer;">&times;</button>
+            </div>
+
+            <!-- 5-Stage Live Prescription Status Tracker -->
+            <div class="rx-5stage-tracker" id="rx-5stage-tracker" style="background:#f8fafc; border:1.5px solid #e2e8f0; border-radius:16px; padding:18px; margin-bottom:18px;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+                    <div>
+                        <span style="font-size:11px; font-weight:700; color:#64748b; text-transform:uppercase;">Active Prescription ID</span>
+                        <div style="font-size:15px; font-weight:900; color:#1e40af;" id="tracker-rx-id">RX-2026-00124</div>
+                    </div>
+                    <span class="rx-stage-pill stage-ready" id="tracker-overall-status-pill">Ready for Collection</span>
+                </div>
+
+                <!-- 5 Steps Flow -->
+                <div class="tracker-steps-line-row">
+                    <div class="tracker-step-node completed" id="step-node-1">
+                        <div class="step-circle">✓</div>
+                        <span>Consultation Done</span>
+                    </div>
+                    <div class="tracker-connect-bar completed" id="bar-1"></div>
+                    <div class="tracker-step-node completed" id="step-node-2">
+                        <div class="step-circle">✓</div>
+                        <span>Prescription Created</span>
+                    </div>
+                    <div class="tracker-connect-bar completed" id="bar-2"></div>
+                    <div class="tracker-step-node completed" id="step-node-3">
+                        <div class="step-circle">✓</div>
+                        <span>Sent to Pharmacy</span>
+                    </div>
+                    <div class="tracker-connect-bar active" id="bar-3"></div>
+                    <div class="tracker-step-node active" id="step-node-4">
+                        <div class="step-circle" id="circle-node-4">4</div>
+                        <span>Ready for Pickup</span>
+                    </div>
+                    <div class="tracker-connect-bar" id="bar-4"></div>
+                    <div class="tracker-step-node" id="step-node-5">
+                        <div class="step-circle" id="circle-node-5">5</div>
+                        <span>Dispensed</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Daily Medicine Schedule Matrix -->
+            <div class="patient-daily-meds-container">
+                <h3 style="font-size:14px; font-weight:800; color:#0f172a; margin-bottom:12px; display:flex; align-items:center; justify-content:space-between;">
+                    <span>Daily Intake Schedule</span>
+                    <span style="font-size:11.5px; color:#059669; font-weight:700;" id="meds-active-count-tag">2 Prescribed Medicines</span>
+                </h3>
+
+                <div class="patient-schedule-list" id="patient-schedule-list" style="display:flex; flex-direction:column; gap:10px;">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+
+            <!-- Pharmacy Pickup Location & Guidance -->
+            <div style="background:#eff6ff; border:1px solid #bfdbfe; border-radius:14px; padding:14px; margin-top:18px; display:flex; align-items:center; gap:12px;">
+                <div style="font-size:22px;">🏥</div>
+                <div>
+                    <strong style="font-size:13px; color:#1e40af; display:block;">Hospital Pharmacy Counter #1 (Ground Floor)</strong>
+                    <span style="font-size:11.5px; color:#3b82f6;">Present your ABHA ID <strong>91-4820-1928-3746</strong> at the dispensing counter to collect your sealed medication kit.</span>
+                </div>
+            </div>
         </div>
     </div>
 

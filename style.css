@@ -7545,3 +7545,1000 @@ body {
         gap: 8px;
     }
 }
+
+/* ==========================================================================
+   Doctor Consultation Dashboard Styles
+   ========================================================================== */
+.doctor-dashboard-view,
+.pharmacy-dashboard-view {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #f8fafc;
+    z-index: 2500;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 24px;
+    display: none;
+}
+
+.doc-dash-container,
+.pharmacy-container {
+    max-width: 1380px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.doc-dash-header,
+.pharmacy-header {
+    background: #ffffff;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 18px;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--shadow-sm);
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.doc-header-left,
+.pharm-header-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.doc-badge-avatar,
+.pharm-badge-icon {
+    width: 44px;
+    height: 44px;
+    background: #eff6ff;
+    border: 1.5px solid #bfdbfe;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.pharm-badge-icon {
+    background: #ecfdf5;
+    border-color: #a7f3d0;
+}
+
+.doc-dash-name,
+.pharm-title {
+    font-size: 19px;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.2;
+}
+
+.doc-dash-sub,
+.pharm-sub {
+    font-size: 12px;
+    color: #64748b;
+    margin-top: 2px;
+}
+
+.doc-header-actions,
+.pharm-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.doc-queue-pill,
+.pharm-pending-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #f0fdf4;
+    border: 1.5px solid #bbf7d0;
+    color: #166534;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12.5px;
+    font-weight: 700;
+}
+
+.pharm-pending-pill {
+    background: #fffbeb;
+    border-color: #fde68a;
+    color: #b45309;
+}
+
+.pulse-dot-green,
+.pulse-dot-amber {
+    width: 8px;
+    height: 8px;
+    background: #10b981;
+    border-radius: 50%;
+    box-shadow: 0 0 6px rgba(16, 185, 129, 0.8);
+    animation: pulseSync 2s infinite;
+}
+
+.pulse-dot-amber {
+    background: #f59e0b;
+    box-shadow: 0 0 6px rgba(245, 158, 11, 0.8);
+}
+
+/* 2-Column Doctor Dashboard Grid */
+.doc-dash-grid {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 20px;
+    align-items: start;
+}
+
+.doc-queue-sidebar {
+    background: #ffffff;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 18px;
+    padding: 18px;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.doc-sidebar-header {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-bottom: 1px solid #f1f5f9;
+    padding-bottom: 12px;
+}
+
+.queue-section-title {
+    font-size: 15px;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+.queue-filter-tabs {
+    display: flex;
+    gap: 6px;
+}
+
+.queue-tab {
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 5px 10px;
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #475569;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.queue-tab.active {
+    background: #2563eb;
+    border-color: #2563eb;
+    color: #ffffff;
+}
+
+.patient-queue-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 75vh;
+    overflow-y: auto;
+}
+
+.queue-patient-card {
+    background: #f8fafc;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.queue-patient-card:hover {
+    background: #ffffff;
+    border-color: #cbd5e1;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+}
+
+.queue-patient-card.active {
+    background: #eff6ff;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.q-pat-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.q-pat-name {
+    font-size: 14px;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+.q-pat-token {
+    font-size: 11px;
+    font-weight: 800;
+    color: #2563eb;
+    background: #ffffff;
+    border: 1px solid #bfdbfe;
+    padding: 2px 7px;
+    border-radius: 6px;
+}
+
+.q-pat-meta {
+    font-size: 11.5px;
+    color: #64748b;
+}
+
+.q-pat-badges {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 6px;
+    margin-top: 2px;
+}
+
+.q-risk-pill {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 10px;
+}
+
+.risk-moderate {
+    background: #fffbeb;
+    color: #b45309;
+    border: 1px solid #fde68a;
+}
+
+.risk-high {
+    background: #fef2f2;
+    color: #b91c1c;
+    border: 1px solid #fecaca;
+}
+
+.risk-low {
+    background: #f0fdf4;
+    color: #15803d;
+    border: 1px solid #bbf7d0;
+}
+
+/* Workspace Right Column */
+.doc-workspace-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.doc-card {
+    background: #ffffff;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 18px;
+    padding: 20px;
+    box-shadow: var(--shadow-sm);
+}
+
+.doc-patient-banner {
+    background: #ffffff;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 18px;
+    padding: 18px 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--shadow-sm);
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.banner-pat-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.pat-avatar-box {
+    width: 48px;
+    height: 48px;
+    background: #eff6ff;
+    border: 1.5px solid #bfdbfe;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.pat-name-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.pat-name {
+    font-size: 18px;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+.pat-token-tag {
+    background: #eff6ff;
+    color: #1e40af;
+    border: 1px solid #bfdbfe;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 11.5px;
+    font-weight: 800;
+}
+
+.pat-status-pill {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 10px;
+}
+
+.status-in-consult {
+    background: #f0fdf4;
+    color: #15803d;
+    border: 1px solid #bbf7d0;
+}
+
+.pat-sub-meta {
+    font-size: 12px;
+    color: #64748b;
+    margin-top: 3px;
+}
+
+.meta-sep {
+    margin: 0 4px;
+    color: #cbd5e1;
+}
+
+.banner-pat-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.visit-type-pill {
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    color: #334155;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 11.5px;
+    font-weight: 700;
+}
+
+.ai-risk-badge {
+    padding: 4px 12px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+/* AI Clinical Summary Box */
+.ai-clinical-summary-box {
+    background: linear-gradient(180deg, #ffffff 0%, #f0f7ff 100%);
+    border-color: #bfdbfe;
+}
+
+.ai-summary-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #dbeafe;
+    padding-bottom: 10px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.ai-header-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #1e40af;
+    font-size: 14px;
+}
+
+.ai-disclaimer-tag {
+    font-size: 11px;
+    font-weight: 700;
+    color: #1e40af;
+    background: #dbeafe;
+    padding: 3px 8px;
+    border-radius: 6px;
+}
+
+.ai-summary-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.ai-field-item {
+    background: #ffffff;
+    border: 1px solid #dbeafe;
+    border-radius: 12px;
+    padding: 10px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.ai-f-lbl {
+    font-size: 11px;
+    font-weight: 700;
+    color: #64748b;
+    text-transform: uppercase;
+}
+
+.ai-f-val {
+    font-size: 13px;
+    color: #0f172a;
+}
+
+.ai-f-desc {
+    font-size: 12.5px;
+    color: #334155;
+    line-height: 1.45;
+    margin-top: 3px;
+}
+
+/* History Timeline */
+.timeline-event-item {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.event-bullet {
+    width: 8px;
+    height: 8px;
+    background: #3b82f6;
+    border-radius: 50%;
+    margin-top: 5px;
+    flex-shrink: 0;
+}
+
+.event-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.event-meta-line {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12.5px;
+    color: #0f172a;
+}
+
+.event-doc {
+    font-size: 11.5px;
+    color: #2563eb;
+    font-weight: 600;
+}
+
+.event-desc {
+    font-size: 12px;
+    color: #64748b;
+    line-height: 1.4;
+}
+
+/* Consultation Form */
+.consult-form-heading,
+.rx-heading {
+    font-size: 15px;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 14px;
+}
+
+.rx-sub {
+    font-size: 12px;
+    color: #64748b;
+    margin-top: 2px;
+}
+
+.consult-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.form-group-full {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group-half {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.consult-form-grid label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #475569;
+}
+
+.consult-textarea,
+.consult-input,
+.consult-select {
+    width: 100%;
+    background: #f8fafc;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 10px;
+    padding: 9px 12px;
+    font-size: 13px;
+    font-family: inherit;
+    color: #0f172a;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.consult-textarea:focus,
+.consult-input:focus,
+.consult-select:focus {
+    background: #ffffff;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+/* Digital Prescription Builder */
+.rx-builder-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px solid #f1f5f9;
+    padding-bottom: 12px;
+    margin-bottom: 14px;
+}
+
+.rx-medicines-builder-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.rx-builder-row {
+    background: #f8fafc;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: all 0.2s ease;
+}
+
+.rx-builder-row:hover {
+    background: #ffffff;
+    border-color: #cbd5e1;
+}
+
+.rx-row-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr auto;
+    gap: 10px;
+    align-items: center;
+}
+
+.rx-row-timing-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 8px 12px;
+}
+
+.timing-label {
+    font-size: 11.5px;
+    font-weight: 700;
+    color: #475569;
+}
+
+.timing-checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.timing-opt {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    color: #334155;
+    cursor: pointer;
+}
+
+.timing-opt input {
+    cursor: pointer;
+    accent-color: #2563eb;
+}
+
+.btn-remove-med {
+    background: none;
+    border: none;
+    color: #ef4444;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-remove-med:hover {
+    background: #fee2e2;
+}
+
+.doc-consult-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+/* ==========================================================================
+   Hospital Pharmacy Portal Styles
+   ========================================================================== */
+.pharmacy-search-card {
+    background: #ffffff;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 18px;
+    padding: 18px 22px;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.search-input-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #f8fafc;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 12px;
+    padding: 6px 14px;
+    transition: all 0.2s ease;
+}
+
+.search-input-wrap:focus-within {
+    background: #ffffff;
+    border-color: #059669;
+    box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.12);
+}
+
+.pharm-search-field {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-size: 13.5px;
+    font-family: inherit;
+    color: #0f172a;
+    outline: none;
+}
+
+.pharm-filter-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.pharm-tabs {
+    display: flex;
+    gap: 6px;
+}
+
+.pharm-tab {
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #475569;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.pharm-tab.active {
+    background: #059669;
+    border-color: #059669;
+    color: #ffffff;
+}
+
+.pharm-live-status-txt {
+    font-size: 11.5px;
+    color: #059669;
+    font-weight: 700;
+}
+
+.pharmacy-orders-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+    gap: 18px;
+}
+
+.order-item-card {
+    background: #ffffff;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 18px;
+    padding: 20px;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    transition: all 0.2s ease;
+}
+
+.order-item-card:hover {
+    border-color: #cbd5e1;
+    box-shadow: var(--shadow-md);
+}
+
+.order-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-bottom: 1px solid #f1f5f9;
+    padding-bottom: 12px;
+}
+
+.ord-id {
+    font-size: 16px;
+    font-weight: 900;
+    color: #1e3a8a;
+    line-height: 1.1;
+}
+
+.ord-timestamp {
+    font-size: 11px;
+    color: #64748b;
+    margin-top: 2px;
+}
+
+.ord-status-badge {
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.badge-pending {
+    background: #fffbeb;
+    color: #b45309;
+    border: 1px solid #fde68a;
+}
+
+.badge-ready {
+    background: #eff6ff;
+    color: #1e40af;
+    border: 1px solid #bfdbfe;
+}
+
+.badge-dispensed {
+    background: #ecfdf5;
+    color: #059669;
+    border: 1px solid #a7f3d0;
+}
+
+.ord-pat-info {
+    display: flex;
+    justify-content: space-between;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 12.5px;
+}
+
+.ord-meds-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.ord-med-item {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 10px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ord-med-main {
+    display: flex;
+    flex-direction: column;
+}
+
+.ord-med-title {
+    font-size: 13px;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+.ord-med-timing {
+    font-size: 11.5px;
+    color: #2563eb;
+    margin-top: 2px;
+}
+
+.ord-med-qty {
+    background: #f1f5f9;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #475569;
+}
+
+.ord-actions-bar {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    border-top: 1px solid #f1f5f9;
+    padding-top: 12px;
+}
+
+/* ==========================================================================
+   Patient 5-Stage Live Prescription Tracker Styles
+   ========================================================================== */
+.tracker-steps-line-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    padding: 8px 0;
+}
+
+.tracker-step-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    z-index: 2;
+    font-size: 11px;
+    font-weight: 700;
+    color: #64748b;
+    text-align: center;
+    width: 80px;
+}
+
+.tracker-step-node.completed {
+    color: #059669;
+}
+
+.tracker-step-node.active {
+    color: #2563eb;
+}
+
+.step-circle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 2px solid #cbd5e1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 800;
+    color: #64748b;
+}
+
+.tracker-step-node.completed .step-circle {
+    background: #10b981;
+    border-color: #10b981;
+    color: #ffffff;
+}
+
+.tracker-step-node.active .step-circle {
+    background: #2563eb;
+    border-color: #2563eb;
+    color: #ffffff;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.2);
+}
+
+.tracker-connect-bar {
+    flex: 1;
+    height: 3px;
+    background: #cbd5e1;
+    margin: 0 4px;
+    margin-bottom: 22px;
+}
+
+.tracker-connect-bar.completed {
+    background: #10b981;
+}
+
+.tracker-connect-bar.active {
+    background: #3b82f6;
+}
+
+.rx-stage-pill {
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 11.5px;
+    font-weight: 800;
+}
+
+.stage-ready {
+    background: #eff6ff;
+    color: #1e40af;
+    border: 1px solid #bfdbfe;
+}
+
+.stage-dispensed {
+    background: #ecfdf5;
+    color: #059669;
+    border: 1px solid #a7f3d0;
+}
+
+.patient-schedule-item {
+    background: #f8fafc;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 14px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.sched-timing-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    color: #1e40af;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 2px 8px;
+    border-radius: 6px;
+}
+
+@media (max-width: 1024px) {
+    .doc-dash-grid {
+        grid-template-columns: 1fr;
+    }
+    .pharmacy-orders-grid {
+        grid-template-columns: 1fr;
+    }
+    .rx-row-top {
+        grid-template-columns: 1fr 1fr;
+    }
+}
