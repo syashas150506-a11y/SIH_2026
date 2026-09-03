@@ -1350,8 +1350,16 @@
                             </div>
 
                             <div class="arogya-response-box" style="margin-top: 18px;">
-                                <div class="response-box-header">
+                                <div class="response-box-header" style="display:flex; justify-content:space-between; align-items:center;">
                                     <span class="response-label">Additional notes (optional)</span>
+                                    <button type="button" class="btn-notes-mic" id="btn-notes-mic" title="Speak additional notes">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                                            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                                            <line x1="12" y1="19" x2="12" y2="23"></line>
+                                        </svg>
+                                        <span id="notes-mic-status">Voice Note</span>
+                                    </button>
                                 </div>
                                 <textarea class="response-input-field" id="arogya-notes-text" rows="2" placeholder="Any associated chills, dizziness, or medication taken..."></textarea>
                             </div>

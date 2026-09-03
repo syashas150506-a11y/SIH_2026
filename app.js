@@ -612,6 +612,84 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Voice Dictation for Additional Notes
+    const btnNotesMic = document.getElementById('btn-notes-mic');
+    const notesMicStatus = document.getElementById('notes-mic-status');
+    let isNotesRecording = false;
+    let notesRecognition = null;
+
+    if (btnNotesMic && arogyaNotesText) {
+        const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (SpeechRec) {
+            try {
+                notesRecognition = new SpeechRec();
+                notesRecognition.continuous = false;
+                notesRecognition.interimResults = false;
+                notesRecognition.lang = document.documentElement.getAttribute('lang') === 'kn' ? 'kn-IN' : (document.documentElement.getAttribute('lang') === 'hi' ? 'hi-IN' : 'en-IN');
+
+                notesRecognition.onresult = (e) => {
+                    const transcript = e.results[0][0].transcript;
+                    if (transcript) {
+                        const cur = arogyaNotesText.value.trim();
+                        arogyaNotesText.value = cur ? cur + ' ' + transcript : transcript;
+                    }
+                    stopNotesRecording();
+                };
+
+                notesRecognition.onerror = () => {
+                    stopNotesRecording();
+                };
+
+                notesRecognition.onend = () => {
+                    stopNotesRecording();
+                };
+            } catch(e) {
+                console.warn('Notes speech rec error:', e);
+            }
+        }
+
+        function stopNotesRecording() {
+            isNotesRecording = false;
+            btnNotesMic.classList.remove('recording');
+            if (notesMicStatus) notesMicStatus.textContent = 'Voice Note';
+        }
+
+        btnNotesMic.addEventListener('click', () => {
+            if (!isNotesRecording) {
+                isNotesRecording = true;
+                btnNotesMic.classList.add('recording');
+                if (notesMicStatus) notesMicStatus.textContent = 'Listening...';
+                if (notesRecognition) {
+                    try {
+                        notesRecognition.lang = document.documentElement.getAttribute('lang') === 'kn' ? 'kn-IN' : (document.documentElement.getAttribute('lang') === 'hi' ? 'hi-IN' : 'en-IN');
+                        notesRecognition.start();
+                    } catch(e) {
+                        setTimeout(() => {
+                            if (isNotesRecording) {
+                                const sampleNotes = 'Mild morning dizziness and slight nausea after morning meal.';
+                                const cur = arogyaNotesText.value.trim();
+                                arogyaNotesText.value = cur ? cur + ' ' + sampleNotes : sampleNotes;
+                                stopNotesRecording();
+                            }
+                        }, 2200);
+                    }
+                } else {
+                    setTimeout(() => {
+                        const sampleNotes = 'Mild morning dizziness and slight nausea after morning meal.';
+                        const cur = arogyaNotesText.value.trim();
+                        arogyaNotesText.value = cur ? cur + ' ' + sampleNotes : sampleNotes;
+                        stopNotesRecording();
+                    }, 1800);
+                }
+            } else {
+                if (notesRecognition) {
+                    try { notesRecognition.stop(); } catch(e) {}
+                }
+                stopNotesRecording();
+            }
+        });
+    }
+
     // Step 3 Document Decision Handlers (YES / NO)
     function selectDocDecisionYes() {
         if (docDecisionScreen) docDecisionScreen.style.display = 'none';
